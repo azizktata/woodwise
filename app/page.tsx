@@ -2,15 +2,7 @@
 
 import { Section, Container, Prose, cn } from "@/components/craft";
 import Balancer from "react-wrap-balancer";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 // Next.js Imports
 import Link from "next/link";
 import HeroImage from "@/public/hero.jpg";
@@ -70,17 +62,17 @@ const Hero = () => {
     <Section>
       <Container className="flex flex-col gap-12 lg:gap-20 md:flex-row justify-between items-center">
         <div className="w-full md:w-1/2 ">
-          <h1 className="font-bold text-5xl mb-6 tracking-wider">
+          <h1 className="font-bold text-6xl mb-6 tracking-wider">
             <Balancer>
               <span className="text-black">Construire Mieux</span>
               <br />
               <span className="bg-gradient bg-clip-text text-transparent">
-                eCOLOGIQUEMENT
+                ECOLOGIQUEMENT
               </span>
             </Balancer>
           </h1>
           <h3 className="text-muted-foreground mb-5">
-            <p className="w-full max-w-[50ch]">
+            <p className="w-full max-w-[55ch]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
               quis magna ut lectus aliquet consequat. Nulla libero augue,
               ullamcorper et efficitur lacinia, eleifend eget lacus. Integer
@@ -110,6 +102,7 @@ import { Coins, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Onest } from "next/font/google";
 import { title } from "process";
+import ContactForm from "@/components/contact-form";
 
 type FeatureText = {
   icon: JSX.Element;
@@ -153,29 +146,29 @@ const Apropos = () => {
   return (
     <Section className=" !pt-0">
       <Container>
-        <h2 className="font-semibold text-black text-5xl mb-6 text-center">
+        <h2 className="font-semibold text-black text-7xl mb-6 text-center">
           À Propos de{" "}
           <span className="bg-gradient bg-clip-text text-transparent">
             WoodWise
           </span>
         </h2>
-        <div className="mt-6 grid gap-6 md:mt-12 md:grid-cols-2 mb-6">
+        <div className="mt-6 grid gap-12 md:mt-12 md:grid-cols-2 mb-12">
           {featureText.map(({ icon, title, description, href, cta }, index) => (
             <Link
               href={`${href}`}
-              className="flex flex-col justify-between bg-white gap-6 rounded-lg border p-6 transition-all hover:-mt-2 hover:mb-2"
+              className="flex flex-col justify-between bg-white gap-6 rounded-2xl  p-6  transition-all hover:-mt-2 hover:mb-2"
               key={index}
             >
               <div className="grid gap-4 ">
                 {icon}
-                <h4 className="text-xl text-primary">{title}</h4>
+                <h4 className="text-4xl text-primary">{title}</h4>
                 <p className="text-base opacity-75">{description}</p>
               </div>
-              {cta && (
+              {/* {cta && (
                 <div className="flex h-fit items-center text-sm font-semibold">
                   <p>{cta}</p> <ArrowRight className="ml-2 h-4 w-4" />
                 </div>
-              )}
+              )} */}
             </Link>
           ))}
         </div>
@@ -209,10 +202,10 @@ const Apropos = () => {
               className="fill object-cover"
             />
           </div>
-          <div>
+          <div className="py-6">
             <div
               className={cn(
-                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white"
+                "flex flex-col gap-2 py-6 transition-all duration-300  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white"
               )}
             >
               <h3 className="!my-0 font-semibold text-xl ">
@@ -297,28 +290,32 @@ const chiffres = [
 const Impact = () => {
   return (
     <Section>
-      <Container>
-        <h2 className="font-semibold text-black text-5xl mb-6 text-center">
+      <Container className="max-w-7xl">
+        <h2 className="font-semibold text-black text-6xl mb-6 text-center">
           Notre{" "}
           <span className="bg-gradient bg-clip-text text-transparent">
             Impact
           </span>
         </h2>
-        <p className="text-gray-500 text-sm text-center max-w-[50ch] mx-auto mb-12">
+        <p className={cn(
+              "text-gray-500 text-sm text-center max-w-[55ch] mx-auto mb-12 font-sans",
+              font2.variable
+            )}
+        >
           Chaque panneau, chaque projet, chaque kilo de bois détourné des
           décharges témoigne de notre engagement.
         </p>
 
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3 mt-6">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 mt-6">
           {chiffres.map((item) => (
             <div
               key={item.title}
-              className="flex flex-col gap-6 items-center bg-white py-12 px-5 rounded-2xl border shadow-sm"
+              className="group  flex flex-col gap-6 items-center bg-white py-12 px-3 rounded-2xl border shadow-sm transition-background duration-300 hover:bg-gradient hover:text-white"
             >
-              <h3 className="text-7xl font-semibold text-woodPrimary">
+              <h3 className="text-8xl font-semibold text-woodPrimary group-hover:text-white">
                 {item.value}
               </h3>
-              <Balancer className="text-xl font-semibold text-black text-center">
+              <Balancer className="text-2xl font-semibold text-black group-hover:text-white text-center">
                 {item.title}
               </Balancer>
             </div>
@@ -332,7 +329,7 @@ const Impact = () => {
 const Mbio7 = () => {
   return (
     <Section>
-      <Container className="grid items-center md:grid-cols-2 md:gap-12">
+      <Container className="grid items-center md:grid-cols-2 md:gap-12 max-w-7xl">
         <div className="not-prose relative h-auto flex overflow-hidden rounded-lg  ">
           <Image
             src={Mbio7Image}
@@ -343,8 +340,8 @@ const Mbio7 = () => {
           />
         </div>
         <div className="flex flex-col gap-6 py-8">
-          <h2 className="!my-0 font-semibold text-black text-5xl">
-            Mbio7 by{" "}
+          <h2 className="!my-0 font-semibold text-black text-6xl">
+            MBio7 by{" "}
             <span className="bg-gradient bg-clip-text text-transparent">
               WoodWise
             </span>
@@ -357,7 +354,7 @@ const Mbio7 = () => {
           >
             Le panneau nouvelle génération pour une construction durable. Issu
             de bois recyclé et de résidus forestiers, mBio7 est un panneau de
-            construction unique :
+            construction unique
             <br />
             <ul className="list-disc list-inside ">
               <li>Résistant au feu</li>
@@ -377,69 +374,61 @@ const Mbio7 = () => {
 const Contact = () => {
   return (
     <Section className="">
-      <Container className="grid items-stretch md:grid-cols-2">
-        <div className="not-prose relative h-96 flex flex-col  p-4  bg-woodSecondary">
+      <div className="grid items-stretch md:grid-cols-2 w-full">
+        <div className="not-prose relative flex flex-col  p-4 py-20  bg-woodSecondary">
           <Image
             src={ContactBg}
             alt="Contact"
             className="absolute inset-0 object-cover w-full h-full"
           />
 
-          <div className="absolute inset-0 z-0 bg-woodSecondary opacity-80"></div>
+          <div className="absolute inset-0 z-0 bg-gradient opacity-60"></div>
 
           {/* The container for your content, positioned on top */}
           <div className="relative z-10 flex flex-col items-start mx-auto justify-center h-full">
-            <h2 className="font-semibold text-white text-5xl mb-6 text-center z-10">
+            <h2 className={
+              cn(
+            "font-semibold text-white text-6xl mb-12 text-center z-10 font-sans ",
+            font2.variable
+          )
+            }
+            
+           >
               Contactez-Nous
             </h2>
             <div id="contact-form" className="w-full">
-              <form>
-                <div className="flex flex-col gap-4">
-                  <input
-                    type="text"
-                    placeholder="Votre nom"
-                    className="p-2 rounded border border-gray-300"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Votre email"
-                    className="p-2 rounded border border-gray-300"
-                  />
-                  <textarea
-                    placeholder="Votre message"
-                    className="p-2 rounded border border-gray-300"
-                  />
-                  <button className="bg-white text-black p-2 rounded">
-                    Envoyer
-                  </button>
-                </div>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </div>
-        <div className="bg-woodPrimary p-8 text-white flex flex-col justify-center">
-          <div className="mx-auto">
-            <p className="font-semibold text-2xl">Contact information</p>
-            <p className="text-base text-white/50">
+        <div className="bg-woodPrimary p-4  text-white flex flex-col justify-center">
+          <div className={
+             cn(
+            "mx-auto pr-2 font-sans ",
+            font2.variable
+          )
+          }>
+            <p className="font-semibold text-3xl mb-3 tracking-wide">Contact information</p>
+            <p className="text-base text-white/60 tracking-wide">
               Say something to start a live chat!
             </p>
-            <div className="flex flex-col gap-2 text-sm mt-4">
-              <div className="flex items-center gap-2 text-base">
-                <Phone className="h-4 w-4" />
+            <div className="flex flex-col gap-6 text-sm mt-6">
+              <div className="flex items-center gap-6 text-base">
+                <Phone className="h-6 w-6" />
                 <span>+1 (555) 123-4567</span>
               </div>
-              <div className="flex items-center gap-2 text-base">
-                <Mail className="h-4 w-4" />
+              <div className="flex items-center gap-6 text-base">
+                <Mail className="h-6 w-6" />
                 <span>contact@woodwise.com</span>
               </div>
-              <div className="flex items-center gap-2 text-base">
-                <PinIcon className="h-4 w-4" />
+              <div className="flex items-center gap-6 text-base">
+                <PinIcon className="h-6 w-6" />
                 <span>123 Main St, Anytown, USA</span>
               </div>
             </div>
           </div>
         </div>
-      </Container>
+      </div>
     </Section>
   );
 };
@@ -483,6 +472,11 @@ const Blogs = () => {
           {blogs.map((blog, index) => (
             <BlogCard key={index} blog={blog} />
           ))}
+
+
+        </div>
+        <div className="mt-12 flex justify-center">
+          <CustomButton label="Voir plus" inverted />
         </div>
       </Container>
     </Section>
@@ -561,15 +555,13 @@ const reviews = [
     rating: 4,
     comment: "Great value for the price.",
   },
-
- 
 ];
 
 const Reviews = () => {
   return (
     <Section>
       <Container>
-        <h2 className="font-semibold text-black text-5xl mb-6 text-center">
+        <h2 className="font-semibold text-black text-6xl mb-6 text-center">
           Listen to what our
           <br />
           <span className="bg-gradient bg-clip-text text-transparent">
@@ -596,30 +588,34 @@ const ReviewCard = ({ review }) => {
     <Card className="hover:shadow-lg transition-shadow cursor-pointer shadow-sm rounded-2xl">
       <CardHeader className="">
         <div className="flex items-center gap-4">
+          <Avatar className="h-12 w-12">
+            <AvatarFallback>{review.name.charAt(0)}</AvatarFallback>
+          </Avatar>
 
-        <Avatar className="h-12 w-12">
-          <AvatarFallback >{review.name.charAt(0)}</AvatarFallback>
-        </Avatar>
-        
-        <div className="flex flex-col">
-          <h6 className="text-black text-xl font-semibold ">{review.name}</h6>
-          {/* <p className="text-sm text-muted-foreground">{review.date}</p> */}
+          <div className="flex flex-col">
+            <h6 className="text-black text-xl font-semibold ">{review.name}</h6>
+            {/* <p className="text-sm text-muted-foreground">{review.date}</p> */}
 
-       <div className="flex items-center gap-1">
-
-          {Array.from({ length: review.rating }).map((_, i) => (
-            <Star key={i} className="h-4 w-4 fill-current text-woodPrimary " />
-          ))}
+            <div className="flex items-center gap-1">
+              {Array.from({ length: review.rating }).map((_, i) => (
+                <Star
+                  key={i}
+                  className="h-4 w-4 fill-current text-woodPrimary "
+                />
+              ))}
+            </div>
           </div>
-        </div>
         </div>
       </CardHeader>
       <CardContent>
-       
-        <p className={cn(
+        <p
+          className={cn(
             "text-gray-500 leading-[1.4] text-sm pl-2 font-sans ",
             font2.variable
-          )}>{review.comment}</p>
+          )}
+        >
+          {review.comment}
+        </p>
       </CardContent>
     </Card>
   );
@@ -655,11 +651,10 @@ const content: FAQItem[] = [
   },
 ];
 const FAQ = () => {
-
   return (
     <Section>
       <Container>
-        <h2 className="font-semibold text-black text-5xl mb-6 text-center">
+        <h2 className="font-semibold text-black text-6xl mb-6 text-center">
           <span>Questions</span>
           <br />
           <span className="bg-gradient bg-clip-text text-transparent">
@@ -669,14 +664,10 @@ const FAQ = () => {
 
         <div className="not-prose mt-4 flex flex-col gap-4 md:mt-8">
           {content.map((item, index) => (
-            <Accordion key={index} type="single" collapsible >
+            <Accordion key={index} type="single" collapsible>
               <AccordionItem value={item.question}>
                 <AccordionTrigger className="text-left text-black text-lg">
-                  <div className="flex items-center">
-
-                 
-                  {item.question}
-                  </div>
+                  <div className="flex items-center">{item.question}</div>
                 </AccordionTrigger>
                 <AccordionContent className="text-base md:w-3/4 pl-6">
                   {item.answer}

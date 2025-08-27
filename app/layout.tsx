@@ -1,7 +1,7 @@
 import "./globals.css";
 
 import { Section, Container } from "@/components/craft";
-import { Roboto, Onest } from "next/font/google";
+import { Roboto, Onest, Lato } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { MobileNav } from "@/components/nav/mobile-nav";
@@ -19,7 +19,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import type { Metadata } from "next";
-import { Mail, Phone, PinIcon } from "lucide-react";
+import { ChevronRight, Clock, Mail, Phone, PinIcon, ShieldCheck } from "lucide-react";
+import { Toaster } from "sonner";
+import CustomButton from "@/components/CustomButton";
 
 const font = Roboto({
   // subsets: ["roboto"],
@@ -30,6 +32,11 @@ const font = Roboto({
 const font2 = Onest({
   variable: "--font-sans",
   weight: ["400"],
+});
+
+const font3 = Lato({
+  variable: "--font-sans",
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -56,6 +63,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster richColors />
+          <TopNav />
           <Nav />
           {children}
           <Footer />
@@ -66,10 +75,41 @@ export default function RootLayout({
   );
 }
 
+const TopNav = () => {
+  return (
+    <nav className={cn("z-50 top-0  bg-gradient py-3 font-sans ", font3.variable)}>
+
+
+      <div className="max-w-6xl flex justify-between mx-auto text-sm">
+        <p className="text-[#F7F7F7] flex items-center">
+          <ShieldCheck className="h-5 w-5 inline mr-2 " />
+          Trusted partner in business excellence
+          <span className="ml-2 font-bold underline cursor-pointer">
+            Join us now
+          <ChevronRight className="h-4 w-4 inline ml-1" />
+        </span>
+      </p>
+      <p className="text-[#F7F7F7] flex items-center">
+        <Clock className="h-4 w-4 inline mr-2" />
+        <span className="mr-2">
+
+        Mon - Friday from  9:00 AM - 5:00 PM
+        </span>
+
+        |
+
+        <Mail className="h-4 w-4 inline ml-2 mr-2" />
+        <span>contact@woodwise.com</span>
+      </p>
+      </div>
+    </nav>
+  );
+};
+
 const Nav = ({ className, children, id }: NavProps) => {
   return (
     <nav
-      className={cn("sticky z-50 top-0 bg-background bg-hero", className)}
+      className={cn(" z-50 top-0 bg-background bg-hero", className)}
       id={id}
     >
       <div
@@ -94,7 +134,7 @@ const Nav = ({ className, children, id }: NavProps) => {
         <div className="flex items-center gap-2">
           <div className="mx-2 hidden md:flex md:self-center">
             {Object.entries(mainMenu).map(([key, href]) => (
-              <Button key={href} asChild variant="ghost" size="sm" className="font-semibold text-md">
+              <Button key={href} asChild variant={null} size="sm" className="font-semibold text-lg hover:text-gray-500">
                 <Link href={href}>
                   {key.charAt(0).toUpperCase() + key.slice(1)}
                 </Link>
@@ -103,9 +143,9 @@ const Nav = ({ className, children, id }: NavProps) => {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <Button asChild className="hidden sm:flex bg-gradient text-white font-bold px-12 py-6 text-sm hover:opacity-80 rounded-xl" size="sm">
-            <Link href="https://github.com/9d8dev/next-wp" className="">Contact</Link>
-          </Button>
+          <CustomButton  label="Contact" />
+           
+          
           <MobileNav />
         </div>
       </div>
