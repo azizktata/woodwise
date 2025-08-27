@@ -34,6 +34,12 @@ const config = {
   			footer: {
   				DEFAULT: 'var(--footer-background)'
   			},
+        woodPrimary: {
+          DEFAULT: 'var(--wood-primary)'
+        },
+        woodSecondary: {
+          DEFAULT: 'var(--wood-secondary)'
+        },
   			black: {
   				DEFAULT: 'hsl(var(--black))'
   			},
@@ -69,7 +75,8 @@ const config = {
   		backgroundImage: {
   			gradient: 'var(--gradient-default)',
   			hero: 'var(--bg-hero)',
-  			section: 'var(--bg-section)'
+  			section: 'var(--bg-section)',
+        'contact-bg': "url('/public/Artboard 5@4x.png')",
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

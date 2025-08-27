@@ -11,8 +11,10 @@
     --footer-background: #232227;
 
     --bg-hero: linear-gradient(to right, #FFFFFF, #DEEBFF);
-    --bg-section: linear-gradient(to bottom, hsla(140, 66%, 32%, 0.5), #F0F6FF00);
+    --bg-section: linear-gradient(to bottom, hsla(140, 66%, 32%, 0.5), #F0F6FF);
     --black: #232227;
+    --wood-primary:hsla(147, 86%, 27%, 1);
+    --wood-secondary:hsla(87, 49%, 49%, 1);
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -102,4 +104,8 @@
     scrollbar-width: none;
     /* Firefox */
   }
+  .hide-chevron .accordion-chevron {
+  transform: rotate(0deg) !important;
+  display: none !important;
+}
 }

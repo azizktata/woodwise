@@ -1,11 +1,23 @@
 // Craft Imports
+
 import { Section, Container, Prose, cn } from "@/components/craft";
 import Balancer from "react-wrap-balancer";
-
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 // Next.js Imports
 import Link from "next/link";
 import HeroImage from "@/public/hero.jpg";
 import AproposImage from "@/public/Apropos.jpg";
+import Mbio7Image from "@/public/Mbio7.jpg";
+// import ContactBg from "@/public/Asset 2@4x 1.jpg";
+import ContactBg from "@/public/rawlogo.jpg";
 
 import Image from "next/image";
 import CustomButton from "@/components/CustomButton";
@@ -15,7 +27,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ArrowUpRight, Eye, Projector } from "lucide-react";
+import {
+  ArrowUpRight,
+  Eye,
+  Mail,
+  Phone,
+  PinIcon,
+  Plus,
+  Projector,
+  Star,
+  X,
+} from "lucide-react";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const font2 = Onest({
   variable: "--font-sans",
@@ -28,8 +51,15 @@ export default function Home() {
       <div className="bg-hero w-full">
         <Hero />
       </div>
-      <div className="bg-section">
+      <div className="bg-section h-32"></div>
+      <div className="bg-[#F0F6FF]">
         <Apropos />
+        <Impact />
+        <Mbio7 />
+        <Contact />
+        <Blogs />
+        <Reviews />
+        <FAQ />
       </div>
     </div>
   );
@@ -79,6 +109,7 @@ const Hero = () => {
 import { Coins, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Onest } from "next/font/google";
+import { title } from "process";
 
 type FeatureText = {
   icon: JSX.Element;
@@ -118,32 +149,9 @@ const singleFeatureText: FeatureText[] = [
   },
 ];
 
-const FlexContainer = () => {
-  return (
-    <Section>
-      <Container className="grid items-stretch md:grid-cols-2 md:gap-12">
-        <div className="not-prose relative flex h-96 overflow-hidden rounded-lg border">
-          <Image
-            src={AproposImage}
-            alt="placeholder"
-            className="fill object-cover"
-          />
-        </div>
-        <div className="flex flex-col gap-6 py-8">
-          <h3 className="!my-0">Lorem ipsum dolor sit</h3>
-          <p className="font-light leading-[1.4] opacity-70">
-            Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua.
-          </p>
-        </div>
-      </Container>
-    </Section>
-  );
-};
-
 const Apropos = () => {
   return (
-    <Section>
+    <Section className=" !pt-0">
       <Container>
         <h2 className="font-semibold text-black text-5xl mb-6 text-center">
           À Propos de{" "}
@@ -202,7 +210,11 @@ const Apropos = () => {
             />
           </div>
           <div>
-            <div className={cn("flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white")}>
+            <div
+              className={cn(
+                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white"
+              )}
+            >
               <h3 className="!my-0 font-semibold text-xl ">
                 Lorem ipsum dolor sit
               </h3>
@@ -216,7 +228,11 @@ const Apropos = () => {
                 labore et dolore magna aliqua.
               </p>
             </div>
-          <div className={cn("flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white")}>
+            <div
+              className={cn(
+                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white"
+              )}
+            >
               <h3 className="!my-0 font-semibold text-xl ">
                 Lorem ipsum dolor sit
               </h3>
@@ -230,7 +246,11 @@ const Apropos = () => {
                 labore et dolore magna aliqua.
               </p>
             </div>
-           <div className={cn("flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white")}>
+            <div
+              className={cn(
+                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white"
+              )}
+            >
               <h3 className="!my-0 font-semibold text-xl ">
                 Lorem ipsum dolor sit
               </h3>
@@ -244,7 +264,11 @@ const Apropos = () => {
                 labore et dolore magna aliqua.
               </p>
             </div>
-           <div className={cn("flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white")}>
+            <div
+              className={cn(
+                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white"
+              )}
+            >
               <h3 className="!my-0 font-semibold text-xl ">
                 Lorem ipsum dolor sit
               </h3>
@@ -264,7 +288,12 @@ const Apropos = () => {
     </Section>
   );
 };
-const activeContainer = cn("p-5 bg-gradient rounded-2xl border");
+
+const chiffres = [
+  { title: "Tonnes de bois recyclées", value: 100 },
+  { title: "kg de CO₂ économisés par panneau", value: 200 },
+  { title: "Projets déployés avec collectivités et ONG", value: 300 },
+];
 const Impact = () => {
   return (
     <Section>
@@ -275,10 +304,166 @@ const Impact = () => {
             Impact
           </span>
         </h2>
+        <p className="text-gray-500 text-sm text-center max-w-[50ch] mx-auto mb-12">
+          Chaque panneau, chaque projet, chaque kilo de bois détourné des
+          décharges témoigne de notre engagement.
+        </p>
+
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-3 mt-6">
+          {chiffres.map((item) => (
+            <div
+              key={item.title}
+              className="flex flex-col gap-6 items-center bg-white py-12 px-5 rounded-2xl border shadow-sm"
+            >
+              <h3 className="text-7xl font-semibold text-woodPrimary">
+                {item.value}
+              </h3>
+              <Balancer className="text-xl font-semibold text-black text-center">
+                {item.title}
+              </Balancer>
+            </div>
+          ))}
+        </div>
       </Container>
     </Section>
   );
 };
+
+const Mbio7 = () => {
+  return (
+    <Section>
+      <Container className="grid items-center md:grid-cols-2 md:gap-12">
+        <div className="not-prose relative h-auto flex overflow-hidden rounded-lg  ">
+          <Image
+            src={Mbio7Image}
+            alt="Mbio7"
+            className="fill object-cover"
+            height={508}
+            width={512}
+          />
+        </div>
+        <div className="flex flex-col gap-6 py-8">
+          <h2 className="!my-0 font-semibold text-black text-5xl">
+            Mbio7 by{" "}
+            <span className="bg-gradient bg-clip-text text-transparent">
+              WoodWise
+            </span>
+          </h2>
+          <p
+            className={cn(
+              "font-light text-base leading-[1.4] opacity-60 font-sans ",
+              font2.variable
+            )}
+          >
+            Le panneau nouvelle génération pour une construction durable. Issu
+            de bois recyclé et de résidus forestiers, mBio7 est un panneau de
+            construction unique :
+            <br />
+            <ul className="list-disc list-inside ">
+              <li>Résistant au feu</li>
+              <li>Hydrofuge</li>
+              <li>Résistant aux termites</li>
+              <li>Léger, modulaire, facile à poser</li>
+              <li>Avec une empreinte carbone négative</li>
+            </ul>
+          </p>
+          <CustomButton label="Découvrir plus" className="self-start" />
+        </div>
+      </Container>
+    </Section>
+  );
+};
+
+const Contact = () => {
+  return (
+    <Section className="">
+      <Container className="grid items-stretch md:grid-cols-2">
+        <div className="not-prose relative h-96 flex flex-col  p-4  bg-woodSecondary">
+          <Image
+            src={ContactBg}
+            alt="Contact"
+            className="absolute inset-0 object-cover w-full h-full"
+          />
+
+          <div className="absolute inset-0 z-0 bg-woodSecondary opacity-80"></div>
+
+          {/* The container for your content, positioned on top */}
+          <div className="relative z-10 flex flex-col items-start mx-auto justify-center h-full">
+            <h2 className="font-semibold text-white text-5xl mb-6 text-center z-10">
+              Contactez-Nous
+            </h2>
+            <div id="contact-form" className="w-full">
+              <form>
+                <div className="flex flex-col gap-4">
+                  <input
+                    type="text"
+                    placeholder="Votre nom"
+                    className="p-2 rounded border border-gray-300"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Votre email"
+                    className="p-2 rounded border border-gray-300"
+                  />
+                  <textarea
+                    placeholder="Votre message"
+                    className="p-2 rounded border border-gray-300"
+                  />
+                  <button className="bg-white text-black p-2 rounded">
+                    Envoyer
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div className="bg-woodPrimary p-8 text-white flex flex-col justify-center">
+          <div className="mx-auto">
+            <p className="font-semibold text-2xl">Contact information</p>
+            <p className="text-base text-white/50">
+              Say something to start a live chat!
+            </p>
+            <div className="flex flex-col gap-2 text-sm mt-4">
+              <div className="flex items-center gap-2 text-base">
+                <Phone className="h-4 w-4" />
+                <span>+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center gap-2 text-base">
+                <Mail className="h-4 w-4" />
+                <span>contact@woodwise.com</span>
+              </div>
+              <div className="flex items-center gap-2 text-base">
+                <PinIcon className="h-4 w-4" />
+                <span>123 Main St, Anytown, USA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  );
+};
+const blogs = [
+  {
+    date: "13 December 2025",
+    title: "Blog Post 1",
+    description: "Description for blog post 1",
+    image: "https://placehold.co/400",
+  },
+  {
+    date: "13 December 2025",
+    title: "Blog Post 2",
+    description: "Description for blog post 2",
+    image: "https://placehold.co/400",
+  },
+  {
+    date: "13 December 2025",
+    title: "Blog Post 3",
+    description: "Description for blog post 3",
+    image: "https://placehold.co/400",
+  },
+];
+
 const Blogs = () => {
   return (
     <Section>
@@ -289,8 +474,154 @@ const Blogs = () => {
           </span>{" "}
           et articles
         </h2>
+        <p className="text-gray-500 text-sm text-center max-w-[65ch] mx-auto mb-14">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis
+          magna ut lectus aliquet consequat. Nulla libero augue, ullamcorper et
+          efficitur lacinia.
+        </p>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {blogs.map((blog, index) => (
+            <BlogCard key={index} blog={blog} />
+          ))}
+        </div>
       </Container>
     </Section>
+  );
+};
+
+const BlogCard = ({ blog }) => {
+  return (
+    <Card className="hover:shadow-lg transition-shadow cursor-pointer shadow-sm rounded-2xl">
+      <CardHeader>
+        <Image
+          src={blog.image}
+          alt={blog.title}
+          width={400}
+          height={200}
+          className="w-full h-48 object-cover rounded-t-md"
+        />
+      </CardHeader>
+      <CardContent>
+        <p
+          className={cn(
+            "bg-gradient bg-clip-text text-transparent font-sans ",
+            font2.variable
+          )}
+        >
+          {blog.date}
+        </p>
+        <h5 className="text-black font-semibold text-2xl py-4">{blog.title}</h5>
+        <p
+          className={cn(
+            "text-gray-500 leading-[1.4] opacity-70 font-sans ",
+            font2.variable
+          )}
+        >
+          {blog.description}
+        </p>
+      </CardContent>
+    </Card>
+  );
+};
+
+const reviews = [
+  {
+    name: "John Doe",
+    date: "13 December 2025",
+    rating: 5,
+    comment: "Excellent service and quality!",
+  },
+  {
+    name: "Jane Smith",
+    date: "12 December 2025",
+    rating: 4,
+    comment: "Very satisfied with my purchase.",
+  },
+  {
+    name: "Alice Johnson",
+    date: "11 December 2025",
+    rating: 5,
+    comment: "Highly recommend this company!",
+  },
+  {
+    name: "Bob Brown",
+    date: "10 December 2025",
+    rating: 3,
+    comment: "Good, but could be better.",
+  },
+  {
+    name: "Charlie Davis",
+    date: "09 December 2025",
+    rating: 4,
+    comment: "Great value for the price.",
+  },
+  {
+    name: "Charlie Davis",
+    date: "09 December 2025",
+    rating: 4,
+    comment: "Great value for the price.",
+  },
+
+ 
+];
+
+const Reviews = () => {
+  return (
+    <Section>
+      <Container>
+        <h2 className="font-semibold text-black text-5xl mb-6 text-center">
+          Listen to what our
+          <br />
+          <span className="bg-gradient bg-clip-text text-transparent">
+            customers say
+          </span>
+        </h2>
+        <p className="text-gray-500 text-sm text-center max-w-[65ch] mx-auto mb-14">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis
+          magna ut lectus aliquet consequat. Nulla libero augue, ullamcorper et
+          efficitur lacinia.
+        </p>
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {reviews.map((review, index) => (
+            <ReviewCard key={index} review={review} />
+          ))}
+        </div>
+      </Container>
+    </Section>
+  );
+};
+
+const ReviewCard = ({ review }) => {
+  return (
+    <Card className="hover:shadow-lg transition-shadow cursor-pointer shadow-sm rounded-2xl">
+      <CardHeader className="">
+        <div className="flex items-center gap-4">
+
+        <Avatar className="h-12 w-12">
+          <AvatarFallback >{review.name.charAt(0)}</AvatarFallback>
+        </Avatar>
+        
+        <div className="flex flex-col">
+          <h6 className="text-black text-xl font-semibold ">{review.name}</h6>
+          {/* <p className="text-sm text-muted-foreground">{review.date}</p> */}
+
+       <div className="flex items-center gap-1">
+
+          {Array.from({ length: review.rating }).map((_, i) => (
+            <Star key={i} className="h-4 w-4 fill-current text-woodPrimary " />
+          ))}
+          </div>
+        </div>
+        </div>
+      </CardHeader>
+      <CardContent>
+       
+        <p className={cn(
+            "text-gray-500 leading-[1.4] text-sm pl-2 font-sans ",
+            font2.variable
+          )}>{review.comment}</p>
+      </CardContent>
+    </Card>
   );
 };
 
@@ -323,8 +654,8 @@ const content: FAQItem[] = [
       "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
 ];
-
 const FAQ = () => {
+
   return (
     <Section>
       <Container>
@@ -338,12 +669,16 @@ const FAQ = () => {
 
         <div className="not-prose mt-4 flex flex-col gap-4 md:mt-8">
           {content.map((item, index) => (
-            <Accordion key={index} type="single" collapsible>
+            <Accordion key={index} type="single" collapsible >
               <AccordionItem value={item.question}>
-                <AccordionTrigger className="text-left">
+                <AccordionTrigger className="text-left text-black text-lg">
+                  <div className="flex items-center">
+
+                 
                   {item.question}
+                  </div>
                 </AccordionTrigger>
-                <AccordionContent className="text-base md:w-3/4">
+                <AccordionContent className="text-base md:w-3/4 pl-6">
                   {item.answer}
                   {item.link && (
                     <a
