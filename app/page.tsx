@@ -1,149 +1,364 @@
 // Craft Imports
-import { Section, Container, Prose } from "@/components/craft";
+import { Section, Container, Prose, cn } from "@/components/craft";
 import Balancer from "react-wrap-balancer";
 
 // Next.js Imports
 import Link from "next/link";
+import HeroImage from "@/public/hero.jpg";
+import AproposImage from "@/public/Apropos.jpg";
 
-// Icons
-import { File, Pen, Tag, Diamond, User, Folder } from "lucide-react";
-import { WordPressIcon } from "@/components/icons/wordpress";
-import { NextJsIcon } from "@/components/icons/nextjs";
+import Image from "next/image";
+import CustomButton from "@/components/CustomButton";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { ArrowUpRight, Eye, Projector } from "lucide-react";
 
+const font2 = Onest({
+  variable: "--font-sans",
+  weight: ["400"],
+});
 // This page is using the craft.tsx component and design system
 export default function Home() {
   return (
-    <Section>
-      <Container>
-        <ToDelete />
-      </Container>
-    </Section>
+    <div>
+      <div className="bg-hero w-full">
+        <Hero />
+      </div>
+      <div className="bg-section">
+        <Apropos />
+      </div>
+    </div>
   );
 }
 
-// This is just some example TSX
-const ToDelete = () => {
+const Hero = () => {
   return (
-    <main className="space-y-6">
-      <Prose>
-        <h1>
-          <Balancer>Headless WordPress built with the Next.js</Balancer>
-        </h1>
+    <Section>
+      <Container className="flex flex-col gap-12 lg:gap-20 md:flex-row justify-between items-center">
+        <div className="w-full md:w-1/2 ">
+          <h1 className="font-bold text-5xl mb-6 tracking-wider">
+            <Balancer>
+              <span className="text-black">Construire Mieux</span>
+              <br />
+              <span className="bg-gradient bg-clip-text text-transparent">
+                eCOLOGIQUEMENT
+              </span>
+            </Balancer>
+          </h1>
+          <h3 className="text-muted-foreground mb-5">
+            <p className="w-full max-w-[50ch]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+              quis magna ut lectus aliquet consequat. Nulla libero augue,
+              ullamcorper et efficitur lacinia, eleifend eget lacus. Integer
+              vitae condimentum ante.
+            </p>
+          </h3>
 
-        <p>
-          This is <a href="https://github.com/9d8dev/next-wp">next-wp</a>,
-          created as a way to build WordPress sites with Next.js at rapid speed.
-          This starter is designed with{" "}
-          <a href="https://ui.shadcn.com">shadcn/ui</a>,{" "}
-          <a href="https://craft-ds.com">craft-ds</a>, and Tailwind CSS. Use{" "}
-          <a href="https://components.work">brijr/components</a> to build your
-          site with prebuilt components. The data fetching and typesafety is
-          handled in <code>lib/wordpress.ts</code> and{" "}
-          <code>lib/wordpress.d.ts</code>.
-        </p>
-      </Prose>
+          <CustomButton label="Découvrir plus" />
+        </div>
+        <div className="not-prose w-full overflow-hidden rounded-lg  md:rounded-xl md:w-1/2">
+          <Image
+            className="h-full w-full object-cover object-bottom "
+            src={HeroImage}
+            width={512}
+            height={508}
+            alt="hero image"
+            placeholder="blur"
+          />
+        </div>
+      </Container>
+    </Section>
+  );
+};
 
-      <div className="flex justify-between items-center gap-4">
-        {/* Vercel Clone Starter */}
-        <div className="flex items-center gap-3">
-          <a
-            className="h-auto block"
-            href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F9d8dev%2Fnext-wp&env=WORDPRESS_URL,WORDPRESS_HOSTNAME&envDescription=Add%20WordPress%20URL%20with%20Rest%20API%20enabled%20(ie.%20https%3A%2F%2Fwp.example.com)%20abd%20the%20hostname%20for%20Image%20rendering%20in%20Next%20JS%20(ie.%20wp.example.com)&project-name=next-wp&repository-name=next-wp&demo-title=Next%20JS%20and%20WordPress%20Starter&demo-url=https%3A%2F%2Fwp.9d8.dev"
-          >
-            {/* eslint-disable-next-line */}
-            <img
-              className="not-prose my-4"
-              src="https://vercel.com/button"
-              alt="Deploy with Vercel"
-              width={105}
-              height={32.62}
-            />
-          </a>
-          <p className="!text-sm sr-only sm:not-sr-only text-muted-foreground">
-            Deploy with Vercel in seconds.
+// Icons
+import { Coins, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Onest } from "next/font/google";
+
+type FeatureText = {
+  icon: JSX.Element;
+  title: string;
+  description: string;
+  href?: string;
+  cta?: string;
+};
+
+const featureText: FeatureText[] = [
+  {
+    icon: <Eye className="h-6 w-6" />,
+    title: "Notre vision",
+    href: "/",
+    description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    cta: "Learn More",
+  },
+  {
+    icon: <Projector className="h-6 w-6" />,
+    title: "Notre mission",
+    href: "/",
+    description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    cta: "Learn More",
+  },
+];
+
+const singleFeatureText: FeatureText[] = [
+  {
+    icon: <Coins className="h-6 w-6" />,
+    title: "Lorem Ipsum",
+    href: "/",
+    description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    cta: "Learn More",
+  },
+];
+
+const FlexContainer = () => {
+  return (
+    <Section>
+      <Container className="grid items-stretch md:grid-cols-2 md:gap-12">
+        <div className="not-prose relative flex h-96 overflow-hidden rounded-lg border">
+          <Image
+            src={AproposImage}
+            alt="placeholder"
+            className="fill object-cover"
+          />
+        </div>
+        <div className="flex flex-col gap-6 py-8">
+          <h3 className="!my-0">Lorem ipsum dolor sit</h3>
+          <p className="font-light leading-[1.4] opacity-70">
+            Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua.
           </p>
         </div>
+      </Container>
+    </Section>
+  );
+};
 
-        <div className="flex gap-2 items-center">
-          <WordPressIcon className="text-foreground" width={32} height={32} />
-          <NextJsIcon className="text-foreground" width={32} height={32} />
+const Apropos = () => {
+  return (
+    <Section>
+      <Container>
+        <h2 className="font-semibold text-black text-5xl mb-6 text-center">
+          À Propos de{" "}
+          <span className="bg-gradient bg-clip-text text-transparent">
+            WoodWise
+          </span>
+        </h2>
+        <div className="mt-6 grid gap-6 md:mt-12 md:grid-cols-2 mb-6">
+          {featureText.map(({ icon, title, description, href, cta }, index) => (
+            <Link
+              href={`${href}`}
+              className="flex flex-col justify-between bg-white gap-6 rounded-lg border p-6 transition-all hover:-mt-2 hover:mb-2"
+              key={index}
+            >
+              <div className="grid gap-4 ">
+                {icon}
+                <h4 className="text-xl text-primary">{title}</h4>
+                <p className="text-base opacity-75">{description}</p>
+              </div>
+              {cta && (
+                <div className="flex h-fit items-center text-sm font-semibold">
+                  <p>{cta}</p> <ArrowRight className="ml-2 h-4 w-4" />
+                </div>
+              )}
+            </Link>
+          ))}
         </div>
-      </div>
+        {/* <div>
+          {singleFeatureText.map(
+            ({ icon, title, description, href, cta }, index) => (
+              <Link
+                href={`${href}`}
+                className="flex flex-col justify-between bg-white gap-6 rounded-lg border bg-muted/25 p-6 transition-all hover:-mt-2 hover:mb-2"
+                key={index}
+              >
+                <div className="grid gap-4">
+                  {icon}
+                  <h4 className="text-xl text-primary">{title}</h4>
+                  <p className="text-base opacity-75">{description}</p>
+                </div>
+                {cta && (
+                  <div className="flex h-fit items-center text-sm font-semibold">
+                    <p>{cta}</p> <ArrowRight className="ml-2 h-4 w-4" />
+                  </div>
+                )}
+              </Link>
+            )
+          )}
+        </div> */}
+        <div className="grid items-stretch md:grid-cols-2 md:gap-12 mt-6">
+          <div className="not-prose relative flex  overflow-hidden rounded-xl border">
+            <Image
+              src={AproposImage}
+              alt="placeholder"
+              className="fill object-cover"
+            />
+          </div>
+          <div>
+            <div className={cn("flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white")}>
+              <h3 className="!my-0 font-semibold text-xl ">
+                Lorem ipsum dolor sit
+              </h3>
+              <p
+                className={cn(
+                  "font-light leading-[1.4] opacity-70 font-sans ",
+                  font2.variable
+                )}
+              >
+                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua.
+              </p>
+            </div>
+          <div className={cn("flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white")}>
+              <h3 className="!my-0 font-semibold text-xl ">
+                Lorem ipsum dolor sit
+              </h3>
+              <p
+                className={cn(
+                  "font-light leading-[1.4] opacity-70 font-sans ",
+                  font2.variable
+                )}
+              >
+                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua.
+              </p>
+            </div>
+           <div className={cn("flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white")}>
+              <h3 className="!my-0 font-semibold text-xl ">
+                Lorem ipsum dolor sit
+              </h3>
+              <p
+                className={cn(
+                  "font-light leading-[1.4] opacity-70 font-sans ",
+                  font2.variable
+                )}
+              >
+                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua.
+              </p>
+            </div>
+           <div className={cn("flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white")}>
+              <h3 className="!my-0 font-semibold text-xl ">
+                Lorem ipsum dolor sit
+              </h3>
+              <p
+                className={cn(
+                  "font-light leading-[1.4] opacity-70 font-sans ",
+                  font2.variable
+                )}
+              >
+                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Section>
+  );
+};
+const activeContainer = cn("p-5 bg-gradient rounded-2xl border");
+const Impact = () => {
+  return (
+    <Section>
+      <Container>
+        <h2 className="font-semibold text-black text-5xl mb-6 text-center">
+          Notre{" "}
+          <span className="bg-gradient bg-clip-text text-transparent">
+            Impact
+          </span>
+        </h2>
+      </Container>
+    </Section>
+  );
+};
+const Blogs = () => {
+  return (
+    <Section>
+      <Container>
+        <h2 className="font-semibold text-black text-5xl mb-6 text-center">
+          <span className="bg-gradient bg-clip-text text-transparent">
+            Nos Blogs
+          </span>{" "}
+          et articles
+        </h2>
+      </Container>
+    </Section>
+  );
+};
 
-      <div className="grid md:grid-cols-3 gap-4 mt-6">
-        <Link
-          className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-          href="/posts"
-        >
-          <Pen size={32} />
-          <span>
-            Posts{" "}
-            <span className="block text-sm text-muted-foreground">
-              All posts from your WordPress
-            </span>
+type FAQItem = {
+  question: string;
+  answer: string;
+  link?: string;
+};
+
+const content: FAQItem[] = [
+  {
+    question: "D'où provient le bois recyclé ?",
+    answer:
+      "Nous collectons des déchets bois issus de chantiers, menuiseries, palettes, etc. uniquement en conformité avec les normes sanitaires.",
+    link: "https://google.com",
+  },
+  {
+    question: "Que signifie “empreinte carbone négative” ?",
+    answer:
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    question: "Peut-on utiliser mBio7 pour construire une maison complète ?",
+    answer:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  },
+  {
+    question: "Est-ce un produit certifié ?",
+    answer:
+      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  },
+];
+
+const FAQ = () => {
+  return (
+    <Section>
+      <Container>
+        <h2 className="font-semibold text-black text-5xl mb-6 text-center">
+          <span>Questions</span>
+          <br />
+          <span className="bg-gradient bg-clip-text text-transparent">
+            Fréquentes
           </span>
-        </Link>
-        <Link
-          className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-          href="/pages"
-        >
-          <File size={32} />
-          <span>
-            Pages{" "}
-            <span className="block text-sm text-muted-foreground">
-              Custom pages from your WordPress
-            </span>
-          </span>
-        </Link>
-        <Link
-          className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-          href="/posts/authors"
-        >
-          <User size={32} />
-          <span>
-            Authors{" "}
-            <span className="block text-sm text-muted-foreground">
-              List of the authors from your WordPress
-            </span>
-          </span>
-        </Link>
-        <Link
-          className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-          href="/posts/tags"
-        >
-          <Tag size={32} />
-          <span>
-            Tags{" "}
-            <span className="block text-sm text-muted-foreground">
-              Content by tags from your WordPress
-            </span>
-          </span>
-        </Link>
-        <Link
-          className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-          href="/posts/categories"
-        >
-          <Diamond size={32} />
-          <span>
-            Categories{" "}
-            <span className="block text-sm text-muted-foreground">
-              Categories from your WordPress
-            </span>
-          </span>
-        </Link>
-        <a
-          className="border h-48 bg-accent/50 rounded-lg p-4 flex flex-col justify-between hover:scale-[1.02] transition-all"
-          href="https://github.com/9d8dev/next-wp/blob/main/README.md"
-        >
-          <Folder size={32} />
-          <span>
-            Documentation{" "}
-            <span className="block text-sm text-muted-foreground">
-              How to use `next-wp`
-            </span>
-          </span>
-        </a>
-      </div>
-    </main>
+        </h2>
+
+        <div className="not-prose mt-4 flex flex-col gap-4 md:mt-8">
+          {content.map((item, index) => (
+            <Accordion key={index} type="single" collapsible>
+              <AccordionItem value={item.question}>
+                <AccordionTrigger className="text-left">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-base md:w-3/4">
+                  {item.answer}
+                  {item.link && (
+                    <a
+                      href={item.link}
+                      className="mt-2 flex w-full items-center opacity-60 transition-all hover:opacity-100"
+                    >
+                      Learn more <ArrowUpRight className="ml-1" size="16" />
+                    </a>
+                  )}
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          ))}
+        </div>
+      </Container>
+    </Section>
   );
 };
