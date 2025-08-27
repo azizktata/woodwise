@@ -7,6 +7,12 @@
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
 
+    --gradient-default: linear-gradient(to right, #84BC40, #0D7F40);
+    --footer-background: #232227;
+
+    --bg-hero: linear-gradient(to right, #FFFFFF, #DEEBFF);
+    --bg-section: linear-gradient(to bottom, #1C8740, #F0F6FF00);
+
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
 

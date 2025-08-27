@@ -28,6 +28,11 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+
+        footer: {
+          DEFAULT: "var(--footer-background)",
+        },
+
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -56,6 +61,11 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+       backgroundImage: {
+        'gradient': 'var(--gradient-default)',
+        'hero': 'var(--bg-hero)',
+        'section': 'var(--bg-section)',
       },
       borderRadius: {
         lg: "var(--radius)",
