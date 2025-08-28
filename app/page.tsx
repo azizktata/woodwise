@@ -10,7 +10,8 @@ import AproposImage from "@/public/Apropos.jpg";
 import Mbio7Image from "@/public/Mbio7.jpg";
 import Mbio7ProductImage from "@/public/mbio7product.png";
 // import ContactBg from "@/public/Asset 2@4x 1.jpg";
-import ContactBg from "@/public/rawlogo.jpg";
+import ContactBg from "@/public/contactbg.jpg";
+// import ContactBg from "@/public/rawlogo.jpg";
 
 import Image from "next/image";
 import CustomButton from "@/components/CustomButton";
@@ -81,7 +82,8 @@ const Hero = () => {
             </p>
           </h3>
 
-          <CustomButton label="Découvrir plus" />
+          <CustomButton asChild label="Découvrir plus" href="/pages/apropos" />
+
         </div>
         <div className="not-prose w-full overflow-hidden rounded-lg  md:rounded-xl md:w-1/2">
           <Image
@@ -348,7 +350,7 @@ const Mbio7 = () => {
               WoodWise
             </span>
           </h2>
-          <p
+          <div
             className={cn(
               "font-light text-base leading-[1.4] opacity-60 font-sans max-w-[55ch]",
               font2.variable
@@ -365,16 +367,16 @@ const Mbio7 = () => {
               <li>Léger, modulaire, facile à poser</li>
               <li>Avec une empreinte carbone négative</li>
             </ul>
-          </p>
-          <CustomButton label="Découvrir plus" className="self-start" />
+          </div>
+          <CustomButton label="Découvrir plus" className="self-start" href="/about" />
 
           <div className="hidden lg:block absolute bottom-0 right-0">
             <Image
               src={Mbio7ProductImage}
               alt="Mbio7"
               className="fill object-cover"
-              height={200}
-              width={200}
+              height={215}
+              width={215}
             />
           </div>
         </div>
@@ -481,7 +483,7 @@ const Blogs = () => {
           ))}
         </div>
         <div className="mt-12 flex justify-center">
-          <CustomButton label="Voir plus" inverted />
+          <CustomButton label="Voir plus" inverted href="/blog" />
         </div>
       </Container>
     </Section>

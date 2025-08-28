@@ -5,13 +5,24 @@ import { siteConfig } from "@/site.config";
 import type { Metadata } from "next";
 import Image from "next/image";
 import banner from "@/public/banner.jpg";
+import contactBanner from "@/public/contact-banner.jpg";
 import Link from "next/link";
 import { Lato } from "next/font/google";
 
 import Balancer from "react-wrap-balancer";
-import { Coins, ArrowRight, MoveRightIcon, Recycle, Lightbulb, RecycleIcon, Handshake, HandHeart } from "lucide-react";
+import {
+  Coins,
+  ArrowRight,
+  MoveRightIcon,
+  Recycle,
+  Lightbulb,
+  RecycleIcon,
+  Handshake,
+  HandHeart,
+  Car,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 
 import {
   Carousel,
@@ -20,6 +31,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { date } from "zod";
 // Revalidate pages every hour
 // export const revalidate = 3600;
 
@@ -105,7 +117,9 @@ export default async function Page({
         </div>
         <div className="absolute inset-0 border z-10 flex flex-col items-center justify-center gap-2">
           <h1 className="text-white sm:text-6xl text-5xl font-semibold capitalize mb-1">
-            à Propos
+            <Balancer>
+              {decodeURIComponent(slug.replace(/-/g, " "))}
+            </Balancer>
           </h1>
           <p
             className={cn(
@@ -113,10 +127,13 @@ export default async function Page({
               font3.variable
             )}
           >
-            <Link href={"/"}>Home</Link> / à propos
+            <Link href={"/"}>Home</Link> / <Balancer>{decodeURIComponent(slug.replace(/-/g, " "))}</Balancer>
           </p>
         </div>
       </div>
+      {
+        decodeURIComponent(slug) === "à-propos" &&
+
       <Container>
         <CTA />
         {/* <Prose>
@@ -126,12 +143,21 @@ export default async function Page({
         <Feature />
         <Team />
       </Container>
+       }
+       {
+         decodeURIComponent(slug) === "actualités" &&
+      <Container>
+        <Blogs />
+      </Container>
+}
+
+      <ContactBanner />
     </div>
   );
 }
 const CTA = () => {
   return (
-    <div className="grid md:grid-cols-2 gap-8">
+    <Section className="grid md:grid-cols-2 gap-8">
       <div>
         <p className="text-woodSecondary font-bold text-xs mb-4 uppercase">
           Qui sommes-nous
@@ -151,19 +177,25 @@ const CTA = () => {
           Holding se positionne comme un acteur global du recyclage du bois,
           bien au-delà d’un simple produit.
         </Balancer>
-        <Button
-          className="bg-[#051229] rounded-full px-1 py-6 mt-5"
-        >
+        <Button className="bg-[#051229] rounded-full px-1 py-6 mt-5">
+          
           <div className="flex items-center gap-2">
             <span className="rounded-full p-3 bg-woodSecondary">
               <MoveRightIcon className="h-4 w-4" />
             </span>
 
-            <span className={cn("font-bold text-sm font-sans pr-4 ", font3.variable)}>Contact us</span>
+            <span
+              className={cn(
+                "font-bold text-sm font-sans pr-4 ",
+                font3.variable
+              )}
+            >
+              Contact us
+            </span>
           </div>
         </Button>
       </div>
-    </div>
+    </Section>
   );
 };
 
@@ -212,39 +244,32 @@ const featureText: FeatureText[] = [
 
 const Feature = () => {
   return (
-    <Section >
-    
-        <div className="flex flex-col gap-6">
-
-          <div className="mt-6 grid gap-6 md:mt-12 md:grid-cols-4">
-            {featureText.map(
-              ({ icon, title, description, href, cta }, index) => (
-                <Link
-                  href={`${href}`}
-                  className="flex flex-col justify-between bg-[#CED7E0]/10 gap-6 rounded-lg border px-8 py-6 transition-all hover:-mt-2 hover:mb-2"
-                  key={index}
-                >
-                  <div className="grid gap-6">
-                    {icon}
-                    <h4 className="text-2xl font-bold text-black">{title}</h4>
-                    <p className="text-sm text-[#364052] ">{description}</p>
-                  </div>
-                  {/* {cta && (
+    <Section>
+      <div className="flex flex-col gap-6">
+        <div className="mt-6 grid gap-6 md:mt-12 md:grid-cols-4">
+          {featureText.map(({ icon, title, description, href, cta }, index) => (
+            <Link
+              href={`${href}`}
+              className="flex flex-col justify-between bg-[#CED7E0]/10 gap-6 rounded-lg border px-8 py-6 transition-all hover:-mt-2 hover:mb-2"
+              key={index}
+            >
+              <div className="grid gap-6">
+                {icon}
+                <h4 className="text-2xl font-bold text-black">{title}</h4>
+                <p className="text-sm text-[#364052] ">{description}</p>
+              </div>
+              {/* {cta && (
                     <div className="flex h-fit items-center text-sm font-semibold">
                       <p>{cta}</p> <ArrowRight className="ml-2 h-4 w-4" />
                     </div>
                   )} */}
-                </Link>
-              )
-            )}
-          </div>
+            </Link>
+          ))}
         </div>
+      </div>
     </Section>
   );
 };
-
-
-
 
 const members = [
   {
@@ -277,49 +302,155 @@ const members = [
 const Team = () => {
   return (
     <Section>
- <h2 className="font-semibold text-black text-6xl mb-12 text-center">
-        Notre {' '}
-          <span className="bg-gradient bg-clip-text text-transparent capitalize">
-           équipe
-          </span>
-        </h2>
-      
-        <Carousel className="mt-6 w-full">
-          <CarouselContent className="-ml-1">
-            {members.map((member, index) => (
-              <CarouselItem
-                key={index}
-                className="pl-1 md:basis-1/2 lg:basis-1/4"
-              >
-                <div className="p-1">
-                  <Card className="relative overflow-hidden">
-                    <CardContent className="not-prose flex h-[468px]  items-center justify-center">
-                      <Image
-                        src={member.src}
-                        alt={`${member.name} - ${member.role}`}
-                        width={720}
-                        height={480}
-                        className="absolute inset-0 h-full w-full object-cover"
-                      ></Image>
+      <h2 className="font-semibold text-black text-6xl mb-12 text-center">
+        Notre{" "}
+        <span className="bg-gradient bg-clip-text text-transparent capitalize">
+          équipe
+        </span>
+      </h2>
+
+      <Carousel className="mt-6 w-full">
+        <CarouselContent className="-ml-1">
+          {members.map((member, index) => (
+            <CarouselItem
+              key={index}
+              className="pl-1 md:basis-1/2 lg:basis-1/4"
+            >
+              <div className="p-1">
+                <Card className="relative overflow-hidden">
+                  <CardContent className="not-prose flex h-[468px]  items-center justify-center">
+                    <Image
+                      src={member.src}
+                      alt={`${member.name} - ${member.role}`}
+                      width={720}
+                      height={480}
+                      className="absolute inset-0 h-full w-full object-cover"
+                    ></Image>
                     <div className="absolute inset-0 bg-gradient-to-t from-[rgba(13,127,64,0.6)] to-transparent"></div>
                     <div className="absolute inset-0 flex items-end justify-start p-6 text-white">
                       <div className="text-left">
                         <h3 className="text-xl">{member.name}</h3>
-                        <p className="text-sm opacity-90 font-light">{member.role}</p>
+                        <p className="text-sm opacity-90 font-light">
+                          {member.role}
+                        </p>
                       </div>
                     </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          {/* <CarouselPrevious /> */}
-          {/* <CarouselNext /> */}
-        </Carousel>
-   
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        {/* <CarouselPrevious /> */}
+        {/* <CarouselNext /> */}
+      </Carousel>
     </Section>
   );
 };
 
+const ContactBanner = () => {
+  return (
+    <div className="relative">
+      <Image
+        src={contactBanner}
+        alt="Contact Us"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <Container className="relative z-10 flex h-full items-center justify-between ">
+        <h2 className="text-6xl  text-white">Contact Us</h2>
+        <Button className="bg-white rounded-full px-1 py-6 mt-5 text-black transition-all duration-300 hover:bg-[#051229] hover:text-white group">
+          <div className="flex items-center gap-2">
+            <span className="rounded-full text-white p-3 bg-woodSecondary transition-transform duration-300 group-hover:animate-slide-right ">
+              <MoveRightIcon className="h-4 w-4" />
+            </span>
 
+            <span
+              className={cn(
+                "font-bold text-sm font-sans pr-3 transition-transform duration-300 group-hover:animate-slide-left group-hover:pl-2 group-hover:pr-1",
+                font3.variable
+              )}
+            >
+              Parlons Maintenant
+            </span>
+          </div>
+        </Button>
+      </Container>
+    </div>
+  );
+};
+
+
+const blogs = [
+  {
+    category: "Branding",
+    date: "13 December 2025",
+    title: "Innovative solutions for business success dynamic from today",
+    description: "Our mission is to empowers businesses size to thrive in a dynamic environment.",
+    image: "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    category: "Branding",
+    title: "What consultants should know about working with nonprofits",
+    date: "13 December 2025",
+    description: "Our mission is to empowers businesses size to succeed in the nonprofit sector.",
+    image: "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    category: "Branding",
+    title: "Why every entrepreneur needs solid digital marketing",
+    date: "13 December 2025",
+    description: "Our mission is to empowers businesses size to grow and thrive in the digital landscape.",
+    image: "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+];
+
+const Blogs = () => {
+  return (
+    <Section>
+      
+        
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {blogs.map((blog, index) => (
+            <BlogCard key={index} blog={blog} />
+          ))}
+        </div>
+       
+    </Section>
+  );
+};
+
+const BlogCard = ({ blog }) => {
+  return (
+    <Card className="hover:shadow-lg transition-shadow cursor-pointer py-0 shadow-sm rounded-none">
+      <CardHeader className="p-0">
+        <Image
+          src={blog.image}
+          alt={blog.title}
+          width={400}
+          height={200}
+          className="w-full h-full object-cover "
+        />
+      </CardHeader>
+      <CardContent className="mt-6">
+        <span
+          className='text-gray-500 text-sm rounded-full py-1.5 px-3.5 border'
+        >
+          {blog.category}
+        </span>
+        <Balancer className="text-woodPrimary font-semibold text-xl py-4">{blog.title}</Balancer>
+        <Balancer
+          className='text-[#364052] x'
+        >
+          {blog.description}
+        </Balancer>
+      </CardContent>
+      <CardFooter>
+        <Button variant="link" className="text-woodPrimary px-0">
+          Lire la suite
+
+          <ArrowRight className="h-4 w-4 ml-2" />
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+};

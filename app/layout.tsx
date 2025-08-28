@@ -143,9 +143,8 @@ const Nav = ({ className, children, id }: NavProps) => {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <CustomButton  label="Contact" />
-           
-          
+          <CustomButton  label="Contact"  href="/contact" />
+
           <MobileNav />
         </div>
       </div>
@@ -156,7 +155,7 @@ const Nav = ({ className, children, id }: NavProps) => {
 const Footer = () => {
   return (
     <footer className={cn("font-sans antialiased", font2.variable)}>
-      <Section className="bg-footer text-white">
+      <Section className="bg-woodPrimary text-white">
         <Container className="grid md:grid-cols-[1.5fr_0.5fr_0.5fr] gap-12">
           <div className="flex flex-col gap-6 not-prose">
             <Link href="/">
@@ -210,13 +209,13 @@ const Footer = () => {
             ))} */}
           </div>
         </Container>
-        <Container className="border-t not-prose flex flex-col md:flex-row md:gap-2 gap-6 justify-between md:items-center">
+        {/* <Container className="border-t not-prose flex flex-col md:flex-row md:gap-2 gap-6 justify-between md:items-center">
           <ThemeToggle />
-          {/* <p className="text-muted-foreground">
+          <p className="text-muted-foreground">
             &copy; <a href="https://9d8.dev">9d8</a>. All rights reserved.
             2025-present.
-          </p> */}
-        </Container>
+          </p>
+        </Container> */}
       </Section>
     </footer>
   );

@@ -3,7 +3,7 @@ export const mainMenu = {
   produits: "/",
   technologies: "/#technologies",
   service: "/#services",
-  actualités: "/#actualites",
+  actualités: "/pages/actualités",
 };
 
 export const contentMenu = {
