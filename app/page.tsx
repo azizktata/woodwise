@@ -61,9 +61,9 @@ export default function Home() {
 const Hero = () => {
   return (
     <Section>
-      <Container className="flex flex-col gap-12 lg:gap-20 md:flex-row justify-between items-center">
+      <Container className="flex flex-col gap-10 md:gap-16 lg:gap-20 md:flex-row justify-between items-center">
         <div className="w-full md:w-1/2 ">
-          <h1 className="font-bold text-5xl md:text-6xl mb-6 tracking-wider">
+          <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl mb-6 tracking-wider">
             <Balancer>
               <span className="text-black">Construire Mieux</span>
               <br />
@@ -148,13 +148,13 @@ const Apropos = () => {
   return (
     <Section className=" !pt-0">
       <Container>
-        <h2 className="font-semibold text-black text-7xl mb-6 text-center">
+        <h2 className="font-semibold text-black text-6xl mb-6 text-center">
           À Propos de{" "}
           <span className="bg-gradient bg-clip-text text-transparent">
             WoodWise
           </span>
         </h2>
-        <div className="mt-6 grid gap-12 md:mt-12 md:grid-cols-2 mb-12">
+        <div className="mt-6 grid gap-6 md:gap-12 md:mt-12 md:grid-cols-2 mb:6 md:mb-12">
           {featureText.map(({ icon, title, description, href, cta }, index) => (
             <Link
               href={`${href}`}
@@ -332,7 +332,7 @@ const Impact = () => {
 const Mbio7 = () => {
   return (
     <Section>
-      <Container className="grid items-center md:grid-cols-2 md:gap-12 max-w-7xl">
+      <Container className="grid items-center md:grid-cols-2 gap-6 md:gap-12 max-w-7xl">
         <div className="not-prose relative h-auto flex overflow-hidden rounded-lg  ">
           <Image
             src={Mbio7Image}
@@ -576,7 +576,7 @@ const Reviews = () => {
   return (
     <Section>
       <Container>
-        <h2 className="font-semibold text-black text-6xl mb-6 text-center">
+        <h2 className="font-semibold text-black text-4xl sm:text-5xl md:text-6xl mb-6 text-center">
           Listen to what our
           <br />
           <span className="bg-gradient bg-clip-text text-transparent">

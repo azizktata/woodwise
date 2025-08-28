@@ -23,6 +23,7 @@ import { Separator } from "@/components/ui/separator";
 
 import { mainMenu, contentMenu } from "@/menu.config";
 import { siteConfig } from "@/site.config";
+import { ThemeToggle } from "../theme/theme-toggle";
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
@@ -68,6 +69,7 @@ export function MobileNav() {
               </MobileLink>
             ))}
           </div>
+        <ThemeToggle />
         </ScrollArea>
       </SheetContent>
     </Sheet>

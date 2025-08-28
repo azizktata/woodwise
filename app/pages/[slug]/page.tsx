@@ -245,7 +245,7 @@ const Feature = () => {
   return (
     <Section>
       <div className="flex flex-col gap-6">
-        <div className="mt-6 grid gap-6 md:mt-12 md:grid-cols-4">
+        <div className="mt-6 grid gap-6 md:mt-12 md:grid-cols-2 lg:grid-cols-4">
           {featureText.map(({ icon, title, description, href, cta }, index) => (
             <Link
               href={`${href}`}

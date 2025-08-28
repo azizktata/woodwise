@@ -18,7 +18,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 import type { Metadata } from "next";
-import { ChevronRight, Clock, Mail, Phone, PinIcon, ShieldCheck } from "lucide-react";
+import {
+  ChevronRight,
+  Clock,
+  Mail,
+  Phone,
+  PinIcon,
+  ShieldCheck,
+} from "lucide-react";
 import { Toaster } from "sonner";
 import CustomButton from "@/components/CustomButton";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
@@ -79,30 +86,31 @@ export default function RootLayout({
 
 const TopNav = () => {
   return (
-    <nav className={cn("z-50 top-0  bg-gradient py-3 font-sans ", font3.variable)}>
-
-
+    <nav
+      className={cn("z-50 top-0  bg-gradient py-3 font-sans ", font3.variable)}
+    >
       <div className="max-w-6xl flex px-2 flex-col md:flex-row gap-2 justify-between mx-auto text-sm">
-        <p className="text-[#F7F7F7] flex items-center">
-          <ShieldCheck className="h-4 w-4 inline mr-2 " />
-          Trusted partner in business excellence
-          <span className="ml-2 font-bold underline cursor-pointer">
-            Join us now
-          <ChevronRight className="h-4 w-4 inline ml-1" />
-        </span>
-      </p>
-      <p className="text-[#F7F7F7] flex items-center">
-        <Clock className="h-4 w-4 inline mr-2" />
-        <span className="mr-2">
-
-        Mon - Friday from  9:00 AM - 5:00 PM
-        </span>
-
-        |
-
-        <Mail className="h-4 w-4 inline ml-2 mr-2" />
-        <span>contact@woodwise.com</span>
-      </p>
+        <div className="flex items-center">
+          <p className="text-[#F7F7F7] ">
+            <ShieldCheck className="h-4 w-4 inline mr-1 " />
+            Trusted partner in business excellence
+            <span className="ml-2 font-bold underline cursor-pointer">
+              Join us now
+              <ChevronRight className="h-4 w-4 inline ml-1" />
+            </span>
+          </p>
+        </div>
+        <div className="flex item-center text-[#F7F7F7] gap-1 flex-wrap">
+          <div className="flex items-center flex-shrink-0 ">
+            <Clock className="h-4 w-4 inline mr-1" />
+            <span className="mr-1">Mon - Friday from 9:00 AM - 5:00 PM</span>
+          </div>
+          <span className="  hidden md:flex">|</span>
+          <div className="flex items-center flex-shrink-0">
+            <Mail className="h-4 w-4 inline  mr-1" />
+            <span>contact@woodwise.com</span>
+          </div>
+        </div>
       </div>
     </nav>
   );
@@ -110,10 +118,7 @@ const TopNav = () => {
 
 const Nav = ({ className, children, id }: NavProps) => {
   return (
-    <nav
-      className={cn(" z-50 top-0 bg-background bg-hero", className)}
-      id={id}
-    >
+    <nav className={cn(" z-50 top-0 bg-background bg-hero", className)} id={id}>
       <div
         id="nav-container"
         className="max-w-6xl mx-auto py-4 px-6 sm:px-8 flex justify-between items-center"
@@ -136,7 +141,13 @@ const Nav = ({ className, children, id }: NavProps) => {
         <div className="flex items-center gap-2">
           <div className="mx-2 hidden md:flex md:self-center">
             {Object.entries(mainMenu).map(([key, href]) => (
-              <Button key={href} asChild variant={null} size="sm" className="font-semibold text-lg hover:text-gray-500">
+              <Button
+                key={href}
+                asChild
+                variant={null}
+                size="sm"
+                className="font-semibold text-lg hover:text-gray-500"
+              >
                 <Link href={href}>
                   {key.charAt(0).toUpperCase() + key.slice(1)}
                 </Link>
@@ -145,8 +156,10 @@ const Nav = ({ className, children, id }: NavProps) => {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <CustomButton  label="Contact"  href="/contact" />
-               <ThemeToggle />
+          <CustomButton label="Contact" href="/contact" />
+          <div className="hidden md:flex">
+            <ThemeToggle />
+          </div>
           <MobileNav />
         </div>
       </div>
@@ -162,20 +175,16 @@ const Footer = () => {
           <div className="flex flex-col gap-6 not-prose">
             <Link href="/">
               <h3 className="sr-only">{siteConfig.site_name}</h3>
-              <Image
-                src={Logo2}
-                alt="Logo"
-                className="dark:invert"
-                 width={168}
-            height={35}
-              ></Image>
+              <Image src={Logo2} alt="Logo" width={168} height={35}></Image>
             </Link>
             <p>
               <Balancer>{siteConfig.site_description}</Balancer>
             </p>
           </div>
           <div className="flex flex-col gap-2 text-sm">
-            <h6 className={cn("font-semibold text-xl", font.variable)}>Quick links</h6>
+            <h6 className={cn("font-semibold text-xl", font.variable)}>
+              Quick links
+            </h6>
             {Object.entries(mainMenu).map(([key, href]) => (
               <Link
                 className="hover:underline underline-offset-4 text-base"
@@ -187,7 +196,9 @@ const Footer = () => {
             ))}
           </div>
           <div className="flex flex-col gap-2 text-sm">
-            <h5 className={cn("font-semibold text-xl", font.variable)}>Contact</h5>
+            <h5 className={cn("font-semibold text-xl", font.variable)}>
+              Contact
+            </h5>
             <div className="flex items-center gap-2 text-base">
               <Mail className="h-4 w-4" />
               <span>contact@woodwise.com</span>
