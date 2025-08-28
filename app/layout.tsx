@@ -3,12 +3,11 @@ import "./globals.css";
 import { Section, Container } from "@/components/craft";
 import { Roboto, Onest, Lato } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { MobileNav } from "@/components/nav/mobile-nav";
 import { Analytics } from "@vercel/analytics/react";
 import { Button } from "@/components/ui/button";
 
-import { mainMenu, contentMenu } from "@/menu.config";
+import { mainMenu } from "@/menu.config";
 import { siteConfig } from "@/site.config";
 import { cn } from "@/lib/utils";
 
@@ -24,7 +23,7 @@ import { Toaster } from "sonner";
 import CustomButton from "@/components/CustomButton";
 
 const font = Roboto({
-  // subsets: ["roboto"],
+  subsets: ["latin"],
   variable: "--font-sans",
   weight: ["300", "400", "500", "600", "700"],
 });

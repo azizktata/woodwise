@@ -27,10 +27,8 @@ import {
   Mail,
   Phone,
   PinIcon,
-  Plus,
   Projector,
   Star,
-  X,
 } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
@@ -441,7 +439,7 @@ const Contact = () => {
     </Section>
   );
 };
-const blogs = [
+const blogs  = [
   {
     date: "13 December 2025",
     title: "Blog Post 1",
@@ -490,7 +488,16 @@ const Blogs = () => {
   );
 };
 
-const BlogCard = ({ blog }) => {
+interface BlogCardProps {
+  blog: {
+    date: string;
+    title: string;
+    description: string;
+    image: string;
+  };
+}
+
+const BlogCard = ({ blog }: BlogCardProps) => {
   return (
     <Card className="hover:shadow-lg transition-shadow cursor-pointer shadow-sm rounded-2xl">
        <CardHeader className="px-0 pt-0">
@@ -590,7 +597,16 @@ const Reviews = () => {
   );
 };
 
-const ReviewCard = ({ review }) => {
+interface ReviewCardProps {
+  review: {
+    name: string;
+    date: string;
+    rating: number;
+    comment: string;
+  };
+}
+
+const ReviewCard = ({ review }: ReviewCardProps) => {
   return (
     <Card className="hover:shadow-lg transition-shadow cursor-pointer shadow-sm rounded-2xl group hover:bg-gradient hover:text-white ease-in-out duration-200">
       <CardHeader className="">

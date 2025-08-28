@@ -8,7 +8,8 @@ import banner from "@/public/banner.jpg";
 import contactBanner from "@/public/contact-banner.jpg";
 import Link from "next/link";
 import { Lato } from "next/font/google";
-
+import { format } from "date-fns"; // For date formatting
+import { enUS } from "date-fns/locale"; // Or your preferred locale
 import Balancer from "react-wrap-balancer";
 import {
   Coins,
@@ -419,10 +420,23 @@ const Blogs = () => {
   );
 };
 
-const BlogCard = ({ blog }) => {
+interface BlogCardProps {
+  blog: {
+    date: string;
+    title: string;
+    category: string;
+    description: string;
+    image: string;
+  };
+}
+
+const BlogCard = ({ blog }: BlogCardProps) => {
+  const dateObj = new Date(blog.date); // Convert to Date object if it's a string
+const day = format(dateObj, "dd", { locale: enUS }); // "13"
+const month = format(dateObj, "MMM", { locale: enUS }); // "Dec"
   return (
     <Card className="hover:shadow-lg transition-shadow cursor-pointer py-0 shadow-sm rounded-none">
-      <CardHeader className="p-0">
+      <CardHeader className="p-0 relative">
         <Image
           src={blog.image}
           alt={blog.title}
@@ -430,6 +444,17 @@ const BlogCard = ({ blog }) => {
           height={200}
           className="w-full h-full object-cover "
         />
+
+     <div className="absolute bottom-5 right-0 m-4">
+  {/* Blurred background element */}
+  <div className="absolute inset-0 bg-[#F7F7F71A] h-[93px] w-[77px]  backdrop-filter backdrop-blur-sm -z-10 rounded-lg"></div>
+
+  {/* Content (date) */}
+  <div className="relative h-[93px] w-[77px] flex flex-col items-center justify-center p-2">
+    <span className="text-white text-3xl font-light leading-none">{day}</span>
+    <span className="text-white text-md uppercase font-light leading-none">{month}</span>
+  </div>
+</div>
       </CardHeader>
       <CardContent className="mt-6">
         <span
