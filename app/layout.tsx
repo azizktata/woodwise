@@ -29,11 +29,13 @@ const font = Roboto({
 });
 
 const font2 = Onest({
+  subsets: ["latin"],
   variable: "--font-sans",
   weight: ["400"],
 });
 
 const font3 = Lato({
+  subsets: ["latin"],
   variable: "--font-sans",
   weight: ["400", "700"],
 });

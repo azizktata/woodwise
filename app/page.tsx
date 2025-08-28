@@ -33,6 +33,7 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const font2 = Onest({
+  subsets: ["latin"],
   variable: "--font-sans",
   weight: ["400"],
 });

@@ -12,15 +12,12 @@ import { format } from "date-fns"; // For date formatting
 import { enUS } from "date-fns/locale"; // Or your preferred locale
 import Balancer from "react-wrap-balancer";
 import {
-  Coins,
   ArrowRight,
   MoveRightIcon,
-  Recycle,
   Lightbulb,
   RecycleIcon,
   Handshake,
   HandHeart,
-  Car,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
@@ -93,6 +90,7 @@ import { date } from "zod";
 //   };
 // }
 const font3 = Lato({
+  subsets: ["latin"],
   variable: "--font-sans",
   weight: ["400", "700"],
 });
