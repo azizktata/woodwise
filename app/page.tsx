@@ -522,7 +522,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         <h5 className="text-black font-semibold text-2xl py-4 ">{blog.title}</h5>
         <p
           className={cn(
-            "text-gray-400 leading-[1.4] opacity-70 font-sans ",
+            "text-muted-foreground leading-[1.4] opacity-70 font-sans ",
             font2.variable
           )}
         >
@@ -583,7 +583,7 @@ const Reviews = () => {
             customers say
           </span>
         </h2>
-        <p className="text-gray-500 text-sm text-center max-w-[65ch] mx-auto mb-14">
+        <p className="text-muted-foreground text-sm text-center max-w-[65ch] mx-auto mb-14">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis
           magna ut lectus aliquet consequat. Nulla libero augue, ullamcorper et
           efficitur lacinia.
@@ -634,7 +634,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
       <CardContent>
         <p
           className={cn(
-            "text-gray-500 leading-[1.4] text-sm pl-2 font-sans group-hover:text-white",
+            "text-muted-foreground leading-[1.4] text-sm pl-2 font-sans group-hover:text-white",
             font2.variable
           )}
         >
