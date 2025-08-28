@@ -51,31 +51,31 @@ export default async function Page({
   const postsPerPage = 9;
 
   // Fetch data based on search parameters using efficient pagination
-  const [postsResponse, authors, tags, categories] = await Promise.all([
-    getPostsPaginated(page, postsPerPage, { author, tag, category, search }),
-    search ? searchAuthors(search) : getAllAuthors(),
-    search ? searchTags(search) : getAllTags(),
-    search ? searchCategories(search) : getAllCategories(),
-  ]);
+  // const [postsResponse, authors, tags, categories] = await Promise.all([
+  //   getPostsPaginated(page, postsPerPage, { author, tag, category, search }),
+  //   search ? searchAuthors(search) : getAllAuthors(),
+  //   search ? searchTags(search) : getAllTags(),
+  //   search ? searchCategories(search) : getAllCategories(),
+  // ]);
 
-  const { data: posts, headers } = postsResponse;
-  const { total, totalPages } = headers;
+  // const { data: posts, headers } = postsResponse;
+  // const { total, totalPages } = headers;
 
-  // Create pagination URL helper
-  const createPaginationUrl = (newPage: number) => {
-    const params = new URLSearchParams();
-    if (newPage > 1) params.set("page", newPage.toString());
-    if (category) params.set("category", category);
-    if (author) params.set("author", author);
-    if (tag) params.set("tag", tag);
-    if (search) params.set("search", search);
-    return `/posts${params.toString() ? `?${params.toString()}` : ""}`;
-  };
+  // // Create pagination URL helper
+  // const createPaginationUrl = (newPage: number) => {
+  //   const params = new URLSearchParams();
+  //   if (newPage > 1) params.set("page", newPage.toString());
+  //   if (category) params.set("category", category);
+  //   if (author) params.set("author", author);
+  //   if (tag) params.set("tag", tag);
+  //   if (search) params.set("search", search);
+  //   return `/posts${params.toString() ? `?${params.toString()}` : ""}`;
+  // };
 
   return (
     <Section>
       <Container>
-        <div className="space-y-8">
+        {/* <div className="space-y-8">
           <Prose>
             <h2>All Posts</h2>
             <p className="text-muted-foreground">
@@ -157,7 +157,7 @@ export default async function Page({
               </Pagination>
             </div>
           )}
-        </div>
+        </div> */}
       </Container>
     </Section>
   );

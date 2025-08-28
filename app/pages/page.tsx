@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const pages = await getAllPages();
+  // const pages = await getAllPages();
 
   return (
     <Section>
@@ -21,11 +21,11 @@ export default async function Page() {
         <Prose className="mb-8">
           <h2>All Pages</h2>
           <ul className="grid">
-            {pages.map((page: any) => (
+            {/* {pages.map((page: any) => (
               <li key={page.id}>
                 <Link href={`/pages/${page.slug}`}>{page.title.rendered}</Link>
               </li>
-            ))}
+            ))} */}
           </ul>
         </Prose>
         <BackButton />

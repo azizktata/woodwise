@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const categories = await getAllCategories();
+  // const categories = await getAllCategories();
 
   return (
     <Section>
@@ -21,13 +21,13 @@ export default async function Page() {
         <Prose className="mb-8">
           <h2>All Categories</h2>
           <ul className="grid">
-            {categories.map((category: any) => (
+            {/* {categories.map((category: any) => (
               <li key={category.id}>
                 <Link href={`/posts/?category=${category.id}`}>
                   {category.name}
                 </Link>
               </li>
-            ))}
+            ))} */}
           </ul>
         </Prose>
         <BackButton />
