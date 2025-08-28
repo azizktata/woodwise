@@ -456,13 +456,13 @@ const month = format(dateObj, "MMM", { locale: enUS }); // "Dec"
       </CardHeader>
       <CardContent className="mt-6">
         <span
-          className='text-gray-500 text-sm rounded-full py-1.5 px-3.5 border'
+          className='text-muted-foreground text-sm rounded-full py-1.5 px-3.5 border'
         >
           {blog.category}
         </span>
         <Balancer className="text-woodPrimary font-semibold text-xl py-4">{blog.title}</Balancer>
         <Balancer
-          className='text-[#364052] x'
+          className='text-muted-foreground'
         >
           {blog.description}
         </Balancer>
