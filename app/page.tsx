@@ -8,6 +8,7 @@ import Link from "next/link";
 import HeroImage from "@/public/hero.jpg";
 import AproposImage from "@/public/Apropos.jpg";
 import Mbio7Image from "@/public/Mbio7.jpg";
+import Mbio7ProductImage from "@/public/mbio7product.png";
 // import ContactBg from "@/public/Asset 2@4x 1.jpg";
 import ContactBg from "@/public/rawlogo.jpg";
 
@@ -62,7 +63,7 @@ const Hero = () => {
     <Section>
       <Container className="flex flex-col gap-12 lg:gap-20 md:flex-row justify-between items-center">
         <div className="w-full md:w-1/2 ">
-          <h1 className="font-bold text-6xl mb-6 tracking-wider">
+          <h1 className="font-bold text-5xl md:text-6xl mb-6 tracking-wider">
             <Balancer>
               <span className="text-black">Construire Mieux</span>
               <br />
@@ -297,10 +298,11 @@ const Impact = () => {
             Impact
           </span>
         </h2>
-        <p className={cn(
-              "text-gray-500 text-sm text-center max-w-[55ch] mx-auto mb-12 font-sans",
-              font2.variable
-            )}
+        <p
+          className={cn(
+            "text-gray-500 text-sm text-center max-w-[55ch] mx-auto mb-12 font-sans",
+            font2.variable
+          )}
         >
           Chaque panneau, chaque projet, chaque kilo de bois détourné des
           décharges témoigne de notre engagement.
@@ -339,7 +341,7 @@ const Mbio7 = () => {
             width={512}
           />
         </div>
-        <div className="flex flex-col gap-6 py-8">
+        <div className="flex flex-col gap-6 py-8 relative">
           <h2 className="!my-0 font-semibold text-black text-6xl">
             MBio7 by{" "}
             <span className="bg-gradient bg-clip-text text-transparent">
@@ -348,7 +350,7 @@ const Mbio7 = () => {
           </h2>
           <p
             className={cn(
-              "font-light text-base leading-[1.4] opacity-60 font-sans ",
+              "font-light text-base leading-[1.4] opacity-60 font-sans max-w-[55ch]",
               font2.variable
             )}
           >
@@ -365,6 +367,16 @@ const Mbio7 = () => {
             </ul>
           </p>
           <CustomButton label="Découvrir plus" className="self-start" />
+
+          <div className="hidden lg:block absolute bottom-0 right-0">
+            <Image
+              src={Mbio7ProductImage}
+              alt="Mbio7"
+              className="fill object-cover"
+              height={200}
+              width={200}
+            />
+          </div>
         </div>
       </Container>
     </Section>
@@ -386,14 +398,12 @@ const Contact = () => {
 
           {/* The container for your content, positioned on top */}
           <div className="relative z-10 flex flex-col items-start mx-auto justify-center h-full">
-            <h2 className={
-              cn(
-            "font-semibold text-white text-6xl mb-12 text-center z-10 font-sans ",
-            font2.variable
-          )
-            }
-            
-           >
+            <h2
+              className={cn(
+                "font-semibold text-white text-6xl mb-12 text-center z-10 font-sans ",
+                font2.variable
+              )}
+            >
               Contactez-Nous
             </h2>
             <div id="contact-form" className="w-full">
@@ -401,14 +411,11 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="bg-woodPrimary p-4  text-white flex flex-col justify-center">
-          <div className={
-             cn(
-            "mx-auto pr-2 font-sans ",
-            font2.variable
-          )
-          }>
-            <p className="font-semibold text-3xl mb-3 tracking-wide">Contact information</p>
+        <div className="bg-woodPrimary p-4 min-h-96 text-white flex flex-col justify-center">
+          <div className={cn("mx-auto pr-2 font-sans ", font2.variable)}>
+            <p className="font-semibold text-3xl mb-3 tracking-wide">
+              Contact information
+            </p>
             <p className="text-base text-white/60 tracking-wide">
               Say something to start a live chat!
             </p>
@@ -472,8 +479,6 @@ const Blogs = () => {
           {blogs.map((blog, index) => (
             <BlogCard key={index} blog={blog} />
           ))}
-
-
         </div>
         <div className="mt-12 flex justify-center">
           <CustomButton label="Voir plus" inverted />
@@ -573,7 +578,7 @@ const Reviews = () => {
           magna ut lectus aliquet consequat. Nulla libero augue, ullamcorper et
           efficitur lacinia.
         </p>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {reviews.map((review, index) => (
             <ReviewCard key={index} review={review} />
           ))}

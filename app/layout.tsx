@@ -26,7 +26,7 @@ import CustomButton from "@/components/CustomButton";
 const font = Roboto({
   // subsets: ["roboto"],
   variable: "--font-sans",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const font2 = Onest({
@@ -80,9 +80,9 @@ const TopNav = () => {
     <nav className={cn("z-50 top-0  bg-gradient py-3 font-sans ", font3.variable)}>
 
 
-      <div className="max-w-6xl flex justify-between mx-auto text-sm">
+      <div className="max-w-6xl flex px-2 flex-col md:flex-row gap-2 justify-between mx-auto text-sm">
         <p className="text-[#F7F7F7] flex items-center">
-          <ShieldCheck className="h-5 w-5 inline mr-2 " />
+          <ShieldCheck className="h-4 w-4 inline mr-2 " />
           Trusted partner in business excellence
           <span className="ml-2 font-bold underline cursor-pointer">
             Join us now
