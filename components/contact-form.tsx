@@ -107,7 +107,7 @@ export default function ContactForm() {
                 <textarea
                   placeholder="Message"
                   {...field}
-                  className="resize-none border border-gray-300 p-2 w-full h-32 bg-white/40 rounded-none placeholder:text-woodPrimary"
+                  className="resize-none border border-gray-300 p-2 w-full h-32 bg-white/40 rounded-none placeholder:text-[#084d27]"
                 />
               </FormControl>
 

@@ -21,6 +21,7 @@ import type { Metadata } from "next";
 import { ChevronRight, Clock, Mail, Phone, PinIcon, ShieldCheck } from "lucide-react";
 import { Toaster } from "sonner";
 import CustomButton from "@/components/CustomButton";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 const font = Roboto({
   subsets: ["latin"],
@@ -145,7 +146,7 @@ const Nav = ({ className, children, id }: NavProps) => {
         </div>
         <div className="flex items-center gap-2">
           <CustomButton  label="Contact"  href="/contact" />
-
+               <ThemeToggle />
           <MobileNav />
         </div>
       </div>
@@ -156,7 +157,7 @@ const Nav = ({ className, children, id }: NavProps) => {
 const Footer = () => {
   return (
     <footer className={cn("font-sans antialiased", font2.variable)}>
-      <Section className="bg-woodPrimary text-white">
+      <Section className="bg-[#0d7f40] text-white">
         <Container className="grid md:grid-cols-[1.5fr_0.5fr_0.5fr] gap-12">
           <div className="flex flex-col gap-6 not-prose">
             <Link href="/">
@@ -211,11 +212,8 @@ const Footer = () => {
           </div>
         </Container>
         {/* <Container className="border-t not-prose flex flex-col md:flex-row md:gap-2 gap-6 justify-between md:items-center">
-          <ThemeToggle />
-          <p className="text-muted-foreground">
-            &copy; <a href="https://9d8.dev">9d8</a>. All rights reserved.
-            2025-present.
-          </p>
+       
+   
         </Container> */}
       </Section>
     </footer>

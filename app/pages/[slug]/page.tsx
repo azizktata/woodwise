@@ -357,7 +357,7 @@ const ContactBanner = () => {
       />
       <Container className="relative z-10 flex h-full items-center justify-between ">
         <h2 className="text-6xl  text-white">Contact Us</h2>
-        <Button className="bg-white rounded-full px-1 py-6 mt-5 text-black transition-all duration-300 hover:bg-[#051229] hover:text-white group">
+        <Button className="bg-white rounded-full px-1 py-6 mt-5 text-[#232227] transition-all duration-300 hover:bg-[#051229] hover:text-white group">
           <div className="flex items-center gap-2">
             <span className="rounded-full text-white p-3 bg-woodSecondary transition-transform duration-300 group-hover:animate-slide-right ">
               <MoveRightIcon className="h-4 w-4" />

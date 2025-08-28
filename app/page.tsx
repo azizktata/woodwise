@@ -45,7 +45,7 @@ export default function Home() {
         <Hero />
       </div>
       <div className="bg-section h-32"></div>
-      <div className="bg-[#F0F6FF]">
+      <div className="bg-apropos">
         <Apropos />
         <Impact />
         <Mbio7 />
@@ -158,12 +158,12 @@ const Apropos = () => {
           {featureText.map(({ icon, title, description, href, cta }, index) => (
             <Link
               href={`${href}`}
-              className="flex flex-col justify-between bg-white gap-6 rounded-2xl  p-6  transition-all hover:-mt-2 hover:mb-2"
+              className="flex flex-col justify-between gap-6 rounded-2xl  p-6 bg-card transition-all hover:-mt-2 hover:mb-2"
               key={index}
             >
               <div className="grid gap-4 ">
                 {icon}
-                <h4 className="text-4xl text-primary">{title}</h4>
+                <h4 className="text-4xl text-black">{title}</h4>
                 <p className="text-base opacity-75">{description}</p>
               </div>
               {/* {cta && (
@@ -301,7 +301,7 @@ const Impact = () => {
         </h2>
         <p
           className={cn(
-            "text-gray-500 text-sm text-center max-w-[55ch] mx-auto mb-12 font-sans",
+            "text-muted-foreground text-sm text-center max-w-[55ch] mx-auto mb-12 font-sans",
             font2.variable
           )}
         >
@@ -313,7 +313,7 @@ const Impact = () => {
           {chiffres.map((item) => (
             <div
               key={item.title}
-              className="group  flex flex-col gap-6 items-center bg-white py-12 px-3 rounded-2xl border shadow-sm transition-background duration-300 hover:bg-gradient hover:text-white"
+              className="group  flex flex-col gap-6 items-center py-12 px-3 bg-card rounded-2xl border shadow-sm transition-background duration-300 hover:bg-gradient hover:text-white"
             >
               <h3 className="text-8xl font-semibold text-woodPrimary group-hover:text-white">
                 {item.value}
@@ -412,12 +412,12 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="bg-woodPrimary p-4 min-h-96 text-white flex flex-col justify-center">
+        <div className="bg-[#084d27] p-4 min-h-96 text-white flex flex-col justify-center">
           <div className={cn("mx-auto pr-2 font-sans ", font2.variable)}>
             <p className="font-semibold text-3xl mb-3 tracking-wide">
               Contact information
             </p>
-            <p className="text-base text-white/60 tracking-wide">
+            <p className="text-base  tracking-wide">
               Say something to start a live chat!
             </p>
             <div className="flex flex-col gap-6 text-sm mt-6">
@@ -471,7 +471,7 @@ const Blogs = () => {
           </span>{" "}
           et articles
         </h2>
-        <p className="text-gray-500 text-sm text-center max-w-[65ch] mx-auto mb-14">
+        <p className="text-muted-foreground text-sm text-center max-w-[65ch] mx-auto mb-14">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis
           magna ut lectus aliquet consequat. Nulla libero augue, ullamcorper et
           efficitur lacinia.
@@ -522,7 +522,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         <h5 className="text-black font-semibold text-2xl py-4 ">{blog.title}</h5>
         <p
           className={cn(
-            "text-gray-500 leading-[1.4] opacity-70 font-sans ",
+            "text-gray-400 leading-[1.4] opacity-70 font-sans ",
             font2.variable
           )}
         >

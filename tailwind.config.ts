@@ -68,11 +68,13 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+         apropos: "var(--bg-apropos)",
       },
       backgroundImage: {
         gradient: "var(--gradient-default)",
         hero: "var(--bg-hero)",
         section: "var(--bg-section)",
+        apropos: "var(--bg-apropos)",
         "contact-bg": "url('/public/Artboard 5@4x.png')",
       },
       borderRadius: {
