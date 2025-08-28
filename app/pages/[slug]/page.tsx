@@ -167,7 +167,7 @@ const CTA = () => {
         </h1>
       </div>
       <div>
-        <Balancer className="text-[#364052] text-sm leading-relaxed max-w-[65ch]">
+        <Balancer className="text-muted-foreground text-sm leading-relaxed max-w-[65ch]">
           Depuis notre création, nous travaillons à développer une nouvelle
           approche de la construction et du design : moins de gaspillage, plus
           d’impact positif. Avec l’innovation mBio7, nous avons prouvé qu’il
@@ -178,7 +178,7 @@ const CTA = () => {
         </Balancer>
         <Button className="bg-[#051229] rounded-full px-1 py-6 mt-5">
           
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 text-white">
             <span className="rounded-full p-3 bg-woodSecondary">
               <MoveRightIcon className="h-4 w-4" />
             </span>
@@ -255,7 +255,7 @@ const Feature = () => {
               <div className="grid gap-6">
                 {icon}
                 <h4 className="text-2xl font-bold text-black">{title}</h4>
-                <p className="text-sm text-[#364052] ">{description}</p>
+                <p className="text-sm text-muted-foreground">{description}</p>
               </div>
               {/* {cta && (
                     <div className="flex h-fit items-center text-sm font-semibold">

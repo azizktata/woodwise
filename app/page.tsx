@@ -81,7 +81,7 @@ const Hero = () => {
             </p>
           </h3>
 
-          <CustomButton asChild label="Découvrir plus" href="/pages/apropos" />
+          <CustomButton asChild label="Découvrir plus" href="/pages/à-propos" />
 
         </div>
         <div className="not-prose w-full overflow-hidden rounded-lg  md:rounded-xl md:w-1/2">
