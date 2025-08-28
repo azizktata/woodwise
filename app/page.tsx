@@ -446,19 +446,19 @@ const blogs = [
     date: "13 December 2025",
     title: "Blog Post 1",
     description: "Description for blog post 1",
-    image: "https://placehold.co/400",
+    image: "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     date: "13 December 2025",
     title: "Blog Post 2",
     description: "Description for blog post 2",
-    image: "https://placehold.co/400",
+    image: "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     date: "13 December 2025",
     title: "Blog Post 3",
     description: "Description for blog post 3",
-    image: "https://placehold.co/400",
+    image: "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
@@ -483,7 +483,7 @@ const Blogs = () => {
           ))}
         </div>
         <div className="mt-12 flex justify-center">
-          <CustomButton label="Voir plus" inverted href="/blog" />
+          <CustomButton label="Voir plus" inverted href="/pages/actualités" />
         </div>
       </Container>
     </Section>
@@ -493,7 +493,7 @@ const Blogs = () => {
 const BlogCard = ({ blog }) => {
   return (
     <Card className="hover:shadow-lg transition-shadow cursor-pointer shadow-sm rounded-2xl">
-      <CardHeader>
+       <CardHeader className="px-0 pt-0">
         <Image
           src={blog.image}
           alt={blog.title}
@@ -511,7 +511,7 @@ const BlogCard = ({ blog }) => {
         >
           {blog.date}
         </p>
-        <h5 className="text-black font-semibold text-2xl py-4">{blog.title}</h5>
+        <h5 className="text-black font-semibold text-2xl py-4 ">{blog.title}</h5>
         <p
           className={cn(
             "text-gray-500 leading-[1.4] opacity-70 font-sans ",
@@ -530,37 +530,37 @@ const reviews = [
     name: "John Doe",
     date: "13 December 2025",
     rating: 5,
-    comment: "Excellent service and quality!",
+    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis magna ut lectus aliquet consequat. Nulla libero augue.",
   },
   {
     name: "Jane Smith",
     date: "12 December 2025",
     rating: 4,
-    comment: "Very satisfied with my purchase.",
+    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis magna ut lectus aliquet consequat. Nulla libero augue.",
   },
   {
     name: "Alice Johnson",
     date: "11 December 2025",
     rating: 5,
-    comment: "Highly recommend this company!",
+    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis magna ut lectus aliquet consequat. Nulla libero augue.",
   },
   {
     name: "Bob Brown",
     date: "10 December 2025",
     rating: 3,
-    comment: "Good, but could be better.",
+    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis magna ut lectus aliquet consequat. Nulla libero augue.",
   },
   {
     name: "Charlie Davis",
     date: "09 December 2025",
     rating: 4,
-    comment: "Great value for the price.",
+    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis magna ut lectus aliquet consequat. Nulla libero augue.",
   },
   {
     name: "Charlie Davis",
     date: "09 December 2025",
     rating: 4,
-    comment: "Great value for the price.",
+    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis magna ut lectus aliquet consequat. Nulla libero augue.",
   },
 ];
 
@@ -592,11 +592,11 @@ const Reviews = () => {
 
 const ReviewCard = ({ review }) => {
   return (
-    <Card className="hover:shadow-lg transition-shadow cursor-pointer shadow-sm rounded-2xl">
+    <Card className="hover:shadow-lg transition-shadow cursor-pointer shadow-sm rounded-2xl group hover:bg-gradient hover:text-white ease-in-out duration-200">
       <CardHeader className="">
         <div className="flex items-center gap-4">
           <Avatar className="h-12 w-12">
-            <AvatarFallback>{review.name.charAt(0)}</AvatarFallback>
+            <AvatarFallback className="bg-woodPrimary text-white">{review.name.charAt(0)}</AvatarFallback>
           </Avatar>
 
           <div className="flex flex-col">
@@ -607,7 +607,7 @@ const ReviewCard = ({ review }) => {
               {Array.from({ length: review.rating }).map((_, i) => (
                 <Star
                   key={i}
-                  className="h-4 w-4 fill-current text-woodPrimary "
+                  className="h-3 w-3 font-light fill-current text-woodPrimary group-hover:text-white "
                 />
               ))}
             </div>
@@ -617,7 +617,7 @@ const ReviewCard = ({ review }) => {
       <CardContent>
         <p
           className={cn(
-            "text-gray-500 leading-[1.4] text-sm pl-2 font-sans ",
+            "text-gray-500 leading-[1.4] text-sm pl-2 font-sans group-hover:text-white",
             font2.variable
           )}
         >
