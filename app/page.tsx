@@ -63,7 +63,7 @@ const Hero = () => {
     <Section>
       <Container className="flex flex-col gap-10 md:gap-16 lg:gap-20 md:flex-row justify-between items-center">
         <div className="w-full md:w-1/2 ">
-          <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl mb-6 tracking-wider">
+          <h1 className="font-bold text-3xl sm:text-5xl lg:text-6xl mb-6 tracking-wider">
             <Balancer>
               <span className="text-black">Construire Mieux</span>
               <br />
@@ -148,7 +148,8 @@ const Apropos = () => {
   return (
     <Section className=" !pt-0">
       <Container>
-        <h2 className="font-semibold text-black text-6xl mb-6 text-center">
+
+        <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
           À Propos de{" "}
           <span className="bg-gradient bg-clip-text text-transparent">
             WoodWise
@@ -207,7 +208,7 @@ const Apropos = () => {
           <div className="py-6">
             <div
               className={cn(
-                "flex flex-col gap-2 py-6 transition-all duration-300  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white"
+                "flex flex-col gap-2 py-6 transition-all duration-300  hover:bg-gradient rounded-2xl p-4  hover:text-white"
               )}
             >
               <h3 className="!my-0 font-semibold text-xl ">
@@ -225,7 +226,7 @@ const Apropos = () => {
             </div>
             <div
               className={cn(
-                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white"
+                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4  hover:text-white"
               )}
             >
               <h3 className="!my-0 font-semibold text-xl ">
@@ -243,7 +244,7 @@ const Apropos = () => {
             </div>
             <div
               className={cn(
-                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white"
+                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4  hover:text-white"
               )}
             >
               <h3 className="!my-0 font-semibold text-xl ">
@@ -261,7 +262,7 @@ const Apropos = () => {
             </div>
             <div
               className={cn(
-                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4 hover:p-5 hover:text-white"
+                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4  hover:text-white"
               )}
             >
               <h3 className="!my-0 font-semibold text-xl ">
@@ -293,7 +294,7 @@ const Impact = () => {
   return (
     <Section>
       <Container className="max-w-7xl">
-        <h2 className="font-semibold text-black text-6xl mb-6 text-center">
+       <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
           Notre{" "}
           <span className="bg-gradient bg-clip-text text-transparent">
             Impact
@@ -343,7 +344,7 @@ const Mbio7 = () => {
           />
         </div>
         <div className="flex flex-col gap-6 py-8 relative">
-          <h2 className="!my-0 font-semibold text-black text-6xl">
+          <h2 className="!my-0 font-semibold text-black text-4xl sm:text-5xl lg:text-6xl">
             MBio7 by{" "}
             <span className="bg-gradient bg-clip-text text-transparent">
               WoodWise
@@ -367,7 +368,7 @@ const Mbio7 = () => {
               <li>Avec une empreinte carbone négative</li>
             </ul>
           </div>
-          <CustomButton label="Découvrir plus" className="self-start" href="/about" />
+          <CustomButton asChild label="Découvrir plus" href="/pages/à-propos" className="self-start" />
 
           <div className="hidden lg:block absolute bottom-0 right-0">
             <Image
@@ -401,7 +402,7 @@ const Contact = () => {
           <div className="relative z-10 flex flex-col items-start mx-auto justify-center h-full">
             <h2
               className={cn(
-                "font-semibold text-white text-6xl mb-12 text-center z-10 font-sans ",
+                "font-semibold text-white text-4xl sm:text-5xl md:text-6xl mb-12 text-center z-10 font-sans ",
                 font2.variable
               )}
             >
@@ -465,7 +466,7 @@ const Blogs = () => {
   return (
     <Section>
       <Container>
-        <h2 className="font-semibold text-black text-5xl mb-6 text-center">
+       <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
           <span className="bg-gradient bg-clip-text text-transparent">
             Nos Blogs
           </span>{" "}
@@ -482,7 +483,7 @@ const Blogs = () => {
           ))}
         </div>
         <div className="mt-12 flex justify-center">
-          <CustomButton label="Voir plus" inverted href="/pages/actualités" />
+          <CustomButton label="Voir plus" inverted href="/pages/actualités" asChild />
         </div>
       </Container>
     </Section>
@@ -576,7 +577,7 @@ const Reviews = () => {
   return (
     <Section>
       <Container>
-        <h2 className="font-semibold text-black text-4xl sm:text-5xl md:text-6xl mb-6 text-center">
+        <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
           Listen to what our
           <br />
           <span className="bg-gradient bg-clip-text text-transparent">
@@ -678,7 +679,7 @@ const FAQ = () => {
   return (
     <Section>
       <Container>
-        <h2 className="font-semibold text-black text-6xl mb-6 text-center">
+        <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
           <span>Questions</span>
           <br />
           <span className="bg-gradient bg-clip-text text-transparent">

@@ -355,8 +355,8 @@ const ContactBanner = () => {
         alt="Contact Us"
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <Container className="relative z-10 flex h-full items-center justify-between ">
-        <h2 className="text-6xl  text-white">Contact Us</h2>
+      <Container className="relative z-10 flex h-full flex-col  sm:flex-row items-center justify-between ">
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl text-white">Contact Us</h2>
         <Button className="bg-white rounded-full px-1 py-6 mt-5 text-[#232227] transition-all duration-300 hover:bg-[#051229] hover:text-white group">
           <div className="flex items-center gap-2">
             <span className="rounded-full text-white p-3 bg-woodSecondary transition-transform duration-300 group-hover:animate-slide-right ">
@@ -417,63 +417,106 @@ const Blogs = () => {
     </Section>
   );
 };
-
 interface BlogCardProps {
   blog: {
     date: string;
     title: string;
-    category: string;
     description: string;
     image: string;
   };
 }
 
 const BlogCard = ({ blog }: BlogCardProps) => {
-  const dateObj = new Date(blog.date); // Convert to Date object if it's a string
-const day = format(dateObj, "dd", { locale: enUS }); // "13"
-const month = format(dateObj, "MMM", { locale: enUS }); // "Dec"
   return (
-    <Card className="hover:shadow-lg transition-shadow cursor-pointer py-0 shadow-sm rounded-none">
-      <CardHeader className="p-0 relative">
+    <Card className="hover:shadow-lg transition-shadow cursor-pointer shadow-sm rounded-2xl">
+       <CardHeader className="px-0 pt-0">
         <Image
           src={blog.image}
           alt={blog.title}
           width={400}
           height={200}
-          className="w-full h-full object-cover "
+          className="w-full h-full object-cover rounded-t-md"
         />
-
-     <div className="absolute bottom-5 right-0 m-4">
-  {/* Blurred background element */}
-  <div className="absolute inset-0 bg-[#F7F7F71A] h-[93px] w-[77px]  backdrop-filter backdrop-blur-sm -z-10 rounded-lg"></div>
-
-  {/* Content (date) */}
-  <div className="relative h-[93px] w-[77px] flex flex-col items-center justify-center p-2">
-    <span className="text-white text-3xl font-light leading-none">{day}</span>
-    <span className="text-white text-md uppercase font-light leading-none">{month}</span>
-  </div>
-</div>
       </CardHeader>
-      <CardContent className="mt-6">
-        <span
-          className='text-muted-foreground text-sm rounded-full py-1.5 px-3.5 border'
+      <CardContent>
+        <p
+          className={cn(
+            "bg-gradient bg-clip-text text-transparent font-sans ",
+            font3.variable
+          )}
         >
-          {blog.category}
-        </span>
-        <Balancer className="text-woodPrimary font-semibold text-xl py-4">{blog.title}</Balancer>
-        <Balancer
-          className='text-muted-foreground'
+          {blog.date}
+        </p>
+        <h5 className="text-black font-semibold text-2xl py-4 ">{blog.title}</h5>
+        <p
+          className={cn(
+            "text-muted-foreground leading-[1.4] opacity-70 font-sans ",
+            font3.variable
+          )}
         >
           {blog.description}
-        </Balancer>
+        </p>
       </CardContent>
-      <CardFooter>
-        <Button variant="link" className="text-woodPrimary px-0">
-          Lire la suite
-
-          <ArrowRight className="h-4 w-4 ml-2" />
-        </Button>
-      </CardFooter>
     </Card>
   );
 };
+
+// interface BlogCardProps {
+//   blog: {
+//     date: string;
+//     title: string;
+//     category: string;
+//     description: string;
+//     image: string;
+//   };
+// }
+
+// const BlogCard = ({ blog }: BlogCardProps) => {
+//   const dateObj = new Date(blog.date); // Convert to Date object if it's a string
+// const day = format(dateObj, "dd", { locale: enUS }); // "13"
+// const month = format(dateObj, "MMM", { locale: enUS }); // "Dec"
+//   return (
+//     <Card className="hover:shadow-lg transition-shadow cursor-pointer py-0 shadow-sm rounded-none">
+//       <CardHeader className="p-0 relative">
+//         <Image
+//           src={blog.image}
+//           alt={blog.title}
+//           width={400}
+//           height={200}
+//           className="w-full h-full object-cover "
+//         />
+
+//      <div className="absolute bottom-5 right-0 m-4">
+//   {/* Blurred background element */}
+//   <div className="absolute inset-0 bg-[#F7F7F71A] h-[93px] w-[77px]  backdrop-filter backdrop-blur-sm -z-10 rounded-lg"></div>
+
+//   {/* Content (date) */}
+//   <div className="relative h-[93px] w-[77px] flex flex-col items-center justify-center p-2">
+//     <span className="text-white text-3xl font-light leading-none">{day}</span>
+//     <span className="text-white text-md uppercase font-light leading-none">{month}</span>
+//   </div>
+// </div>
+//       </CardHeader>
+//       <CardContent className="mt-6">
+//         <span
+//           className='text-muted-foreground text-sm rounded-full py-1.5 px-3.5 border'
+//         >
+//           {blog.category}
+//         </span>
+//         <Balancer className="text-woodPrimary font-semibold text-xl py-4">{blog.title}</Balancer>
+//         <Balancer
+//           className='text-muted-foreground'
+//         >
+//           {blog.description}
+//         </Balancer>
+//       </CardContent>
+//       <CardFooter>
+//         <Button variant="link" className="text-woodPrimary px-0">
+//           Lire la suite
+
+//           <ArrowRight className="h-4 w-4 ml-2" />
+//         </Button>
+//       </CardFooter>
+//     </Card>
+//   );
+// };

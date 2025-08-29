@@ -69,7 +69,7 @@ export function MobileNav() {
               </MobileLink>
             ))}
           </div>
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
         </ScrollArea>
       </SheetContent>
     </Sheet>

@@ -68,8 +68,8 @@ export default function RootLayout({
       <body className={cn("min-h-screen font-sans antialiased", font.variable)}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          // defaultTheme="light"
+          // enableSystem
           disableTransitionOnChange
         >
           <Toaster richColors />
@@ -90,17 +90,19 @@ const TopNav = () => {
       className={cn("z-50 top-0  bg-gradient py-3 font-sans ", font3.variable)}
     >
       <div className="max-w-6xl flex px-2 flex-col md:flex-row gap-2 justify-between mx-auto text-sm">
-        <div className="flex items-center">
+        <div className="flex items-center justify-center flex-wrap">
           <p className="text-[#F7F7F7] ">
             <ShieldCheck className="h-4 w-4 inline mr-1 " />
             Trusted partner in business excellence
+          </p>
+          <p className="text-[#F7F7F7] ">
             <span className="ml-2 font-bold underline cursor-pointer">
               Join us now
               <ChevronRight className="h-4 w-4 inline ml-1" />
             </span>
-          </p>
+        </p>
         </div>
-        <div className="flex item-center text-[#F7F7F7] gap-1 flex-wrap">
+        <div className="hidden md:flex item-center text-[#F7F7F7] gap-1 flex-wrap">
           <div className="flex items-center flex-shrink-0 ">
             <Clock className="h-4 w-4 inline mr-1" />
             <span className="mr-1">Mon - Friday from 9:00 AM - 5:00 PM</span>
@@ -131,7 +133,6 @@ const Nav = ({ className, children, id }: NavProps) => {
             src={Logo}
             alt="Logo"
             loading="eager"
-            className="dark:invert"
             width={168}
             height={35}
           ></Image>
@@ -156,10 +157,13 @@ const Nav = ({ className, children, id }: NavProps) => {
           </div>
         </div>
         <div className="flex items-center gap-2">
+           <div className="hidden md:flex">
+
           <CustomButton label="Contact" href="/contact" />
-          <div className="hidden md:flex">
+           </div>
+          {/* <div className="hidden md:flex">
             <ThemeToggle />
-          </div>
+          </div> */}
           <MobileNav />
         </div>
       </div>
