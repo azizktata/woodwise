@@ -79,7 +79,7 @@ const Hero = () => {
           <h3 className="text-muted-foreground mb-5">
             <p className="w-full max-w-[55ch]">
               Une entreprise spécialisée dans la fabrication de produits en bois
-              moulé, avec un objectif de réduction de l'empreinte carbone.
+              moulé, avec un objectif de réduction de l&apos;empreinte carbone.
             </p>
           </h3>
 
@@ -415,7 +415,7 @@ const Contact = () => {
               Information de contact
             </p>
             <p className="text-base">
-              N'hésitez pas à nous contacter pour toute question.
+              N&apos;hésitez pas à nous contacter pour toute question.
             </p>
             <div className="flex flex-col gap-6 text-sm mt-6">
               <div className="flex items-center gap-6 text-base">
@@ -505,6 +505,7 @@ interface BlogCardProps {
   blog: {
     date: string;
     title: string;
+    link: string;
     description: string;
     image: string;
   };
@@ -593,7 +594,6 @@ const Reviews = () => {
 interface ReviewCardProps {
   review: {
     name: string;
-    date: string;
     rating: number;
     comment: string;
   };

@@ -518,12 +518,12 @@ const Project = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Voir vidéo d'assemblage <ArrowRight className="w-4 ml-1" />
+              Voir vidéo d&apos;assemblage <ArrowRight className="w-4 ml-1" />
             </Link>
           </Button>
           <h1 className="font-semibold text-black text-2xl sm:text-3xl md:text-4xl mb-4">
             <Balancer>
-              Construction d’une maison individuelle en panneaux de bois recyclé
+              Construction d&apos;une maison individuelle en panneaux de bois recyclé
               mBio7
             </Balancer>
           </h1>
