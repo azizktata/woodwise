@@ -1,8 +1,8 @@
 // Define the menu items
 export const mainMenu = {
-  produits: "/",
-  technologies: "/#technologies",
-  service: "/#services",
+  projets: "/pages/projets",
+  // technologies: "/#technologies",
+  "à propos": "/pages/à-propos",
   actualités: "/pages/actualités",
 };
 

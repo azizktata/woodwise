@@ -6,6 +6,6 @@ type SiteConfig = {
 
 export const siteConfig: SiteConfig = {
   site_name: "Woodwise",
-  site_description: "Woodwise - Sustainable Wood Products",
+  site_description: "Une entreprise spécialisée dans la fabrication de produits en bois moulés et durables.",
   site_domain: "https://woodwise.com",
 };

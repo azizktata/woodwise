@@ -23,11 +23,15 @@ import {
 } from "@/components/ui/accordion";
 import {
   ArrowUpRight,
+  BrickWall,
   Eye,
+  Handshake,
   Mail,
+  Medal,
   Phone,
   PinIcon,
   Projector,
+  Sprout,
   Star,
 } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -74,15 +78,12 @@ const Hero = () => {
           </h1>
           <h3 className="text-muted-foreground mb-5">
             <p className="w-full max-w-[55ch]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-              quis magna ut lectus aliquet consequat. Nulla libero augue,
-              ullamcorper et efficitur lacinia, eleifend eget lacus. Integer
-              vitae condimentum ante.
+              Une entreprise spécialisée dans la fabrication de produits en bois
+              moulé, avec un objectif de réduction de l'empreinte carbone.
             </p>
           </h3>
 
           <CustomButton asChild label="Découvrir plus" href="/pages/à-propos" />
-
         </div>
         <div className="not-prose w-full overflow-hidden rounded-lg  md:rounded-xl md:w-1/2">
           <Image
@@ -105,6 +106,7 @@ import { Button } from "@/components/ui/button";
 import { Onest } from "next/font/google";
 import { title } from "process";
 import ContactForm from "@/components/contact-form";
+import { link } from "fs";
 
 type FeatureText = {
   icon: JSX.Element;
@@ -120,7 +122,7 @@ const featureText: FeatureText[] = [
     title: "Notre vision",
     href: "/",
     description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      " Notre vision est de devenir le leader mondial des solutions de construction à bilan CO2 négatif, en faisant du bois moulé le matériau de choix pour bâtir un avenir plus vert.",
     cta: "Learn More",
   },
   {
@@ -128,7 +130,7 @@ const featureText: FeatureText[] = [
     title: "Notre mission",
     href: "/",
     description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Notre mission est de révolutionner l'industrie de la construction en proposant des produits innovants en bois moulé, qui allient performance, durabilité et respect de l'environnement.",
     cta: "Learn More",
   },
 ];
@@ -144,11 +146,45 @@ const singleFeatureText: FeatureText[] = [
   },
 ];
 
+const services = [
+  {
+    title: "Le panneau MBio7 : L'efficacité écologique",
+    description:
+      "Notre panneau breveté MBio7 a été reconnu par le prestigieux label Solar Impulse Efficient Solution, le classant parmi les meilleures innovations mondiales pour la réduction du CO2.",
+    icon: (
+      <BrickWall className="h-8 w-8 text-woodSecondary group-hover:text-woodPrimary" />
+    ),
+  },
+  {
+    title: "Engagement envers l'économie circulaire",
+    description:
+      "Chez WoodWise, nous transformons les déchets de bois en ressources précieuses, contribuant ainsi à une économie circulaire et à la préservation de nos forêts.",
+    icon: (
+      <Sprout className="h-8 w-8 text-woodSecondary group-hover:text-woodPrimary" />
+    ),
+  },
+  {
+    title: "Partenariats pour un impact global",
+    description:
+      "Nous collaborons avec des collectivités locales et des ONG pour maximiser notre impact environnemental et social, en soutenant des projets de construction durable à travers le monde.",
+    icon: (
+      <Handshake className="h-8 w-8 text-woodSecondary group-hover:text-woodPrimary" />
+    ),
+  },
+  {
+    title: " Une excellence reconnue et primée",
+    description:
+      "Notre engagement envers une construction durable a été salué par de prestigieuses distinctions, notamment le Label Solar Impulse, la médaille au Concours Lépine Paris 2015, et notre statut de finaliste au CLEAN TECH OPEN France.",
+    icon: (
+      <Medal className="h-8 w-8 text-woodSecondary group-hover:text-woodPrimary" />
+    ),
+  },
+];
+
 const Apropos = () => {
   return (
     <Section className=" !pt-0">
       <Container>
-
         <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
           À Propos de{" "}
           <span className="bg-gradient bg-clip-text text-transparent">
@@ -206,78 +242,27 @@ const Apropos = () => {
             />
           </div>
           <div className="py-6">
-            <div
-              className={cn(
-                "flex flex-col gap-2 py-6 transition-all duration-300  hover:bg-gradient rounded-2xl p-4  hover:text-white"
-              )}
-            >
-              <h3 className="!my-0 font-semibold text-xl ">
-                Lorem ipsum dolor sit
-              </h3>
-              <p
+            {services.map((service, index) => (
+              <div
                 className={cn(
-                  "font-light leading-[1.4] opacity-70 font-sans ",
-                  font2.variable
+                  "flex flex-col gap-2 py-6 transition-all duration-200 group hover:bg-gradient rounded-2xl p-4  hover:text-white"
                 )}
+                key={index}
               >
-                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua.
-              </p>
-            </div>
-            <div
-              className={cn(
-                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4  hover:text-white"
-              )}
-            >
-              <h3 className="!my-0 font-semibold text-xl ">
-                Lorem ipsum dolor sit
-              </h3>
-              <p
-                className={cn(
-                  "font-light leading-[1.4] opacity-70 font-sans ",
-                  font2.variable
-                )}
-              >
-                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua.
-              </p>
-            </div>
-            <div
-              className={cn(
-                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4  hover:text-white"
-              )}
-            >
-              <h3 className="!my-0 font-semibold text-xl ">
-                Lorem ipsum dolor sit
-              </h3>
-              <p
-                className={cn(
-                  "font-light leading-[1.4] opacity-70 font-sans ",
-                  font2.variable
-                )}
-              >
-                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua.
-              </p>
-            </div>
-            <div
-              className={cn(
-                "flex flex-col gap-2 py-6 transition-all  hover:bg-gradient rounded-2xl p-4  hover:text-white"
-              )}
-            >
-              <h3 className="!my-0 font-semibold text-xl ">
-                Lorem ipsum dolor sit
-              </h3>
-              <p
-                className={cn(
-                  "font-light leading-[1.4] opacity-70 font-sans ",
-                  font2.variable
-                )}
-              >
-                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua.
-              </p>
-            </div>
+                <div className="mb-1">{service.icon}</div>
+                <h3 className="!my-0 font-semibold text-xl ">
+                  {service.title}
+                </h3>
+                <p
+                  className={cn(
+                    "font-light leading-[1.4] opacity-70 font-sans ",
+                    font2.variable
+                  )}
+                >
+                  {service.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </Container>
@@ -286,15 +271,15 @@ const Apropos = () => {
 };
 
 const chiffres = [
-  { title: "Tonnes de bois recyclées", value: 100 },
-  { title: "kg de CO₂ économisés par panneau", value: 200 },
-  { title: "Projets déployés avec collectivités et ONG", value: 300 },
+  { title: "Part de bois recyclé dans le matériau", value: "90%+" },
+  { title: "Kg de CO₂ économisés par panneau", value: "7,66" },
+  { title: "Tonnes de CO₂ évité par maison de 120 m²", value: "3" },
 ];
 const Impact = () => {
   return (
     <Section>
       <Container className="max-w-7xl">
-       <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
+        <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
           Notre{" "}
           <span className="bg-gradient bg-clip-text text-transparent">
             Impact
@@ -368,7 +353,12 @@ const Mbio7 = () => {
               <li>Avec une empreinte carbone négative</li>
             </ul>
           </div>
-          <CustomButton asChild label="Découvrir plus" href="/pages/à-propos" className="self-start" />
+          <CustomButton
+            asChild
+            label="Découvrir plus"
+            href="/pages/à-propos"
+            className="self-start"
+          />
 
           <div className="hidden lg:block absolute bottom-0 right-0">
             <Image
@@ -385,9 +375,15 @@ const Mbio7 = () => {
   );
 };
 
+const contactInfo = {
+  phone: "80157 59053",
+  email: "contact@woodwise.fr",
+  address: "QUARTIER CUNI, SOSPEL, 06380, FR",
+};
+
 const Contact = () => {
   return (
-    <Section className="">
+    <Section id="contact" className="">
       <div className="grid items-stretch md:grid-cols-2 w-full">
         <div className="not-prose relative flex flex-col  p-4 py-20  bg-woodSecondary">
           <Image
@@ -415,24 +411,24 @@ const Contact = () => {
         </div>
         <div className="bg-[#084d27] p-4 min-h-96 text-white flex flex-col justify-center">
           <div className={cn("mx-auto pr-2 font-sans ", font2.variable)}>
-            <p className="font-semibold text-3xl mb-3 tracking-wide">
-              Contact information
+            <p className="font-semibold text-3xl mb-3 tracking-wider">
+              Information de contact
             </p>
-            <p className="text-base  tracking-wide">
-              Say something to start a live chat!
+            <p className="text-base">
+              N'hésitez pas à nous contacter pour toute question.
             </p>
             <div className="flex flex-col gap-6 text-sm mt-6">
               <div className="flex items-center gap-6 text-base">
                 <Phone className="h-6 w-6" />
-                <span>+1 (555) 123-4567</span>
+                <span>{contactInfo.phone}</span>
               </div>
               <div className="flex items-center gap-6 text-base">
                 <Mail className="h-6 w-6" />
-                <span>contact@woodwise.com</span>
+                <span>{contactInfo.email}</span>
               </div>
               <div className="flex items-center gap-6 text-base">
                 <PinIcon className="h-6 w-6" />
-                <span>123 Main St, Anytown, USA</span>
+                <span>{contactInfo.address}</span>
               </div>
             </div>
           </div>
@@ -441,24 +437,34 @@ const Contact = () => {
     </Section>
   );
 };
-const blogs  = [
+const blogs = [
   {
-    date: "13 December 2025",
-    title: "Blog Post 1",
-    description: "Description for blog post 1",
-    image: "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    date: "06 Mars 2019",
+    title:
+      "Grâce à ces panneaux en bois, il fabrique des maisons qui résistent à toutes conditions climatiques",
+    description:
+      "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux mBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
+    link: "https://www.nicematin.com/vie-locale/grace-a-ces-panneaux-en-bois-il-fabrique-des-maisons-qui-resistent-a-toutes-conditions-climatiques-303801",
+    image:
+      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    date: "13 December 2025",
-    title: "Blog Post 2",
-    description: "Description for blog post 2",
-    image: "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    date: " 1er janvier 2019",
+    title: "Libé des solutions : Le bois mis en demeure",
+    description:
+      "Parmi les inventeurs, il y a les grands rêveurs et les gens carrés. La maison écologique mBio7 est l’alliance des deux. Dominique Tallarida dans le rôle du Géo Trouvetou, Denis Mary dans celui du technicien. Ces habitants de Sospel (Alpes-Maritimes) ont créé des maisons en panneaux de bois recyclé.",
+    link: "https://www.liberation.fr/france/2019/01/01/le-bois-mis-en-demeure_1700633/",
+    image:
+      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    date: "13 December 2025",
-    title: "Blog Post 3",
-    description: "Description for blog post 3",
-    image: "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    date: "14 Août 2018",
+    title: "Une souscription lancée pour des maisons d’urgence",
+    description:
+      "Lauréats du concours Lépine, le Sospellois Dominique Tallarida et son ami Denis Mary s’apprêtent à commercialiser leur concept d’habitat humanitaire. Ils ont besoin d’un dernier coup de pouce",
+    link: "https://www.pressreader.com/monaco/monaco-matin/20180814/281702615548883",
+    image:
+      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
@@ -466,16 +472,15 @@ const Blogs = () => {
   return (
     <Section>
       <Container>
-       <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
+        <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
           <span className="bg-gradient bg-clip-text text-transparent">
-            Nos Blogs
+            Nos blogs
           </span>{" "}
           et articles
         </h2>
         <p className="text-muted-foreground text-sm text-center max-w-[65ch] mx-auto mb-14">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis
-          magna ut lectus aliquet consequat. Nulla libero augue, ullamcorper et
-          efficitur lacinia.
+          Restez informé des dernières nouvelles, tendances et innovations dans
+          le domaine de la construction en bois.
         </p>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {blogs.map((blog, index) => (
@@ -483,7 +488,13 @@ const Blogs = () => {
           ))}
         </div>
         <div className="mt-12 flex justify-center">
-          <CustomButton label="Voir plus" inverted href="/pages/actualités" asChild />
+          <CustomButton
+            label="Voir plus"
+            inverted
+            href="/pages/actualités"
+            asChild
+            className="bg-white"
+          />
         </div>
       </Container>
     </Section>
@@ -502,7 +513,7 @@ interface BlogCardProps {
 const BlogCard = ({ blog }: BlogCardProps) => {
   return (
     <Card className="hover:shadow-lg transition-shadow cursor-pointer shadow-sm rounded-2xl">
-       <CardHeader className="px-0 pt-0">
+      <CardHeader className="px-0 pt-0">
         <Image
           src={blog.image}
           alt={blog.title}
@@ -512,23 +523,27 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         />
       </CardHeader>
       <CardContent>
-        <p
-          className={cn(
-            "bg-gradient bg-clip-text text-transparent font-sans ",
-            font2.variable
-          )}
-        >
-          {blog.date}
-        </p>
-        <h5 className="text-black font-semibold text-2xl py-4 ">{blog.title}</h5>
-        <p
-          className={cn(
-            "text-muted-foreground leading-[1.4] opacity-70 font-sans ",
-            font2.variable
-          )}
-        >
-          {blog.description}
-        </p>
+        <Link href={blog.link} target="_blank" rel="noopener noreferrer">
+          <p
+            className={cn(
+              "bg-gradient bg-clip-text text-transparent font-sans ",
+              font2.variable
+            )}
+          >
+            {blog.date}
+          </p>
+          <h5 className="text-black font-semibold text-2xl py-4 ">
+            {blog.title}
+          </h5>
+          <p
+            className={cn(
+              "text-muted-foreground leading-[1.4] opacity-70 font-sans ",
+              font2.variable
+            )}
+          >
+            {blog.description}
+          </p>
+        </Link>
       </CardContent>
     </Card>
   );
@@ -536,41 +551,18 @@ const BlogCard = ({ blog }: BlogCardProps) => {
 
 const reviews = [
   {
-    name: "John Doe",
-    date: "13 December 2025",
+    name: "Anonyme",
     rating: 5,
-    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis magna ut lectus aliquet consequat. Nulla libero augue.",
+    comment:
+      "Les produits en bois moulé de WoodWise sont incroyables ! J'en suis totalement satisfait.",
   },
   {
-    name: "Jane Smith",
-    date: "12 December 2025",
-    rating: 4,
-    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis magna ut lectus aliquet consequat. Nulla libero augue.",
-  },
-  {
-    name: "Alice Johnson",
-    date: "11 December 2025",
+    name: "Anonyme",
     rating: 5,
-    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis magna ut lectus aliquet consequat. Nulla libero augue.",
+    comment:
+      "WoodWise offre des produits en bois moulé de haute qualité. Je les recommande vivement !",
   },
-  {
-    name: "Bob Brown",
-    date: "10 December 2025",
-    rating: 3,
-    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis magna ut lectus aliquet consequat. Nulla libero augue.",
-  },
-  {
-    name: "Charlie Davis",
-    date: "09 December 2025",
-    rating: 4,
-    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis magna ut lectus aliquet consequat. Nulla libero augue.",
-  },
-  {
-    name: "Charlie Davis",
-    date: "09 December 2025",
-    rating: 4,
-    comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis magna ut lectus aliquet consequat. Nulla libero augue.",
-  },
+
 ];
 
 const Reviews = () => {
@@ -578,18 +570,17 @@ const Reviews = () => {
     <Section>
       <Container>
         <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
-          Listen to what our
+          Ce que nos
           <br />
           <span className="bg-gradient bg-clip-text text-transparent">
-            customers say
+            clients disent
           </span>
         </h2>
         <p className="text-muted-foreground text-sm text-center max-w-[65ch] mx-auto mb-14">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis
-          magna ut lectus aliquet consequat. Nulla libero augue, ullamcorper et
-          efficitur lacinia.
+          Découvrez les témoignages de nos clients satisfaits qui ont transformé
+          leurs projets de construction avec nos produits en bois moulé.
         </p>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 ">
           {reviews.map((review, index) => (
             <ReviewCard key={index} review={review} />
           ))}
@@ -614,7 +605,9 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
       <CardHeader className="">
         <div className="flex items-center gap-4">
           <Avatar className="h-12 w-12">
-            <AvatarFallback className="bg-woodPrimary text-white">{review.name.charAt(0)}</AvatarFallback>
+            <AvatarFallback className="bg-woodPrimary text-white">
+              {review.name.charAt(0)}
+            </AvatarFallback>
           </Avatar>
 
           <div className="flex flex-col">
@@ -654,27 +647,47 @@ type FAQItem = {
 
 const content: FAQItem[] = [
   {
-    question: "D'où provient le bois recyclé ?",
+    question: "Qu’est-ce que le panneau mBio7 ?",
     answer:
-      "Nous collectons des déchets bois issus de chantiers, menuiseries, palettes, etc. uniquement en conformité avec les normes sanitaires.",
-    link: "https://google.com",
+      "mBio7 est un panneau de construction innovant, fabriqué à plus de 90 % en bois recyclé. Il est léger, modulaire et conçu pour des constructions durables, économiques et rapides.",
   },
   {
-    question: "Que signifie “empreinte carbone négative” ?",
+    question: "Quelle est la performance environnementale du panneau ?",
     answer:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Chaque panneau présente un bilan carbone négatif de -7,66 kg CO₂-éq. Une maison de 120 m² en mBio7 permet d’éviter environ 3 tonnes de CO₂.",
   },
   {
-    question: "Peut-on utiliser mBio7 pour construire une maison complète ?",
+    question: "Le panneau est-il résistant ?",
     answer:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Oui. Le mBio7 est résistant à l’eau, au feu, aux termites, au gel et aux séismes. C’est un matériau thermo-durcissable qui ne pourrit pas et ne craint pas l’humidité.",
   },
   {
-    question: "Est-ce un produit certifié ?",
+    question: "Est-il conforme aux normes de construction ?",
     answer:
-      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "Oui. Les constructions en mBio7 respectent la norme RE 2020 si elles sont associées à un isolant adapté.",
+  },
+  {
+    question: "Combien pèse un panneau ?",
+    answer:
+      "Un panneau mBio7 pèse environ 9 kg, ce qui facilite son transport et sa mise en œuvre.",
+  },
+  {
+    question: "Peut-on construire une maison complète avec ce matériau ?",
+    answer:
+      "Oui. Par exemple, une maison test de 10 m² a été construite en 2017 à Sospel avec 160 panneaux (≈ 1 450 kg). Les panneaux s’assemblent facilement et permettent des projets de toute taille.",
+  },
+  {
+    question: "Quelle est la capacité de production ?",
+    answer:
+      "L’usine pilote en Bulgarie peut produire environ 400 panneaux par jour.",
+  },
+  {
+    question: "À qui s’adresse mBio7 ?",
+    answer:
+      "Le matériau est idéal pour les ONG (reconstruction d’urgence), les collectivités locales et les particuliers souhaitant des logements écologiques, modulables et économiques.",
   },
 ];
+
 const FAQ = () => {
   return (
     <Section>

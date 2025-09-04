@@ -93,24 +93,24 @@ const TopNav = () => {
         <div className="flex items-center justify-center flex-wrap">
           <p className="text-[#F7F7F7] ">
             <ShieldCheck className="h-4 w-4 inline mr-1 " />
-            Trusted partner in business excellence
+            Partenaire certifié
           </p>
           <p className="text-[#F7F7F7] ">
-            <span className="ml-2 font-bold underline cursor-pointer">
-              Join us now
+            <a href="#contact" className="ml-2 font-bold underline cursor-pointer">
+              Rejoignez-nous maintenant
               <ChevronRight className="h-4 w-4 inline ml-1" />
-            </span>
+            </a>
         </p>
         </div>
         <div className="hidden md:flex item-center text-[#F7F7F7] gap-1 flex-wrap">
           <div className="flex items-center flex-shrink-0 ">
             <Clock className="h-4 w-4 inline mr-1" />
-            <span className="mr-1">Mon - Friday from 9:00 AM - 5:00 PM</span>
+            <span className="mr-1">Lundi - Vendredi de 9h00 à 17h00</span>
           </div>
           <span className="  hidden md:flex">|</span>
           <div className="flex items-center flex-shrink-0">
             <Mail className="h-4 w-4 inline  mr-1" />
-            <span>contact@woodwise.com</span>
+            <span>contact@woodwise.fr</span>
           </div>
         </div>
       </div>
@@ -159,7 +159,7 @@ const Nav = ({ className, children, id }: NavProps) => {
         <div className="flex items-center gap-2">
            <div className="hidden md:flex">
 
-          <CustomButton label="Contact" href="/contact" />
+          <CustomButton label="Contact" href="#contact" />
            </div>
           {/* <div className="hidden md:flex">
             <ThemeToggle />
@@ -170,7 +170,11 @@ const Nav = ({ className, children, id }: NavProps) => {
     </nav>
   );
 };
-
+const contactInfo = {
+  phone: "80157 59053",
+  email: "contact@woodwise.fr",
+  address: "QUARTIER CUNI, SOSPEL, 06380, FR",
+};
 const Footer = () => {
   return (
     <footer className={cn("font-sans antialiased", font2.variable)}>
@@ -187,7 +191,7 @@ const Footer = () => {
           </div>
           <div className="flex flex-col gap-2 text-sm">
             <h6 className={cn("font-semibold text-xl", font.variable)}>
-              Quick links
+              Menu
             </h6>
             {Object.entries(mainMenu).map(([key, href]) => (
               <Link
@@ -203,17 +207,17 @@ const Footer = () => {
             <h5 className={cn("font-semibold text-xl", font.variable)}>
               Contact
             </h5>
-            <div className="flex items-center gap-2 text-base">
+            <div className="flex items-center gap-2 text-sm">
               <Mail className="h-4 w-4" />
-              <span>contact@woodwise.com</span>
+              <span>{contactInfo.email}</span>
             </div>
-            <div className="flex items-center gap-2 text-base">
-              <PinIcon className="h-4 w-4" />
-              <span>123 Main St, Anytown, USA</span>
+            <div className="flex items-center gap-2 text-sm">
+              <PinIcon className="h-8 w-8" />
+              <span>{contactInfo.address}</span>
             </div>
-            <div className="flex items-center gap-2 text-base">
+            <div className="flex items-center gap-2 text-sm">
               <Phone className="h-4 w-4" />
-              <span>+1 (555) 123-4567</span>
+              <span>{contactInfo.phone}</span>
             </div>
             {/* {Object.entries(contentMenu).map(([key, href]) => (
               <Link

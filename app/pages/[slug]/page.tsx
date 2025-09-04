@@ -5,11 +5,11 @@ import { siteConfig } from "@/site.config";
 import type { Metadata } from "next";
 import Image from "next/image";
 import banner from "@/public/banner.jpg";
+import projectImage from "@/public/project.png";
 import contactBanner from "@/public/contact-banner.jpg";
 import Link from "next/link";
 import { Lato } from "next/font/google";
-import { format } from "date-fns"; // For date formatting
-import { enUS } from "date-fns/locale"; // Or your preferred locale
+
 import Balancer from "react-wrap-balancer";
 import {
   ArrowRight,
@@ -20,7 +20,12 @@ import {
   HandHeart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 
 import {
   Carousel,
@@ -116,9 +121,7 @@ export default async function Page({
         </div>
         <div className="absolute inset-0 border z-10 flex flex-col items-center justify-center gap-2">
           <h1 className="text-white sm:text-6xl text-5xl font-semibold capitalize mb-1">
-            <Balancer>
-              {decodeURIComponent(slug.replace(/-/g, " "))}
-            </Balancer>
+            <Balancer>{decodeURIComponent(slug.replace(/-/g, " "))}</Balancer>
           </h1>
           <p
             className={cn(
@@ -126,29 +129,32 @@ export default async function Page({
               font3.variable
             )}
           >
-            <Link href={"/"}>Home</Link> / <Balancer>{decodeURIComponent(slug.replace(/-/g, " "))}</Balancer>
+            <Link href={"/"}>Accueil</Link> /{" "}
+            <Balancer>{decodeURIComponent(slug.replace(/-/g, " "))}</Balancer>
           </p>
         </div>
       </div>
-      {
-        decodeURIComponent(slug) === "à-propos" &&
-
-      <Container>
-        <CTA />
-        {/* <Prose>
+      {decodeURIComponent(slug) === "à-propos" && (
+        <Container>
+          <CTA />
+          {/* <Prose>
           <h2>{page.title.rendered}</h2>
           <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
         </Prose> */}
-        <Feature />
-        <Team />
-      </Container>
-       }
-       {
-         decodeURIComponent(slug) === "actualités" &&
-      <Container>
-        <Blogs />
-      </Container>
-}
+          <Feature />
+          <Team />
+        </Container>
+      )}
+      {decodeURIComponent(slug) === "actualités" && (
+        <Container>
+          <Blogs />
+        </Container>
+      )}
+      {decodeURIComponent(slug) === "projets" && (
+        <Container>
+          <Project />
+        </Container>
+      )}
 
       <ContactBanner />
     </div>
@@ -162,8 +168,8 @@ const CTA = () => {
           Qui sommes-nous
         </p>
         <h1 className="font-semibold text-3xl w-full max-w-[65ch]">
-          WoodWise Holding est une entreprise engagée dans l’économie
-          circulaire.
+          WoodWise est une entreprise engagée dans la fabrication de produits en
+          bois moulé.
         </h1>
       </div>
       <div>
@@ -177,7 +183,6 @@ const CTA = () => {
           bien au-delà d’un simple produit.
         </Balancer>
         <Button className="bg-[#051229] rounded-full px-1 py-6 mt-5">
-          
           <div className="flex items-center gap-2 text-white">
             <span className="rounded-full p-3 bg-woodSecondary">
               <MoveRightIcon className="h-4 w-4" />
@@ -272,30 +277,30 @@ const Feature = () => {
 
 const members = [
   {
-    name: "John Doe",
+    name: "Denis Mary",
     role: "CEO",
-    src: "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: "/Denis-Mary.jpg",
   },
   {
-    name: "Jane Smith",
-    role: "CTO",
-    src: "https://images.unsplash.com/photo-1507730690594-f21182eee8b1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    name: "Dominique Tallarida",
+    role: "CEO",
+    src: "/Dominique-Tallarida.jpg",
   },
   {
-    name: "Bob Johnson",
-    role: "Designer",
-    src: "https://images.unsplash.com/photo-1721041879224-ff011603ada5?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    name: "Henri de Poncheville",
+    role: "CEO",
+    src: "/Henri-de-Poncheville.jpg",
   },
-  {
-    name: "Alice Williams",
-    role: "Product Manager",
-    src: "https://images.unsplash.com/photo-1720983627245-ca4a6913016f?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    name: "Charlie Brown",
-    role: "Marketing Specialist",
-    src: "https://images.unsplash.com/photo-1720887236665-43caad593cdf?q=80&w=1836&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
+  // {
+  //   name: "Alice Williams",
+  //   role: "Product Manager",
+  //   src: "https://images.unsplash.com/photo-1720983627245-ca4a6913016f?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  // },
+  // {
+  //   name: "Charlie Brown",
+  //   role: "Marketing Specialist",
+  //   src: "https://images.unsplash.com/photo-1720887236665-43caad593cdf?q=80&w=1836&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  // },
 ];
 
 const Team = () => {
@@ -313,7 +318,7 @@ const Team = () => {
           {members.map((member, index) => (
             <CarouselItem
               key={index}
-              className="pl-1 md:basis-1/2 lg:basis-1/4"
+              className="pl-1 md:basis-1/2 lg:basis-1/3"
             >
               <div className="p-1">
                 <Card className="relative overflow-hidden">
@@ -321,8 +326,8 @@ const Team = () => {
                     <Image
                       src={member.src}
                       alt={`${member.name} - ${member.role}`}
-                      width={720}
-                      height={480}
+                      width={247}
+                      height={468}
                       className="absolute inset-0 h-full w-full object-cover"
                     ></Image>
                     <div className="absolute inset-0 bg-gradient-to-t from-[rgba(13,127,64,0.6)] to-transparent"></div>
@@ -356,7 +361,9 @@ const ContactBanner = () => {
         className="absolute inset-0 h-full w-full object-cover"
       />
       <Container className="relative z-10 flex h-full flex-col  sm:flex-row items-center justify-between ">
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl text-white">Contact Us</h2>
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl text-white">
+          Contact Us
+        </h2>
         <Button className="bg-white rounded-full px-1 py-6 mt-5 text-[#232227] transition-all duration-300 hover:bg-[#051229] hover:text-white group">
           <div className="flex items-center gap-2">
             <span className="rounded-full text-white p-3 bg-woodSecondary transition-transform duration-300 group-hover:animate-slide-right ">
@@ -378,42 +385,74 @@ const ContactBanner = () => {
   );
 };
 
-
 const blogs = [
   {
-    category: "Branding",
-    date: "13 December 2025",
-    title: "Innovative solutions for business success dynamic from today",
-    description: "Our mission is to empowers businesses size to thrive in a dynamic environment.",
-    image: "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    date: "06 Mars 2019",
+    title:
+      "Grâce à ces panneaux en bois, il fabrique des maisons qui résistent à toutes conditions climatiques",
+    description:
+      "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux mBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
+    link: "https://www.nicematin.com/vie-locale/grace-a-ces-panneaux-en-bois-il-fabrique-des-maisons-qui-resistent-a-toutes-conditions-climatiques-303801",
+    image:
+      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    category: "Branding",
-    title: "What consultants should know about working with nonprofits",
-    date: "13 December 2025",
-    description: "Our mission is to empowers businesses size to succeed in the nonprofit sector.",
-    image: "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    date: " 1er janvier 2019",
+    title: "Libé des solutions : Le bois mis en demeure",
+    description:
+      "Parmi les inventeurs, il y a les grands rêveurs et les gens carrés. La maison écologique mBio7 est l’alliance des deux. Dominique Tallarida dans le rôle du Géo Trouvetou, Denis Mary dans celui du technicien. Ces habitants de Sospel (Alpes-Maritimes) ont créé des maisons en panneaux de bois recyclé.",
+    link: "https://www.liberation.fr/france/2019/01/01/le-bois-mis-en-demeure_1700633/",
+    image:
+      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    category: "Branding",
-    title: "Why every entrepreneur needs solid digital marketing",
-    date: "13 December 2025",
-    description: "Our mission is to empowers businesses size to grow and thrive in the digital landscape.",
-    image: "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    date: "14 Août 2018",
+    title: "Une souscription lancée pour des maisons d’urgence",
+    description:
+      "Lauréats du concours Lépine, le Sospellois Dominique Tallarida et son ami Denis Mary s’apprêtent à commercialiser leur concept d’habitat humanitaire. Ils ont besoin d’un dernier coup de pouce",
+    link: "https://www.pressreader.com/monaco/monaco-matin/20180814/281702615548883",
+    image:
+      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    date: "11 Septembre 2018",
+    title:
+      "Construire rapidement, efficacement et durablement dans le respect de l'environnement",
+    description:
+      "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux mBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
+    link: "https://onpassealacte.fr/initiative.on-a-decide-de-creer-un-materiau-de-construction-durable-et-eco-responsable.98346240768.html",
+    image:
+      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    date: "2015",
+    title: "Member - WoodWise Holding ( ex Mbio7 SAS )",
+    description:
+      "An innovative ecomaterial for simple construction , economique, ecologic and easy to fast building.",
+    link: "https://solarimpulse.com/companies/woodwise-holding-ex-mbio7-sas",
+    image:
+      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    date: "06 Marse 2019",
+    title:
+      "Encore une étape de franchie pour le panneau écolo mBio7 Les étapes de la fabrication",
+    description:
+      "C’est le rêve un peu fou de Dominique Tallarida, Géo Trouvetou des temps modernes, qui commence à prendre forme, cinq ans après, grâce à l’aide de Denis Mary, ingénieux ingénieur.",
+    link: "https://www.nicematin.com/vie-locale/encore-une-etape-de-franchie-pour-le-panneau-ecolo-mbio7-les-etapes-de-la-fabrication-303840",
+    image:
+      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
 const Blogs = () => {
   return (
     <Section>
-      
-        
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {blogs.map((blog, index) => (
-            <BlogCard key={index} blog={blog} />
-          ))}
-        </div>
-       
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {blogs.map((blog, index) => (
+          <BlogCard key={index} blog={blog} />
+        ))}
+      </div>
     </Section>
   );
 };
@@ -429,7 +468,7 @@ interface BlogCardProps {
 const BlogCard = ({ blog }: BlogCardProps) => {
   return (
     <Card className="hover:shadow-lg transition-shadow cursor-pointer shadow-sm rounded-2xl">
-       <CardHeader className="px-0 pt-0">
+      <CardHeader className="px-0 pt-0">
         <Image
           src={blog.image}
           alt={blog.title}
@@ -447,7 +486,9 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         >
           {blog.date}
         </p>
-        <h5 className="text-black font-semibold text-2xl py-4 ">{blog.title}</h5>
+        <h5 className="text-black font-semibold text-2xl py-4 ">
+          {blog.title}
+        </h5>
         <p
           className={cn(
             "text-muted-foreground leading-[1.4] opacity-70 font-sans ",
@@ -458,6 +499,51 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         </p>
       </CardContent>
     </Card>
+  );
+};
+
+const Project = () => {
+  return (
+    <Section>
+        <div>
+          <Button
+            asChild
+            className="mb-6 w-fit"
+            size={"sm"}
+            variant={"outline"}
+          >
+            <Link
+              className="not-prose text-woodSecondary font-bold text-xs mb-4 uppercase"
+              href="https://www.youtube.com/watch?v=b_DiCRAPkDA"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Voir vidéo d'assemblage <ArrowRight className="w-4 ml-1" />
+            </Link>
+          </Button>
+          <h1 className="font-semibold text-black text-2xl sm:text-3xl md:text-4xl mb-4">
+            <Balancer>
+              Construction d’une maison individuelle en panneaux de bois recyclé
+              mBio7
+            </Balancer>
+          </h1>
+          <h3 className="text-muted-foreground">
+            <Balancer>
+              Une maison test de 10 m² a été construite en 2017 à Sospel avec 160 panneaux  (≈ 1 450 kg).
+            </Balancer>
+          </h3>
+          <div className="not-prose my-8 h-full w-full overflow-hidden rounded-lg   md:rounded-xl">
+            <Image
+              className="h-full w-full object-cover object-bottom"
+              src={projectImage}
+              width={1920}
+              height={1080}
+              alt="hero image"
+              placeholder="blur"
+            />
+          </div>
+        </div>
+    </Section>
   );
 };
 
