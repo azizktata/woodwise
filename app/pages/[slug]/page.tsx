@@ -278,19 +278,24 @@ const Feature = () => {
 const members = [
   {
     name: "Denis Mary",
-    role: "CEO",
+    role: "Fondateur",
     src: "/Denis-Mary.jpg",
   },
   {
-    name: "Dominique Tallarida",
+    name: "Lotfi Dogui",
     role: "CEO",
-    src: "/Dominique-Tallarida.jpg",
+    src: "/lotfi-dogi.png",
   },
-  {
-    name: "Henri de Poncheville",
-    role: "CEO",
-    src: "/Henri-de-Poncheville.jpg",
-  },
+  // {
+  //   name: "Dominique Tallarida",
+  //   role: "CEO",
+  //   src: "/Dominique-Tallarida.jpg",
+  // },
+  // {
+  //   name: "Henri de Poncheville",
+  //   role: "CEO",
+  //   src: "/Henri-de-Poncheville.jpg",
+  // },
   // {
   //   name: "Alice Williams",
   //   role: "Product Manager",
@@ -318,7 +323,7 @@ const Team = () => {
           {members.map((member, index) => (
             <CarouselItem
               key={index}
-              className="pl-1 md:basis-1/2 lg:basis-1/3"
+              className="pl-1 md:basis-1/2 "
             >
               <div className="p-1">
                 <Card className="relative overflow-hidden">
@@ -328,7 +333,7 @@ const Team = () => {
                       alt={`${member.name} - ${member.role}`}
                       width={247}
                       height={468}
-                      className="absolute inset-0 h-full w-full object-cover"
+                      className="absolute inset-0 h-full w-full object-cover object-top"
                     ></Image>
                     <div className="absolute inset-0 bg-gradient-to-t from-[rgba(13,127,64,0.6)] to-transparent"></div>
                     <div className="absolute inset-0 flex items-end justify-start p-6 text-white">
