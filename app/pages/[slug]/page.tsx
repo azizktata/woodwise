@@ -176,7 +176,7 @@ const CTA = () => {
         <Balancer className="text-muted-foreground text-sm leading-relaxed max-w-[65ch]">
           Depuis notre création, nous travaillons à développer une nouvelle
           approche de la construction et du design : moins de gaspillage, plus
-          d’impact positif. Avec l’innovation mBio7, nous avons prouvé qu’il
+          d’impact positif. Avec l’innovation MBio7, nous avons prouvé qu’il
           était possible de fabriquer des panneaux de construction performants,
           respectueux de l’environnement et accessibles. Aujourd’hui, WoodWise
           Holding se positionne comme un acteur global du recyclage du bois,
@@ -194,7 +194,9 @@ const CTA = () => {
                 font3.variable
               )}
             >
+              <Link href="/#contact">
               Contact us
+              </Link>
             </span>
           </div>
         </Button>
@@ -278,7 +280,7 @@ const Feature = () => {
 const members = [
   {
     name: "Denis Mary",
-    role: "Fondateur",
+    role: "Inventeur & Fondateur",
     src: "/Denis-Mary.jpg",
   },
   {
@@ -332,7 +334,7 @@ const Team = () => {
                       src={member.src}
                       alt={`${member.name} - ${member.role}`}
                       width={247}
-                      height={468}
+                      height={368}
                       className="absolute inset-0 h-full w-full object-cover object-top"
                     ></Image>
                     <div className="absolute inset-0 bg-gradient-to-t from-[rgba(13,127,64,0.6)] to-transparent"></div>
@@ -381,7 +383,9 @@ const ContactBanner = () => {
                 font3.variable
               )}
             >
+                <Link href="/#contact">
               Parlons Maintenant
+          </Link>
             </span>
           </div>
         </Button>
@@ -396,7 +400,7 @@ const blogs = [
     title:
       "Grâce à ces panneaux en bois, il fabrique des maisons qui résistent à toutes conditions climatiques",
     description:
-      "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux mBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
+      "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux MBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
     link: "https://www.nicematin.com/vie-locale/grace-a-ces-panneaux-en-bois-il-fabrique-des-maisons-qui-resistent-a-toutes-conditions-climatiques-303801",
     image:
       "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -405,7 +409,7 @@ const blogs = [
     date: " 1er janvier 2019",
     title: "Libé des solutions : Le bois mis en demeure",
     description:
-      "Parmi les inventeurs, il y a les grands rêveurs et les gens carrés. La maison écologique mBio7 est l’alliance des deux. Dominique Tallarida dans le rôle du Géo Trouvetou, Denis Mary dans celui du technicien. Ces habitants de Sospel (Alpes-Maritimes) ont créé des maisons en panneaux de bois recyclé.",
+      "Parmi les inventeurs, il y a les grands rêveurs et les gens carrés. La maison écologique MBio7 est l’alliance des deux. Dominique Tallarida dans le rôle du Géo Trouvetou, Denis Mary dans celui du technicien. Ces habitants de Sospel (Alpes-Maritimes) ont créé des maisons en panneaux de bois recyclé.",
     link: "https://www.liberation.fr/france/2019/01/01/le-bois-mis-en-demeure_1700633/",
     image:
       "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -424,14 +428,14 @@ const blogs = [
     title:
       "Construire rapidement, efficacement et durablement dans le respect de l'environnement",
     description:
-      "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux mBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
+      "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux MBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
     link: "https://onpassealacte.fr/initiative.on-a-decide-de-creer-un-materiau-de-construction-durable-et-eco-responsable.98346240768.html",
     image:
       "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     date: "2015",
-    title: "Member - WoodWise Holding ( ex Mbio7 SAS )",
+    title: "Member - WoodWise Holding ( ex MBio7 SAS )",
     description:
       "An innovative ecomaterial for simple construction , economique, ecologic and easy to fast building.",
     link: "https://solarimpulse.com/companies/woodwise-holding-ex-mbio7-sas",
@@ -441,7 +445,7 @@ const blogs = [
   {
     date: "06 Marse 2019",
     title:
-      "Encore une étape de franchie pour le panneau écolo mBio7 Les étapes de la fabrication",
+      "Encore une étape de franchie pour le panneau écolo MBio7 Les étapes de la fabrication",
     description:
       "C’est le rêve un peu fou de Dominique Tallarida, Géo Trouvetou des temps modernes, qui commence à prendre forme, cinq ans après, grâce à l’aide de Denis Mary, ingénieux ingénieur.",
     link: "https://www.nicematin.com/vie-locale/encore-une-etape-de-franchie-pour-le-panneau-ecolo-mbio7-les-etapes-de-la-fabrication-303840",
@@ -519,7 +523,7 @@ const Project = () => {
           >
             <Link
               className="not-prose text-woodSecondary font-bold text-xs mb-4 uppercase"
-              href="https://www.youtube.com/watch?v=b_DiCRAPkDA"
+              href="https://www.youtube.com/watch?v=S7VjzBBewY8"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -529,7 +533,7 @@ const Project = () => {
           <h1 className="font-semibold text-black text-2xl sm:text-3xl md:text-4xl mb-4">
             <Balancer>
               Construction d&apos;une maison individuelle en panneaux de bois recyclé
-              mBio7
+              MBio7
             </Balancer>
           </h1>
           <h3 className="text-muted-foreground">

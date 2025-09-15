@@ -9,6 +9,7 @@ import HeroImage from "@/public/hero.jpg";
 import AproposImage from "@/public/Apropos.jpg";
 import Mbio7Image from "@/public/Mbio7.jpg";
 import Mbio7ProductImage from "@/public/mbio7product.png";
+import Mbio7logo from "@/public/mbio7-logo.png";
 // import ContactBg from "@/public/Asset 2@4x 1.jpg";
 import ContactBg from "@/public/contactbg.jpg";
 // import ContactBg from "@/public/rawlogo.jpg";
@@ -30,6 +31,7 @@ import {
   Medal,
   Phone,
   PinIcon,
+  PlayIcon,
   Projector,
   Sprout,
   Star,
@@ -67,7 +69,30 @@ const Hero = () => {
     <Section>
       <Container className="flex flex-col gap-10 md:gap-16 lg:gap-20 md:flex-row justify-between items-center">
         <div className="w-full md:w-1/2 ">
-          <h1 className="font-bold text-3xl sm:text-5xl lg:text-6xl mb-6 tracking-wider">
+        <div className="flex items-center justify-start md:justify-center mb-2 gap-2">
+          <span 
+         className={cn(
+            "text-lg sm:text-xl md:text-2xl font-semibold font-sans",
+            font2.variable
+          )}
+          
+          >
+            Avec</span>
+          <Image
+            src={Mbio7logo}
+            alt="MBio7 Logo"
+            className="h-10 sm:h-12 md:h-20 w-auto"
+            width={120}
+            height={60}
+          />
+          <span  className={cn(
+            "text-xl sm:text-2xl font-semibold font-sans",
+            font2.variable
+          )}>
+            by WoodWise
+          </span>
+        </div>
+          <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl mb-6 tracking-wider">
             <Balancer>
               <span className="text-black">Construire Mieux</span>
               <br />
@@ -102,11 +127,9 @@ const Hero = () => {
 
 // Icons
 import { Coins, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Onest } from "next/font/google";
-import { title } from "process";
 import ContactForm from "@/components/contact-form";
-import { link } from "fs";
+import { Button } from "@/components/ui/button";
 
 type FeatureText = {
   icon: JSX.Element;
@@ -271,7 +294,7 @@ const Apropos = () => {
 };
 
 const chiffres = [
-  { title: "Part de bois recyclé dans le matériau", value: "90%+" },
+  { title: "Part de bois recyclé dans le matériau", value: "95%" },
   { title: "Kg de CO₂ économisés par panneau", value: "7,66" },
   { title: "Tonnes de CO₂ évité par maison de 120 m²", value: "3" },
 ];
@@ -318,18 +341,38 @@ const Impact = () => {
 const Mbio7 = () => {
   return (
     <Section>
-      <Container className="grid items-center md:grid-cols-2 gap-6 md:gap-12 max-w-7xl">
-        <div className="not-prose relative h-auto flex overflow-hidden rounded-lg  ">
+      <Container className="grid items-center md:grid-cols-2 gap-2 sm:gap-6 md:gap-12 max-w-7xl">
+        {/* <div className="not-prose relative h-auto flex overflow-hidden rounded-lg  ">
           <Image
             src={Mbio7Image}
-            alt="Mbio7"
+            alt="MBio7"
             className="fill object-cover"
             height={508}
             width={512}
           />
+        </div>  */}
+        <div className="not-prose relative  flex overflow-hidden rounded-lg relative ">
+          <Image
+            src={Mbio7Image}
+            alt="Mbio7"
+             className="object-cover object-top rounded-lg w-full "
+             width={300}
+           height={150}
+          />
+        <div className="absolute inset-0  bg-black/30" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Link href="https://www.youtube.com/watch?v=jUQu9_26Gdg" target="_blank" rel="noopener noreferrer">
+          <Button 
+            variant="ghost"
+            className="h-16 w-16 rounded-full bg-woodSecondary hover:bg-woodPrimary p-0"
+          >
+            <PlayIcon className="h-8 w-8 fill-current text-white" />
+          </Button>
+          </Link>
         </div>
-        <div className="flex flex-col gap-6 py-8 relative">
-          <h2 className="!my-0 font-semibold text-black text-4xl sm:text-5xl lg:text-6xl">
+        </div>
+        <div className="flex flex-col gap-4 py-8 relative">
+          <h2 className="!my-0 font-semibold text-black text-3xl sm:text-4xl lg:text-6xl">
             MBio7 by{" "}
             <span className="bg-gradient bg-clip-text text-transparent">
               WoodWise
@@ -342,10 +385,10 @@ const Mbio7 = () => {
             )}
           >
             Le panneau nouvelle génération pour une construction durable. Issu
-            de bois recyclé et de résidus forestiers, mBio7 est un panneau de
+            de bois recyclé et de résidus forestiers, MBio7 est un panneau de
             construction unique
             <br />
-            <ul className="list-disc list-inside ">
+            <ul className="list-disc list-inside mt-2 space-y-2">
               <li>Résistant au feu</li>
               <li>Hydrofuge</li>
               <li>Résistant aux termites</li>
@@ -443,7 +486,7 @@ const blogs = [
     title:
       "Grâce à ces panneaux en bois, il fabrique des maisons qui résistent à toutes conditions climatiques",
     description:
-      "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux mBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
+      "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux MBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
     link: "https://www.nicematin.com/vie-locale/grace-a-ces-panneaux-en-bois-il-fabrique-des-maisons-qui-resistent-a-toutes-conditions-climatiques-303801",
     image:
       "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -452,7 +495,7 @@ const blogs = [
     date: " 1er janvier 2019",
     title: "Libé des solutions : Le bois mis en demeure",
     description:
-      "Parmi les inventeurs, il y a les grands rêveurs et les gens carrés. La maison écologique mBio7 est l’alliance des deux. Dominique Tallarida dans le rôle du Géo Trouvetou, Denis Mary dans celui du technicien. Ces habitants de Sospel (Alpes-Maritimes) ont créé des maisons en panneaux de bois recyclé.",
+      "Parmi les inventeurs, il y a les grands rêveurs et les gens carrés. La maison écologique MBio7 est l’alliance des deux. Dominique Tallarida dans le rôle du Géo Trouvetou, Denis Mary dans celui du technicien. Ces habitants de Sospel (Alpes-Maritimes) ont créé des maisons en panneaux de bois recyclé.",
     link: "https://www.liberation.fr/france/2019/01/01/le-bois-mis-en-demeure_1700633/",
     image:
       "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -647,29 +690,29 @@ type FAQItem = {
 
 const content: FAQItem[] = [
   {
-    question: "Qu’est-ce que le panneau mBio7 ?",
+    question: "Qu’est-ce que le panneau MBio7 ?",
     answer:
-      "mBio7 est un panneau de construction innovant, fabriqué à plus de 90 % en bois recyclé. Il est léger, modulaire et conçu pour des constructions durables, économiques et rapides.",
+      "MBio7 est un panneau de construction innovant, fabriqué à plus de 90 % en bois recyclé. Il est léger, modulaire et conçu pour des constructions durables, économiques et rapides.",
   },
   {
     question: "Quelle est la performance environnementale du panneau ?",
     answer:
-      "Chaque panneau présente un bilan carbone négatif de -7,66 kg CO₂-éq. Une maison de 120 m² en mBio7 permet d’éviter environ 3 tonnes de CO₂.",
+      "Chaque panneau présente un bilan carbone négatif de -7,66 kg CO₂-éq. Une maison de 120 m² en MBio7 permet d’éviter environ 3 tonnes de CO₂.",
   },
   {
     question: "Le panneau est-il résistant ?",
     answer:
-      "Oui. Le mBio7 est résistant à l’eau, au feu, aux termites, au gel et aux séismes. C’est un matériau thermo-durcissable qui ne pourrit pas et ne craint pas l’humidité.",
+      "Oui. Le MBio7 est résistant à l’eau, au feu, aux termites, au gel et aux séismes. C’est un matériau thermo-durcissable qui ne pourrit pas et ne craint pas l’humidité.",
   },
   {
     question: "Est-il conforme aux normes de construction ?",
     answer:
-      "Oui. Les constructions en mBio7 respectent la norme RE 2020 si elles sont associées à un isolant adapté.",
+      "Oui. Les constructions en MBio7 respectent la norme RE 2020 si elles sont associées à un isolant adapté.",
   },
   {
     question: "Combien pèse un panneau ?",
     answer:
-      "Un panneau mBio7 pèse environ 9 kg, ce qui facilite son transport et sa mise en œuvre.",
+      "Un panneau MBio7 pèse environ 9 kg, ce qui facilite son transport et sa mise en œuvre.",
   },
   {
     question: "Peut-on construire une maison complète avec ce matériau ?",
@@ -679,10 +722,10 @@ const content: FAQItem[] = [
   {
     question: "Quelle est la capacité de production ?",
     answer:
-      "L’usine pilote en Bulgarie peut produire environ 400 panneaux par jour.",
+      "Environ 400 panneaux par jour pour l'instant car nous sommes en phase d’extension.",
   },
   {
-    question: "À qui s’adresse mBio7 ?",
+    question: "À qui s’adresse MBio7 ?",
     answer:
       "Le matériau est idéal pour les ONG (reconstruction d’urgence), les collectivités locales et les particuliers souhaitant des logements écologiques, modulables et économiques.",
   },

@@ -160,7 +160,7 @@ const Nav = ({ className, children, id }: NavProps) => {
         <div className="flex items-center gap-2">
            <div className="hidden md:flex">
 
-          <CustomButton label="Contact" href="#contact" />
+          <CustomButton label="Contact" href="/#contact" />
            </div>
           {/* <div className="hidden md:flex">
             <ThemeToggle />
