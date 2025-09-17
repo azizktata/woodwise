@@ -35,6 +35,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { date } from "zod";
+import { use } from "react";
+import { useTranslations } from "next-intl";
 // Revalidate pages every hour
 // export const revalidate = 3600;
 
@@ -102,9 +104,9 @@ const font3 = Lato({
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 }) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   // const page = await getPageBySlug(slug);
 
   return (
@@ -129,23 +131,25 @@ export default async function Page({
               font3.variable
             )}
           >
-            <Link href={"/"}>Accueil</Link> /{" "}
+            <Link href={"/"}> {locale === "fr" ? "Accueil" : "Home"} </Link> /{" "}
             <Balancer>{decodeURIComponent(slug.replace(/-/g, " "))}</Balancer>
           </p>
         </div>
       </div>
-      {decodeURIComponent(slug) === "à-propos" && (
-        <Container>
-          <CTA />
-          {/* <Prose>
+      {(decodeURIComponent(slug) === "à-propos" ||
+        decodeURIComponent(slug) === "about" ) && (
+          <Container>
+            <CTA />
+            {/* <Prose>
           <h2>{page.title.rendered}</h2>
           <div dangerouslySetInnerHTML={{ __html: page.content.rendered }} />
         </Prose> */}
-          <Feature />
-          <Team />
-        </Container>
-      )}
-      {decodeURIComponent(slug) === "actualités" && (
+            <Feature />
+            <Team />
+          </Container>
+        )}
+      {( decodeURIComponent(slug) === "actualités" ||
+         decodeURIComponent(slug) === "news") && (
         <Container>
           <Blogs />
         </Container>
@@ -156,31 +160,25 @@ export default async function Page({
         </Container>
       )}
 
-      <ContactBanner />
+      <ContactBanner locale={locale} />
     </div>
   );
 }
 const CTA = () => {
+  const t = useTranslations("Apropos");
   return (
     <Section className="grid md:grid-cols-2 gap-8">
       <div>
         <p className="text-woodSecondary font-bold text-xs mb-4 uppercase">
-          Qui sommes-nous
+          {t("subtitle")}
         </p>
         <h1 className="font-semibold text-3xl w-full max-w-[65ch]">
-          WoodWise est une entreprise engagée dans la fabrication de produits en
-          bois moulé.
+          {t("title")}
         </h1>
       </div>
       <div>
         <Balancer className="text-muted-foreground text-sm leading-relaxed max-w-[65ch]">
-          Depuis notre création, nous travaillons à développer une nouvelle
-          approche de la construction et du design : moins de gaspillage, plus
-          d’impact positif. Avec l’innovation MBio7, nous avons prouvé qu’il
-          était possible de fabriquer des panneaux de construction performants,
-          respectueux de l’environnement et accessibles. Aujourd’hui, WoodWise
-          Holding se positionne comme un acteur global du recyclage du bois,
-          bien au-delà d’un simple produit.
+          {t("description")}
         </Balancer>
         <Button className="bg-[#051229] rounded-full px-1 py-6 mt-5">
           <div className="flex items-center gap-2 text-white">
@@ -194,9 +192,7 @@ const CTA = () => {
                 font3.variable
               )}
             >
-              <Link href="/#contact">
-              Contact us
-              </Link>
+              <Link href="/#contact">{t("contactUs")}</Link>
             </span>
           </div>
         </Button>
@@ -213,42 +209,34 @@ type FeatureText = {
   cta?: string;
 };
 
-const featureText: FeatureText[] = [
-  {
-    icon: <RecycleIcon className="h-12 w-12" />,
-    title: "Circularité",
-    href: "/",
-    description:
-      "Rien ne se perd. Le bois usagé devient matière première pour bâtir l’avenir.",
-    cta: "Learn More",
-  },
-  {
-    icon: <Lightbulb className="h-12 w-12" />,
-    title: "Innovation",
-    href: "/",
-    description:
-      "Nous développons des matériaux performants, biosourcés et à faible impact.",
-    cta: "Learn More",
-  },
-  {
-    icon: <Handshake className="h-12 w-12" />,
-    title: "Partenariat",
-    href: "/",
-    description:
-      "Avec les acteurs publics, privés ou associatifs, nous co-construisons des solutions sur mesure.",
-    cta: "Learn More",
-  },
-  {
-    icon: <HandHeart className="h-12 w-12" />,
-    title: "Responsabilité",
-    href: "/",
-    description:
-      "De la matière première à la livraison, nous garantissons une démarche éthique et transparente.",
-    cta: "Learn More",
-  },
-];
-
 const Feature = () => {
+  const t = useTranslations("Features");
+  const featureText: FeatureText[] = [
+    {
+      icon: <RecycleIcon className="h-12 w-12" />,
+      title: t("feature1.title"),
+      href: "/",
+      description: t("feature1.description"),
+    },
+    {
+      icon: <Lightbulb className="h-12 w-12" />,
+      title: t("feature2.title"),
+      href: "/",
+      description: t("feature2.description"),
+    },
+    {
+      icon: <Handshake className="h-12 w-12" />,
+      title: t("feature3.title"),
+      href: "/",
+      description: t("feature3.description"),
+    },
+    {
+      icon: <HandHeart className="h-12 w-12" />,
+      title: t("feature4.title"),
+      href: "/",
+      description: t("feature4.description"),
+    },
+  ];
   return (
     <Section>
       <div className="flex flex-col gap-6">
@@ -311,22 +299,20 @@ const members = [
 ];
 
 const Team = () => {
+  const t = useTranslations("Team");
   return (
     <Section>
       <h2 className="font-semibold text-black text-6xl mb-12 text-center">
-        Notre{" "}
+        {t("title_part1")}{" "}
         <span className="bg-gradient bg-clip-text text-transparent capitalize">
-          équipe
+          {t("title_part2")}
         </span>
       </h2>
 
       <Carousel className="mt-6 w-full">
         <CarouselContent className="-ml-1">
           {members.map((member, index) => (
-            <CarouselItem
-              key={index}
-              className="pl-1 md:basis-1/2 "
-            >
+            <CarouselItem key={index} className="pl-1 md:basis-1/2 ">
               <div className="p-1">
                 <Card className="relative overflow-hidden">
                   <CardContent className="not-prose flex h-[468px]  items-center justify-center">
@@ -359,7 +345,7 @@ const Team = () => {
   );
 };
 
-const ContactBanner = () => {
+const ContactBanner = ({ locale }: { locale: string }) => {
   return (
     <div className="relative">
       <Image
@@ -369,9 +355,9 @@ const ContactBanner = () => {
       />
       <Container className="relative z-10 flex h-full flex-col  sm:flex-row items-center justify-between ">
         <h2 className="text-4xl sm:text-5xl lg:text-6xl text-white">
-          Contact Us
+          {locale === "fr" ? "Contactez Nous" : "Contact Us"}
         </h2>
-        <Button className="bg-white rounded-full px-1 py-6 mt-5 text-[#232227] transition-all duration-300 hover:bg-[#051229] hover:text-white group">
+        <Button className="bg-white rounded-full px-2 py-6 mt-5 text-[#232227] transition-all duration-300 hover:bg-[#051229] hover:text-white group">
           <div className="flex items-center gap-2">
             <span className="rounded-full text-white p-3 bg-woodSecondary transition-transform duration-300 group-hover:animate-slide-right ">
               <MoveRightIcon className="h-4 w-4" />
@@ -379,13 +365,13 @@ const ContactBanner = () => {
 
             <span
               className={cn(
-                "font-bold text-sm font-sans pr-3 transition-transform duration-300 group-hover:animate-slide-left group-hover:pl-2 group-hover:pr-1",
+                "font-bold text-sm font-sans pr-3 transition-transform duration-300 group-hover:animate-slide-left group-hover:pl-1 group-hover:pr-1",
                 font3.variable
               )}
             >
-                <Link href="/#contact">
-              Parlons Maintenant
-          </Link>
+              <Link href="/#contact">
+                {locale === "fr" ? "Parlons Maintenant" : "Let's Talk Now"}
+              </Link>
             </span>
           </div>
         </Button>
@@ -512,46 +498,37 @@ const BlogCard = ({ blog }: BlogCardProps) => {
 };
 
 const Project = () => {
+  const t = useTranslations("Project");
   return (
     <Section>
-        <div>
-          <Button
-            asChild
-            className="mb-6 w-fit"
-            size={"sm"}
-            variant={"outline"}
+      <div>
+        <Button asChild className="mb-6 w-fit" size={"sm"} variant={"outline"}>
+          <Link
+            className="not-prose text-woodSecondary font-bold text-xs mb-4 uppercase"
+            href="https://www.youtube.com/watch?v=S7VjzBBewY8"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <Link
-              className="not-prose text-woodSecondary font-bold text-xs mb-4 uppercase"
-              href="https://www.youtube.com/watch?v=S7VjzBBewY8"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Voir vidéo d&apos;assemblage <ArrowRight className="w-4 ml-1" />
-            </Link>
-          </Button>
-          <h1 className="font-semibold text-black text-2xl sm:text-3xl md:text-4xl mb-4">
-            <Balancer>
-              Construction d&apos;une maison individuelle en panneaux de bois recyclé
-              MBio7
-            </Balancer>
-          </h1>
-          <h3 className="text-muted-foreground">
-            <Balancer>
-              Une maison test de 10 m² a été construite en 2017 à Sospel avec 160 panneaux  (≈ 1 450 kg).
-            </Balancer>
-          </h3>
-          <div className="not-prose my-8 h-full w-full overflow-hidden rounded-lg   md:rounded-xl">
-            <Image
-              className="h-full w-full object-cover object-bottom"
-              src={projectImage}
-              width={1920}
-              height={1080}
-              alt="hero image"
-              placeholder="blur"
-            />
-          </div>
+            {t("watchVideo")} <ArrowRight className="w-4 ml-1" />
+          </Link>
+        </Button>
+        <h1 className="font-semibold text-black text-2xl sm:text-3xl md:text-4xl mb-4">
+          <Balancer>{t("title")}</Balancer>
+        </h1>
+        <h3 className="text-muted-foreground">
+          <Balancer>{t("description")}</Balancer>
+        </h3>
+        <div className="not-prose my-8 h-full w-full overflow-hidden rounded-lg   md:rounded-xl">
+          <Image
+            className="h-full w-full object-cover object-bottom"
+            src={projectImage}
+            width={1920}
+            height={1080}
+            alt="hero image"
+            placeholder="blur"
+          />
         </div>
+      </div>
     </Section>
   );
 };

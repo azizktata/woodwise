@@ -7,7 +7,6 @@ import { MobileNav } from "@/components/nav/mobile-nav";
 import { Analytics } from "@vercel/analytics/react";
 import { Button } from "@/components/ui/button";
 
-import { mainMenu } from "@/menu.config";
 import { siteConfig } from "@/site.config";
 import { cn } from "@/lib/utils";
 
@@ -15,7 +14,6 @@ import Balancer from "react-wrap-balancer";
 import Logo from "@/public/Artboard 4.svg";
 import Logo2 from "@/public/Artboard 3.svg";
 import Image from "next/image";
-import Link from "next/link";
 
 import type { Metadata } from "next";
 import {
@@ -31,7 +29,7 @@ import CustomButton from "@/components/CustomButton";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { hasLocale, NextIntlClientProvider, useTranslations } from "next-intl";
 import NotFound from "../not-found";
-import { routing } from "@/i18n/routing";
+import { Link, routing } from "@/i18n/routing";
 import { LangToggle } from "@/components/lang-toggle";
 
 const font = Roboto({
@@ -72,6 +70,17 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     NotFound();
   }
+   const mainMenu = locale === 'fr' ? {
+  accueil: "/",
+  projets: "/pages/projets",
+  "à propos": "/pages/à-propos",
+  actualités: "/pages/actualités",
+} : {
+  home: "/",
+  projets: "/pages/projets",
+  about: "/pages/about",
+  news: "/pages/news",
+};
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -85,9 +94,9 @@ export default async function RootLayout({
           <NextIntlClientProvider>
             <Toaster richColors />
             <TopNav />
-            <Nav />
+            <Nav locale={locale} mainMenu={mainMenu} />
             {children}
-            <Footer />
+            <Footer  mainMenu={mainMenu} />
           </NextIntlClientProvider>
         </ThemeProvider>
         <Analytics />
@@ -134,7 +143,8 @@ const TopNav = () => {
   );
 };
 
-const Nav = ({ className, children, id }: NavProps) => {
+const Nav = ({ className, children, id, locale, mainMenu }: NavProps) => {
+ 
   return (
     <nav className={cn(" z-50 top-0 bg-background bg-hero", className)} id={id}>
       <div
@@ -165,7 +175,7 @@ const Nav = ({ className, children, id }: NavProps) => {
                 size="sm"
                 className="font-semibold text-lg hover:text-gray-500"
               >
-                <Link href={href}>
+                <Link href={href} locale={locale}>
                   {key.charAt(0).toUpperCase() + key.slice(1)}
                 </Link>
               </Button>
@@ -174,7 +184,7 @@ const Nav = ({ className, children, id }: NavProps) => {
         </div>
         <div className="flex items-center gap-2">
           <div className="hidden md:flex">
-            <CustomButton label="Contact" href="/#contact" />
+            <CustomButton label="Contact" href="/#contact" locale={locale} />
           </div>
             <LangToggle />
          
@@ -189,7 +199,7 @@ const contactInfo = {
   email: "contact@woodwise.fr",
   address: "QUARTIER CUNI, SOSPEL, 06380, FR",
 };
-const Footer = () => {
+const Footer = ({ mainMenu }: { mainMenu: { [key: string]: string } }) => {
   return (
     <footer className={cn("font-sans antialiased", font2.variable)}>
       <Section className="bg-[#0d7f40] text-white">

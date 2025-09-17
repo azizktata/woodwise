@@ -1,16 +1,19 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+
 import { Button } from "@/components/ui/button";
 import { useLocale } from "next-intl";
 import Image from "next/image";
-import { Link } from "@/i18n/routing";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { cn } from "./craft";
 
 export function LangToggle() {
+   const pathname = usePathname();
+  const router = useRouter();
   const locale = useLocale();
+
+  const nextLocale = locale === "en" ? "fr" : "en";
 
   return (
     <Button
@@ -20,7 +23,7 @@ export function LangToggle() {
       aria-label="Toggle language"
       className="relative rounded-full border shadow-sm"
     >
-      <Link href="/" locale={locale === "en" ? "fr" : "en"}>
+      <Link  href={pathname} locale={nextLocale} >
         <Image
           src="https://flagcdn.com/us.svg"
           alt="English"

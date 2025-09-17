@@ -5,6 +5,12 @@
         "workingHours": "Lundi - Vendredi de 9h00 à 17h00",
         "email": "contact@woodwise.fr"
     },
+    "Nav": {
+        "home": "Accueil",
+        "about": "À propos",
+        "projects": "Projets",
+        "news": "Actualités"
+    },
     "Hero": {
         "subtitle_1": "Avec",
         "subtitle_2": "par WoodWise",
@@ -93,7 +99,7 @@
         "title_part1": "Ce que nos",
         "title_part2": "clients disent",
         "description": "Découvrez les témoignages de nos clients satisfaits et comment nos solutions en bois moulé ont transformé leurs projets.",
-         "reviews": {
+        "reviews": {
             "review1": {
                 "name": "Anonyme",
                 "stars": "5",
@@ -104,7 +110,6 @@
                 "stars": "4",
                 "comment": "WoodWise offre des produits en bois moulé de haute qualité. Je les recommande vivement !"
             }
-           
         }
     },
     "FAQ": {
@@ -144,5 +149,40 @@
                 "answer": "Le matériau est idéal pour les ONG (reconstruction d’urgence), les collectivités locales et les particuliers souhaitant des logements écologiques, modulables et économiques."
             }
         }
+    },
+    "Apropos": {
+        "subtitle": " Qui sommes-nous",
+        "title": "WoodWise est une entreprise engagée dans la fabrication de produits en bois moulé.",
+        "description": "Depuis notre création, nous travaillons à développer une nouvelle approche de la construction et du design : moins de gaspillage, plus d’impact positif. Avec l’innovation MBio7, nous avons prouvé qu’il était possible de fabriquer des panneaux de construction performants, respectueux de l’environnement et accessibles. Aujourd’hui, WoodWise Holding se positionne comme un acteur global du recyclage du bois, bien au-delà d’un simple produit.",
+        "contactUs": "Contactez-nous"
+    },
+    "Features": {
+        "feature1": {
+            "title": "Circularité",
+            "description": "Rien ne se perd. Le bois usagé devient matière première pour bâtir l’avenir."
+        },
+        "feature2": {
+            "title": "Innovation",
+            "description": "Nous développons des matériaux performants, biosourcés et à faible impact."
+        },
+        "feature3": {
+            "title": "Partenariat",
+            "description": "Avec les acteurs publics, privés ou associatifs, nous co-construisons des solutions sur mesure."
+        },
+        "feature4": {
+            "title": "Responsabilité",
+            "description": "De la matière première à la livraison, nous garantissons une démarche éthique et transparente."
+        },
+        "learnMore": "En savoir plus"
+    },
+    "Team": {
+        "title_part1": "Rencontrez",
+        "title_part2": "l'équipe"
+    },
+    "Project": {
+        "subtitle": "Voir vidéo d'assemblage",
+        "title": "Construction d'une maison individuelle en panneaux de bois recyclé MBio7",
+        "description": "Une maison test de 10 m² a été construite en 2017 à Sospel avec 160 panneaux  (≈ 1 450 kg).",
+        "watchVideo": "Regarder la vidéo"
     }
 }

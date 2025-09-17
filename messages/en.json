@@ -5,6 +5,12 @@
         "workingHours": "Monday - Friday 9:00 AM - 5:00 PM",
         "email": "contact@woodwise.fr"
     },
+     "Nav": {
+        "home": "Home",
+        "about": "About",
+       "projects": "Projects",
+        "news": "News"
+    },
     "Hero": {
           "subtitle_1": "With",
         "subtitle_2": "by WoodWise",
@@ -144,5 +150,44 @@
                 "answer": "The material is ideal for NGOs (emergency reconstruction), local authorities, and individuals seeking ecological, modular, and cost-effective housing."
             }
         }
+    },
+
+    "Apropos": {
+        "subtitle": "Who we are",
+        "title": "WoodWise is a company committed to the manufacture of molded wood products.",
+        "description": "Since our inception, we have been working to develop a new approach to construction and design: less waste, more positive impact. With the MBio7 innovation, we have proven that it is possible to manufacture high-performance, environmentally friendly, and accessible construction panels. Today, WoodWise Holding positions itself as a global player in wood recycling, far beyond a simple product.",
+        "contactUs": "Contact us"
+    },
+
+     "Features": {
+        "feature1": {
+            "title": "Circularity",
+            "description": "Nothing is wasted. Used wood becomes raw material to build the future."
+        },
+        "feature2": {
+            "title": "Innovation",
+            "description": "We develop high-performance, bio-based materials with low impact."
+        },
+        "feature3": {
+            "title": "Partnership",
+            "description": "With public, private, or associative stakeholders, we co-construct tailored solutions."
+        },
+        "feature4": {
+            "title": "Responsibility",
+            "description": "From raw material to delivery, we ensure an ethical and transparent approach."
+        },
+        "learnMore": "Learn more"
+    },
+
+     "Team": {
+        "title_part1": "Our",
+        "title_part2": "Team"
+    },
+
+        "Project": {
+        "subtitle": "Watch assembly video",
+        "title": "Construction of a single-family house with recycled wood panels MBio7",
+        "description": "A test house of 10 m² was built in 2017 in Sospel with 160 panels (≈ 1,450 kg).",
+        "watchVideo": "Watch the video"
     }
 }

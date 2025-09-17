@@ -45,17 +45,18 @@ const font2 = Onest({
 });
 // This page is using the craft.tsx component and design system
 export default function Home() {
+  const locale = useLocale();
   
   return (
     <div>
       <div className="bg-hero w-full">
-        <Hero />
+        <Hero locale={locale} />
       </div>
       <div className="bg-section h-32"></div>
       <div className="bg-apropos">
         <Apropos />
         <Impact />
-        <Mbio7 />
+        <Mbio7 locale={locale} />
         <Contact />
         <Blogs />
         <Reviews />
@@ -65,7 +66,7 @@ export default function Home() {
   );
 }
 
-const Hero = () => {
+const Hero = ({ locale }: { locale: string }) => {
   const t = useTranslations('Hero');
   return (
     <Section>
@@ -110,7 +111,7 @@ const Hero = () => {
             </p>
           </h3>
 
-          <CustomButton asChild label={t("learnMore")} href="/pages/à-propos" />
+          <CustomButton asChild label={t("learnMore")} href="/pages/à-propos" locale={locale} />
         </div>
         <div className="not-prose w-full overflow-hidden rounded-lg  md:rounded-xl md:w-1/2">
           <Image
@@ -132,7 +133,7 @@ import { Coins } from "lucide-react";
 import { Onest } from "next/font/google";
 import ContactForm from "@/components/contact-form";
 import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 type FeatureText = {
   icon: JSX.Element;
@@ -326,7 +327,7 @@ const Impact = () => {
   );
 };
 
-const Mbio7 = () => {
+const Mbio7 = ({locale}: {locale: string}) => {
   const t = useTranslations("Mbio7");
   return (
     <Section>
@@ -389,6 +390,7 @@ const Mbio7 = () => {
             label={t("learnMore")}
             href="/pages/à-propos"
             className="self-start"
+            locale={locale}
           />
 
           <div className="hidden lg:block absolute bottom-0 right-0">
