@@ -29,6 +29,10 @@ import {
 import { Toaster } from "sonner";
 import CustomButton from "@/components/CustomButton";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { hasLocale, NextIntlClientProvider, useTranslations } from "next-intl";
+import NotFound from "../not-found";
+import { routing } from "@/i18n/routing";
+import { LangToggle } from "@/components/lang-toggle";
 
 const font = Roboto({
   subsets: ["latin"],
@@ -57,11 +61,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params
 }: {
   children: React.ReactNode;
+  params: Promise<{locale: string}>;
 }) {
+  const {locale} = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    NotFound();
+  }
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -70,14 +80,15 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="light"
           forcedTheme="light"
-          // enableSystem
           disableTransitionOnChange
         >
-          <Toaster richColors />
-          <TopNav />
-          <Nav />
-          {children}
-          <Footer />
+          <NextIntlClientProvider>
+            <Toaster richColors />
+            <TopNav />
+            <Nav />
+            {children}
+            <Footer />
+          </NextIntlClientProvider>
         </ThemeProvider>
         <Analytics />
       </body>
@@ -86,6 +97,7 @@ export default function RootLayout({
 }
 
 const TopNav = () => {
+  const  t  = useTranslations("TopNav");
   return (
     <nav
       className={cn("z-50 top-0  bg-gradient py-3 font-sans ", font3.variable)}
@@ -94,24 +106,27 @@ const TopNav = () => {
         <div className="flex items-center justify-center flex-wrap">
           <p className="text-[#F7F7F7] ">
             <ShieldCheck className="h-4 w-4 inline mr-1 " />
-            Partenaire certifié
+            {t("certifiedPartner")}
           </p>
           <p className="text-[#F7F7F7] ">
-            <a href="#contact" className="ml-2 font-bold underline cursor-pointer">
-              Rejoignez-nous maintenant
+            <a
+              href="#contact"
+              className="ml-2 font-bold underline cursor-pointer"
+            >
+              {t("joinUs")}
               <ChevronRight className="h-4 w-4 inline ml-1" />
             </a>
-        </p>
+          </p>
         </div>
         <div className="hidden md:flex item-center text-[#F7F7F7] gap-1 flex-wrap">
           <div className="flex items-center flex-shrink-0 ">
             <Clock className="h-4 w-4 inline mr-1" />
-            <span className="mr-1">Lundi - Vendredi de 9h00 à 17h00</span>
+            <span className="mr-1">{t("workingHours")}</span>
           </div>
           <span className="  hidden md:flex">|</span>
           <div className="flex items-center flex-shrink-0">
             <Mail className="h-4 w-4 inline  mr-1" />
-            <span>contact@woodwise.fr</span>
+            <span>{t("email")}</span>
           </div>
         </div>
       </div>
@@ -158,13 +173,11 @@ const Nav = ({ className, children, id }: NavProps) => {
           </div>
         </div>
         <div className="flex items-center gap-2">
-           <div className="hidden md:flex">
-
-          <CustomButton label="Contact" href="/#contact" />
-           </div>
-          {/* <div className="hidden md:flex">
-            <ThemeToggle />
-          </div> */}
+          <div className="hidden md:flex">
+            <CustomButton label="Contact" href="/#contact" />
+          </div>
+            <LangToggle />
+         
           <MobileNav />
         </div>
       </div>
@@ -191,9 +204,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="flex flex-col gap-2 text-sm">
-            <h6 className={cn("font-semibold text-xl", font.variable)}>
-              Menu
-            </h6>
+            <h6 className={cn("font-semibold text-xl", font.variable)}>Menu</h6>
             {Object.entries(mainMenu).map(([key, href]) => (
               <Link
                 className="hover:underline underline-offset-4 text-base"
@@ -220,21 +231,10 @@ const Footer = () => {
               <Phone className="h-4 w-4" />
               <span>{contactInfo.phone}</span>
             </div>
-            {/* {Object.entries(contentMenu).map(([key, href]) => (
-              <Link
-                className="hover:underline underline-offset-4"
-                key={href}
-                href={href}
-              >
-                {key.charAt(0).toUpperCase() + key.slice(1)}
-              </Link>
-            ))} */}
+           
           </div>
         </Container>
-        {/* <Container className="border-t not-prose flex flex-col md:flex-row md:gap-2 gap-6 justify-between md:items-center">
        
-   
-        </Container> */}
       </Section>
     </footer>
   );

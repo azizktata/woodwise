@@ -1,0 +1,148 @@
+{
+    "TopNav": {
+        "certifiedPartner": "Partenaire certifié",
+        "joinUs": "Rejoignez-nous maintenant",
+        "workingHours": "Lundi - Vendredi de 9h00 à 17h00",
+        "email": "contact@woodwise.fr"
+    },
+    "Hero": {
+        "subtitle_1": "Avec",
+        "subtitle_2": "par WoodWise",
+        "title_part1": "Construire Mieux",
+        "title_part2": "ECOLOGIQUEMENT",
+        "description": "Une entreprise spécialisée dans la fabrication de produits en bois moulé, avec un objectif de réduction de l&apos;empreinte carbone.",
+        "learnMore": "Découvrir plus"
+    },
+    "About": {
+        "title_part1": "À Propos de",
+        "title_part2": "WoodWise",
+        "ourMission": {
+            "title": "Notre Mission",
+            "description": "Chez WoodWise, notre mission est de révolutionner l'industrie de la construction en proposant des solutions innovantes et durables à base de bois moulé."
+        },
+        "ourVision": {
+            "title": "Notre Vision",
+            "description": "Notre vision est de devenir le leader mondial des solutions de construction à bilan CO2 négatif, en faisant du bois moulé le matériau de choix pour bâtir un avenir plus vert."
+        },
+        "services": {
+            "service1": {
+                "title": "Le panneau MBio7 : L'efficacité écologique",
+                "description": "Notre panneau breveté MBio7 a été reconnu par le prestigieux label Solar Impulse Efficient Solution, le classant parmi les meilleures innovations mondiales pour la réduction du CO2."
+            },
+            "service2": {
+                "title": "Engagement envers l'économie circulaire",
+                "description": "Chez WoodWise, nous transformons les déchets de bois en ressources précieuses, contribuant ainsi à une économie circulaire et à la préservation de nos forêts."
+            },
+            "service3": {
+                "title": "Partenariats pour un impact global",
+                "description": "Nous collaborons avec des collectivités locales et des ONG pour maximiser notre impact environnemental et social, en soutenant des projets de construction durable à travers le monde."
+            },
+            "service4": {
+                "title": "Une excellence reconnue et primée",
+                "description": "Notre engagement envers une construction durable a été salué par de prestigieuses distinctions, notamment le Label Solar Impulse, la médaille au Concours Lépine Paris 2015, et notre statut de finaliste au CLEAN TECH OPEN France."
+            }
+        }
+    },
+    "Impact": {
+        "title_part1": "Notre",
+        "title_part2": "Impact",
+        "description": "Chaque panneau, chaque projet, chaque kilo de bois détourné des décharges témoigne de notre engagement.",
+        "stat1": {
+            "title": "Part de bois recyclé dans le matériau",
+            "value": "95%"
+        },
+        "stat2": {
+            "title": "Kg de CO₂ économisés par panneau",
+            "value": "7,66"
+        },
+        "stat3": {
+            "title": "Tonnes de CO₂ évité par maison de 120 m²",
+            "value": "3"
+        }
+    },
+    "Mbio7": {
+        "title_part1": "MBio7 by",
+        "title_part2": "WoodWise",
+        "description": "Le panneau nouvelle génération pour une construction durable. Issu de bois recyclé et de résidus forestiers, MBio7 est un panneau de construction unique.",
+        "tags": {
+            "tag1": "Résistant au feu",
+            "tag2": "Hydrofuge",
+            "tag3": "Résistant aux termites",
+            "tag4": "Léger, modulaire, facile à poser",
+            "tag5": "Avec une empreinte carbone négative"
+        },
+        "learnMore": "Découvrir plus"
+    },
+    "Contact": {
+        "title": "Contactez-nous",
+        "description": "Vous avez des questions ou souhaitez en savoir plus sur nos produits et services ? N'hésitez pas à nous contacter, nous sommes là pour vous aider.",
+        "contactInfo": {
+            "title": "Informations de contact",
+            "description": "N'hésitez pas à nous contacter pour toute question."
+        },
+        "send": "Envoyer",
+        "loading": "En cours..."
+    },
+    "Blogs": {
+        "title_part1": "Dernières Nouvelles",
+        "title_part2": "et articles",
+        "description": "Restez informé des dernières tendances en matière de construction durable, des innovations dans le secteur du bois moulé, et des initiatives écologiques à travers nos articles de blog.",
+        "ViewMore": "Voir plus"
+    },
+    "Reviews": {
+        "title_part1": "Ce que nos",
+        "title_part2": "clients disent",
+        "description": "Découvrez les témoignages de nos clients satisfaits et comment nos solutions en bois moulé ont transformé leurs projets.",
+         "reviews": {
+            "review1": {
+                "name": "Anonyme",
+                "stars": "5",
+                "comment": "Les produits en bois moulé de WoodWise sont incroyables ! J'en suis totalement satisfait.."
+            },
+            "review2": {
+                "name": "Anonyme",
+                "stars": "4",
+                "comment": "WoodWise offre des produits en bois moulé de haute qualité. Je les recommande vivement !"
+            }
+           
+        }
+    },
+    "FAQ": {
+        "title_part1": "Questions",
+        "title_part2": "Fréquentes",
+        "questions": {
+            "q1": {
+                "question": "Qu’est-ce que le panneau MBio7 ?",
+                "answer": "MBio7 est un panneau de construction innovant, fabriqué à plus de 90 % en bois recyclé. Il est léger, modulaire et conçu pour des constructions durables, économiques et rapides."
+            },
+            "q2": {
+                "question": "Quelle est la performance environnementale du panneau ?",
+                "answer": "Chaque panneau présente un bilan carbone négatif de -7,66 kg CO₂-éq. Une maison de 120 m² en MBio7 permet d’éviter environ 3 tonnes de CO₂."
+            },
+            "q3": {
+                "question": "Le panneau est-il résistant ?",
+                "answer": "Oui. Le MBio7 est résistant à l’eau, au feu, aux termites, au gel et aux séismes. C’est un matériau thermo-durcissable qui ne pourrit pas et ne craint pas l’humidité."
+            },
+            "q4": {
+                "question": "Est-il conforme aux normes de construction ?",
+                "answer": "Oui. Les constructions en MBio7 respectent la norme RE 2020 si elles sont associées à un isolant adapté."
+            },
+            "q5": {
+                "question": "Combien pèse un panneau ?",
+                "answer": "Un panneau MBio7 pèse environ 9 kg, ce qui facilite son transport et sa mise en œuvre."
+            },
+            "q6": {
+                "question": "Peut-on construire une maison complète avec ce matériau ?",
+                "answer": "Oui. Par exemple, une maison test de 10 m² a été construite en 2017 à Sospel avec 160 panneaux (≈ 1 450 kg). Les panneaux s’assemblent facilement et permettent des projets de toute taille."
+            },
+            "q7": {
+                "question": "Quelle est la capacité de production ?",
+                "answer": "Environ 400 panneaux par jour pour l'instant car nous sommes en phase d’extension."
+            },
+            "q8": {
+                "question": "À qui s’adresse MBio7 ?",
+                "answer": "Le matériau est idéal pour les ONG (reconstruction d’urgence), les collectivités locales et les particuliers souhaitant des logements écologiques, modulables et économiques."
+            }
+        }
+    }
+}

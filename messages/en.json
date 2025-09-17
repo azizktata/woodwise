@@ -1,0 +1,148 @@
+{
+    "TopNav": {
+        "certifiedPartner": "Certified Partner",
+        "joinUs": "Join Us Now",
+        "workingHours": "Monday - Friday 9:00 AM - 5:00 PM",
+        "email": "contact@woodwise.fr"
+    },
+    "Hero": {
+          "subtitle_1": "With",
+        "subtitle_2": "by WoodWise",
+        "title_part1": "Create Better",
+        "title_part2": "ECOLOGICALLY",
+        "description": "A company specialized in the manufacturing of molded wood products, with the goal of reducing the carbon footprint.",
+        "learnMore": "Learn more"
+    },
+    "About": {
+        "title_part1": "About",
+        "title_part2": "WoodWise",
+        "ourMission": {
+            "title": "Our Mission",
+            "description": "At WoodWise, our mission is to revolutionize the construction industry by providing innovative and sustainable molded wood solutions. "
+        },
+        "ourVision": {
+            "title": "Our Vision",
+            "description": "Our vision is to become the world leader in CO2-negative construction solutions, making molded wood the material of choice for building a greener future."
+        },
+        "services": {
+            "service1": {
+                "title": "The MBio7 Panel: Ecological Efficiency",
+                "description": "Our patented MBio7 panel has been recognized by the prestigious Solar Impulse Efficient Solution label, ranking it among the world's best innovations for CO2 reduction."
+            },
+            "service2": {
+                "title": "Commitment to the Circular Economy",
+                "description": "At WoodWise, we transform wood waste into valuable resources, contributing to a circular economy and the preservation of our forests."
+            },
+            "service3": {
+                "title": "Partnerships for Global Impact",
+                "description": "We collaborate with local communities and NGOs to maximize our environmental and social impact, supporting sustainable construction projects around the world."
+            },
+            "service4": {
+                "title": "Recognized and Awarded Excellence",
+                "description": "Our commitment to sustainable construction has been recognized with prestigious awards, including the Solar Impulse Label, a medal at the Concours Lépine Paris 2015, and our status as a finalist at the CLEAN TECH OPEN France."
+            }
+        }
+    },
+    "Impact": {
+        "title_part1": "Our",
+        "title_part2": "Impact",
+        "description": "Every panel, every project, every kilo of wood diverted from landfills testifies to our commitment.",
+        "stat1": {
+            "title": "Share of recycled wood in the material",
+            "value": "95%"
+        },
+        "stat2": {
+            "title": "Kg of CO₂ saved per panel",
+            "value": "7.66"
+        },
+        "stat3": {
+            "title": "Tonnes of CO₂ avoided per 120 m² house",
+            "value": "3"
+        }
+    },
+    "Mbio7": {
+        "title_part1": "MBio7 by",
+        "title_part2": "WoodWise",
+        "description": "The ecological alternative to traditional construction materials, combining performance, sustainability, and ease of use.",
+        "tags": {
+            "tag1": "Fire-resistant",
+            "tag2": "Water-repellent",
+            "tag3": "Termite-resistant",
+            "tag4": "Lightweight, modular, easy to install",
+            "tag5": "With a negative carbon footprint"
+        },
+        "learnMore": "Learn more",
+        "loading": "Loading..."
+    },
+    "Contact": {
+        "title": "Contact Us",
+        "description": "If you have any questions or would like to know more about our products and services, please feel free to contact us. We are here to help you.",
+        "contactInfo": {
+            "title": "Contact information",
+            "description": "Feel free to reach out to us with any questions."
+        },
+        "send": "Send"
+    },
+    "Blogs": {
+        "title_part1": "Latest News",
+        "title_part2": "and Articles",
+        "description": "Stay informed about the latest trends in sustainable construction, innovations in the molded wood sector, and ecological initiatives through our blog posts.",
+        "ViewMore": "View more"
+    },
+    "Reviews": {
+        "title_part1": "What our",
+        "title_part2": "clients say",
+        "description": "Discover testimonials from our satisfied clients who have transformed their construction projects with our molded wood products.",
+       "reviews": {
+            "review1": {
+                "name": "Anonymous",
+                "stars": "5",
+                "comment": "WoodWise's molded wood products are amazing! I am completely satisfied."
+            },
+            "review2": {
+                "name": "Anonymous",
+                "stars": "4",
+                "comment": "WoodWise offers high-quality molded wood products. I highly recommend them!"
+            }
+           
+        }
+    },
+    "FAQ": {
+        "title_part1": "Frequently Asked",
+        "title_part2": "Questions",
+        "questions": {
+            "q1": {
+                "question": "What is the MBio7 panel?",
+                "answer": "MBio7 is an innovative construction panel, made of more than 90% recycled wood. It is lightweight, modular, and designed for sustainable, cost-effective, and fast construction."
+            },
+            "q2": {
+                "question": "What is the environmental performance of the panel?",
+                "answer": "Each panel has a negative carbon footprint of -7.66 kg CO₂-eq. A 120 m² house built with MBio7 helps avoid around 3 tons of CO₂."
+            },
+            "q3": {
+                "question": "Is the panel resistant?",
+                "answer": "Yes. MBio7 is resistant to water, fire, termites, frost, and earthquakes. It is a thermosetting material that does not rot and is unaffected by humidity."
+            },
+            "q4": {
+                "question": "Is it compliant with construction standards?",
+                "answer": "Yes. Constructions using MBio7 comply with the RE 2020 standard when combined with suitable insulation."
+            },
+            "q5": {
+                "question": "How much does a panel weigh?",
+                "answer": "An MBio7 panel weighs around 9 kg, which makes it easy to transport and install."
+            },
+            "q6": {
+                "question": "Can a complete house be built with this material?",
+                "answer": "Yes. For example, a 10 m² test house was built in 2017 in Sospel with 160 panels (≈ 1,450 kg). The panels assemble easily and allow projects of any size."
+            },
+            "q7": {
+                "question": "What is the production capacity?",
+                "answer": "About 400 panels per day for now, as we are currently in an expansion phase."
+            },
+            "q8": {
+                "question": "Who is MBio7 intended for?",
+                "answer": "The material is ideal for NGOs (emergency reconstruction), local authorities, and individuals seeking ecological, modular, and cost-effective housing."
+            }
+        }
+    }
+}

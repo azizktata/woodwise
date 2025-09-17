@@ -45,6 +45,7 @@ const font2 = Onest({
 });
 // This page is using the craft.tsx component and design system
 export default function Home() {
+  
   return (
     <div>
       <div className="bg-hero w-full">
@@ -65,50 +66,51 @@ export default function Home() {
 }
 
 const Hero = () => {
+  const t = useTranslations('Hero');
   return (
     <Section>
       <Container className="flex flex-col gap-10 md:gap-16 lg:gap-20 md:flex-row justify-between items-center">
         <div className="w-full md:w-1/2 ">
-        <div className="flex items-center justify-start md:justify-center mb-2 gap-2">
+        <div className="flex items-center justify-start lg:justify-center mb-2 gap-2">
           <span 
          className={cn(
-            "text-lg sm:text-xl md:text-2xl font-semibold font-sans",
+            "text-md sm:text-xl lg:text-2xl font-semibold font-sans",
             font2.variable
           )}
           
           >
-            Avec</span>
+            {t("subtitle_1")}
+            </span>
           <Image
             src={Mbio7logo}
             alt="MBio7 Logo"
-            className="h-10 sm:h-12 md:h-20 w-auto"
+            className="h-10 sm:h-12 lg:h-20 w-auto"
             width={120}
             height={60}
           />
           <span  className={cn(
-            "text-xl sm:text-2xl font-semibold font-sans",
+            "text-md sm:text-xl lg:text-2xl font-semibold font-sans",
             font2.variable
           )}>
-            by WoodWise
+            {t("subtitle_2")}
           </span>
         </div>
-          <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl mb-6 tracking-wider">
+          <h1 className="font-bold text-4xl lg:text-6xl mb-6 tracking-wide">
             <Balancer>
-              <span className="text-black">Construire Mieux</span>
+              <span className="text-black">{t("title_part1")}</span>
               <br />
               <span className="bg-gradient bg-clip-text text-transparent">
-                ECOLOGIQUEMENT
+                {t("title_part2")}
               </span>
             </Balancer>
           </h1>
           <h3 className="text-muted-foreground mb-5">
             <p className="w-full max-w-[55ch]">
-              Une entreprise spécialisée dans la fabrication de produits en bois
-              moulé, avec un objectif de réduction de l&apos;empreinte carbone.
+            {t("description")}
             </p>
           </h3>
 
-          <CustomButton asChild label="Découvrir plus" href="/pages/à-propos" />
+          <CustomButton asChild label={t("learnMore")} href="/pages/à-propos" />
         </div>
         <div className="not-prose w-full overflow-hidden rounded-lg  md:rounded-xl md:w-1/2">
           <Image
@@ -126,10 +128,11 @@ const Hero = () => {
 };
 
 // Icons
-import { Coins, ArrowRight } from "lucide-react";
+import { Coins } from "lucide-react";
 import { Onest } from "next/font/google";
 import ContactForm from "@/components/contact-form";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 type FeatureText = {
   icon: JSX.Element;
@@ -138,6 +141,20 @@ type FeatureText = {
   href?: string;
   cta?: string;
 };
+
+
+
+const singleFeatureText: FeatureText[] = [
+  {
+    icon: <Coins className="h-6 w-6" />,
+    title: "Lorem Ipsum",
+    href: "/",
+    description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    cta: "Learn More",
+  },
+];
+
 
 const featureText: FeatureText[] = [
   {
@@ -157,105 +174,76 @@ const featureText: FeatureText[] = [
     cta: "Learn More",
   },
 ];
-
-const singleFeatureText: FeatureText[] = [
+const Apropos = () => {
+  const t = useTranslations("About");
+  const services = [
   {
-    icon: <Coins className="h-6 w-6" />,
-    title: "Lorem Ipsum",
-    href: "/",
-    description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    cta: "Learn More",
-  },
-];
-
-const services = [
-  {
-    title: "Le panneau MBio7 : L'efficacité écologique",
-    description:
-      "Notre panneau breveté MBio7 a été reconnu par le prestigieux label Solar Impulse Efficient Solution, le classant parmi les meilleures innovations mondiales pour la réduction du CO2.",
+    title: t("services.service1.title"),
+    description: t("services.service1.description"),
     icon: (
       <BrickWall className="h-8 w-8 text-woodSecondary group-hover:text-woodPrimary" />
     ),
   },
   {
-    title: "Engagement envers l'économie circulaire",
-    description:
-      "Chez WoodWise, nous transformons les déchets de bois en ressources précieuses, contribuant ainsi à une économie circulaire et à la préservation de nos forêts.",
+    title: t("services.service2.title"),
+    description: t("services.service2.description"),
     icon: (
       <Sprout className="h-8 w-8 text-woodSecondary group-hover:text-woodPrimary" />
     ),
   },
   {
-    title: "Partenariats pour un impact global",
-    description:
-      "Nous collaborons avec des collectivités locales et des ONG pour maximiser notre impact environnemental et social, en soutenant des projets de construction durable à travers le monde.",
+    title: t("services.service3.title"),
+    description: t("services.service3.description"),
     icon: (
       <Handshake className="h-8 w-8 text-woodSecondary group-hover:text-woodPrimary" />
     ),
   },
   {
-    title: " Une excellence reconnue et primée",
-    description:
-      "Notre engagement envers une construction durable a été salué par de prestigieuses distinctions, notamment le Label Solar Impulse, la médaille au Concours Lépine Paris 2015, et notre statut de finaliste au CLEAN TECH OPEN France.",
+    title: t("services.service4.title"),
+    description: t("services.service4.description"),
     icon: (
       <Medal className="h-8 w-8 text-woodSecondary group-hover:text-woodPrimary" />
     ),
   },
 ];
-
-const Apropos = () => {
   return (
     <Section className=" !pt-0">
       <Container>
         <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
-          À Propos de{" "}
+          {t("title_part1")}{" "}
           <span className="bg-gradient bg-clip-text text-transparent">
-            WoodWise
+            {t("title_part2")}
           </span>
         </h2>
         <div className="mt-6 grid gap-6 md:gap-12 md:mt-12 md:grid-cols-2 mb:6 md:mb-12">
-          {featureText.map(({ icon, title, description, href, cta }, index) => (
-            <Link
-              href={`${href}`}
+          
+            <div
+              
               className="flex flex-col justify-between gap-6 rounded-2xl  p-6 bg-card transition-all hover:-mt-2 hover:mb-2"
-              key={index}
+           
             >
               <div className="grid gap-4 ">
-                {icon}
-                <h4 className="text-4xl text-black">{title}</h4>
-                <p className="text-base opacity-75">{description}</p>
+                <Eye className="h-6 w-6" />
+                <h4 className="text-4xl text-black">{t("ourVision.title")}</h4>
+                <p className="text-base opacity-75">{t("ourVision.description")}</p>
               </div>
-              {/* {cta && (
-                <div className="flex h-fit items-center text-sm font-semibold">
-                  <p>{cta}</p> <ArrowRight className="ml-2 h-4 w-4" />
-                </div>
-              )} */}
-            </Link>
-          ))}
+             
+            </div>
+            <div
+              
+              className="flex flex-col justify-between gap-6 rounded-2xl  p-6 bg-card transition-all hover:-mt-2 hover:mb-2"
+           
+            >
+              <div className="grid gap-4 ">
+                <Projector className="h-6 w-6" />
+                <h4 className="text-4xl text-black">{t("ourMission.title")}</h4>
+                <p className="text-base opacity-75">{t("ourMission.description")}</p>
+              </div>
+             
+            </div>
+         
         </div>
-        {/* <div>
-          {singleFeatureText.map(
-            ({ icon, title, description, href, cta }, index) => (
-              <Link
-                href={`${href}`}
-                className="flex flex-col justify-between bg-white gap-6 rounded-lg border bg-muted/25 p-6 transition-all hover:-mt-2 hover:mb-2"
-                key={index}
-              >
-                <div className="grid gap-4">
-                  {icon}
-                  <h4 className="text-xl text-primary">{title}</h4>
-                  <p className="text-base opacity-75">{description}</p>
-                </div>
-                {cta && (
-                  <div className="flex h-fit items-center text-sm font-semibold">
-                    <p>{cta}</p> <ArrowRight className="ml-2 h-4 w-4" />
-                  </div>
-                )}
-              </Link>
-            )
-          )}
-        </div> */}
+     
         <div className="grid items-stretch md:grid-cols-2 md:gap-12 mt-6">
           <div className="not-prose relative flex  overflow-hidden rounded-xl border">
             <Image
@@ -293,19 +281,20 @@ const Apropos = () => {
   );
 };
 
-const chiffres = [
-  { title: "Part de bois recyclé dans le matériau", value: "95%" },
-  { title: "Kg de CO₂ économisés par panneau", value: "7,66" },
-  { title: "Tonnes de CO₂ évité par maison de 120 m²", value: "3" },
-];
 const Impact = () => {
+  const  t  = useTranslations("Impact");
+  const chiffres = [
+    { title: t("stat1.title"), value: t("stat1.value") },
+    { title: t("stat2.title"), value: t("stat2.value") },
+    { title: t("stat3.title"), value: t("stat3.value") },
+  ];
   return (
     <Section>
       <Container className="max-w-7xl">
         <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
-          Notre{" "}
+          {t("title_part1")} {" "}
           <span className="bg-gradient bg-clip-text text-transparent">
-            Impact
+            {t("title_part2")}
           </span>
         </h2>
         <p
@@ -314,8 +303,7 @@ const Impact = () => {
             font2.variable
           )}
         >
-          Chaque panneau, chaque projet, chaque kilo de bois détourné des
-          décharges témoigne de notre engagement.
+          {t("description")}
         </p>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3 mt-6">
@@ -339,6 +327,7 @@ const Impact = () => {
 };
 
 const Mbio7 = () => {
+  const t = useTranslations("Mbio7");
   return (
     <Section>
       <Container className="grid items-center md:grid-cols-2 gap-2 sm:gap-6 md:gap-12 max-w-7xl">
@@ -373,9 +362,9 @@ const Mbio7 = () => {
         </div>
         <div className="flex flex-col gap-4 py-8 relative">
           <h2 className="!my-0 font-semibold text-black text-3xl sm:text-4xl lg:text-6xl">
-            MBio7 by{" "}
+            {t("title_part1")} {" "}
             <span className="bg-gradient bg-clip-text text-transparent">
-              WoodWise
+              {t("title_part2")}
             </span>
           </h2>
           <div
@@ -384,21 +373,20 @@ const Mbio7 = () => {
               font2.variable
             )}
           >
-            Le panneau nouvelle génération pour une construction durable. Issu
-            de bois recyclé et de résidus forestiers, MBio7 est un panneau de
-            construction unique
+            {t("description")}
+
             <br />
             <ul className="list-disc list-inside mt-2 space-y-2">
-              <li>Résistant au feu</li>
-              <li>Hydrofuge</li>
-              <li>Résistant aux termites</li>
-              <li>Léger, modulaire, facile à poser</li>
-              <li>Avec une empreinte carbone négative</li>
+              <li>{t("tags.tag1")}</li>
+              <li>{t("tags.tag2")}</li>
+              <li>{t("tags.tag3")}</li>
+              <li>{t("tags.tag4")}</li>
+              <li>{t("tags.tag5")}</li>
             </ul>
           </div>
           <CustomButton
             asChild
-            label="Découvrir plus"
+            label={t("learnMore")}
             href="/pages/à-propos"
             className="self-start"
           />
@@ -425,6 +413,7 @@ const contactInfo = {
 };
 
 const Contact = () => {
+  const t = useTranslations("Contact");
   return (
     <Section id="contact" className="">
       <div className="grid items-stretch md:grid-cols-2 w-full">
@@ -445,7 +434,7 @@ const Contact = () => {
                 font2.variable
               )}
             >
-              Contactez-Nous
+              {t("title")}
             </h2>
             <div id="contact-form" className="w-full">
               <ContactForm />
@@ -455,10 +444,10 @@ const Contact = () => {
         <div className="bg-[#084d27] p-4 min-h-96 text-white flex flex-col justify-center">
           <div className={cn("mx-auto pr-2 font-sans ", font2.variable)}>
             <p className="font-semibold text-3xl mb-3 tracking-wider">
-              Information de contact
+              {t("contactInfo.title")}
             </p>
             <p className="text-base">
-              N&apos;hésitez pas à nous contacter pour toute question.
+              {t("contactInfo.description")}
             </p>
             <div className="flex flex-col gap-6 text-sm mt-6">
               <div className="flex items-center gap-6 text-base">
@@ -512,18 +501,18 @@ const blogs = [
 ];
 
 const Blogs = () => {
+  const t = useTranslations("Blogs");
   return (
     <Section>
       <Container>
         <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
           <span className="bg-gradient bg-clip-text text-transparent">
-            Nos blogs
+            {t("title_part1")}
           </span>{" "}
-          et articles
+          {t("title_part2")}
         </h2>
         <p className="text-muted-foreground text-sm text-center max-w-[65ch] mx-auto mb-14">
-          Restez informé des dernières nouvelles, tendances et innovations dans
-          le domaine de la construction en bois.
+          {t("description")}
         </p>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {blogs.map((blog, index) => (
@@ -532,7 +521,7 @@ const Blogs = () => {
         </div>
         <div className="mt-12 flex justify-center">
           <CustomButton
-            label="Voir plus"
+            label={t("ViewMore")}
             inverted
             href="/pages/actualités"
             asChild
@@ -593,36 +582,34 @@ const BlogCard = ({ blog }: BlogCardProps) => {
   );
 };
 
-const reviews = [
-  {
-    name: "Anonyme",
-    rating: 5,
-    comment:
-      "Les produits en bois moulé de WoodWise sont incroyables ! J'en suis totalement satisfait.",
-  },
-  {
-    name: "Anonyme",
-    rating: 5,
-    comment:
-      "WoodWise offre des produits en bois moulé de haute qualité. Je les recommande vivement !",
-  },
 
-];
 
 const Reviews = () => {
+  const t = useTranslations("Reviews");
+  const reviews = [
+  {
+    name: t("reviews.review1.name"),
+    rating: 5,
+    comment: t("reviews.review1.comment"),
+  },
+  {
+    name: t("reviews.review2.name"),
+    rating: 5,
+    comment: t("reviews.review2.comment"),
+  },
+];
   return (
     <Section>
       <Container>
         <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
-          Ce que nos
+          {t("title_part1")}
           <br />
           <span className="bg-gradient bg-clip-text text-transparent">
-            clients disent
+            {t("title_part2")}
           </span>
         </h2>
         <p className="text-muted-foreground text-sm text-center max-w-[65ch] mx-auto mb-14">
-          Découvrez les témoignages de nos clients satisfaits qui ont transformé
-          leurs projets de construction avec nos produits en bois moulé.
+          {t("description")}
         </p>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 ">
           {reviews.map((review, index) => (
@@ -688,58 +675,53 @@ type FAQItem = {
   link?: string;
 };
 
-const content: FAQItem[] = [
+
+const FAQ = () => {
+  const t = useTranslations("FAQ");
+
+  const content: FAQItem[] = [
   {
-    question: "Qu’est-ce que le panneau MBio7 ?",
-    answer:
-      "MBio7 est un panneau de construction innovant, fabriqué à plus de 90 % en bois recyclé. Il est léger, modulaire et conçu pour des constructions durables, économiques et rapides.",
+    question: t("questions.q1.question"),
+    answer: t("questions.q1.answer"),
   },
   {
-    question: "Quelle est la performance environnementale du panneau ?",
-    answer:
-      "Chaque panneau présente un bilan carbone négatif de -7,66 kg CO₂-éq. Une maison de 120 m² en MBio7 permet d’éviter environ 3 tonnes de CO₂.",
+    question: t("questions.q2.question"),
+    answer: t("questions.q2.answer"),
   },
   {
-    question: "Le panneau est-il résistant ?",
-    answer:
-      "Oui. Le MBio7 est résistant à l’eau, au feu, aux termites, au gel et aux séismes. C’est un matériau thermo-durcissable qui ne pourrit pas et ne craint pas l’humidité.",
+    question: t("questions.q3.question"),
+    answer: t("questions.q3.answer"),
   },
   {
-    question: "Est-il conforme aux normes de construction ?",
-    answer:
-      "Oui. Les constructions en MBio7 respectent la norme RE 2020 si elles sont associées à un isolant adapté.",
+    question: t("questions.q4.question"),
+    answer: t("questions.q4.answer"),
   },
   {
-    question: "Combien pèse un panneau ?",
-    answer:
-      "Un panneau MBio7 pèse environ 9 kg, ce qui facilite son transport et sa mise en œuvre.",
+    question: t("questions.q5.question"),
+    answer: t("questions.q5.answer"),
   },
   {
-    question: "Peut-on construire une maison complète avec ce matériau ?",
-    answer:
-      "Oui. Par exemple, une maison test de 10 m² a été construite en 2017 à Sospel avec 160 panneaux (≈ 1 450 kg). Les panneaux s’assemblent facilement et permettent des projets de toute taille.",
+    question: t("questions.q6.question"),
+    answer: t("questions.q6.answer"),   
   },
   {
-    question: "Quelle est la capacité de production ?",
-    answer:
-      "Environ 400 panneaux par jour pour l'instant car nous sommes en phase d’extension.",
+    question: t("questions.q7.question"),
+    answer: t("questions.q7.answer"),
   },
   {
-    question: "À qui s’adresse MBio7 ?",
-    answer:
-      "Le matériau est idéal pour les ONG (reconstruction d’urgence), les collectivités locales et les particuliers souhaitant des logements écologiques, modulables et économiques.",
+    question: t("questions.q8.question"),
+    answer: t("questions.q8.answer"),
   },
 ];
 
-const FAQ = () => {
   return (
     <Section>
       <Container>
         <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
-          <span>Questions</span>
+          <span>{t("title_part1")}</span>
           <br />
           <span className="bg-gradient bg-clip-text text-transparent">
-            Fréquentes
+            {t("title_part2")}
           </span>
         </h2>
 
