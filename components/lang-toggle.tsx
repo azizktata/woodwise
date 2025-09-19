@@ -13,7 +13,7 @@ export function LangToggle() {
   const router = useRouter();
   const locale = useLocale();
 
-  const nextLocale = locale === "en" ? "fr" : "en";
+  const nextLocale = locale === "fr" ? "en" : "fr";
 
   return (
     <Button

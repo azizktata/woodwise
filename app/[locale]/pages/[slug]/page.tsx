@@ -329,13 +329,13 @@ const Team = () => {
         </span>
       </h2>
 
-      <Carousel className="mt-6 w-full">
+      <Carousel className="mt-6 w-auto">
         <CarouselContent className="-ml-1">
           {members.map((member, index) => (
             <CarouselItem key={index} className="pl-1 md:basis-1/2 ">
               <div className="p-1">
                 <Card className="relative overflow-hidden">
-                  <CardContent className="not-prose flex h-[468px]  items-center justify-center">
+                  <CardContent className="not-prose flex h-[600px] w-full  items-center justify-center">
                     <Image
                       src={member.src}
                       alt={`${member.name} - ${member.role}`}
@@ -379,13 +379,13 @@ const ContactBanner = ({ locale }: { locale: string }) => {
         </h2>
         <Button className="bg-white rounded-full px-2 py-6 mt-5 text-[#232227] transition-all duration-300 hover:bg-[#051229] hover:text-white group">
           <div className="flex items-center gap-2">
-            <span className="rounded-full text-white p-3 bg-woodSecondary transition-transform duration-300 group-hover:animate-slide-right ">
+            <span className="rounded-full text-white p-3 bg-woodSecondary  ">
               <MoveRightIcon className="h-4 w-4" />
             </span>
 
             <span
               className={cn(
-                "font-bold text-sm font-sans pr-3 transition-transform duration-300 group-hover:animate-slide-left group-hover:pl-1 group-hover:pr-1",
+                "font-bold text-sm font-sans pr-3 ",
                 font3.variable
               )}
             >
