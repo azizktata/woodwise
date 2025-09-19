@@ -7,9 +7,19 @@
     },
      "Nav": {
         "home": "Home",
+        "homeLink": "/",
         "about": "About",
+       "aboutLink": "/pages/about",
        "projects": "Projects",
-        "news": "News"
+       "projectsLink": "/pages/projects",
+       "news": "News",
+       "newsLink": "/pages/news"
+    },
+     "Banner": {
+        "about": "about",
+        "projects": "projects",
+        "news": "news"
+
     },
     "Hero": {
           "subtitle_1": "With",
@@ -17,7 +27,8 @@
         "title_part1": "Create Better",
         "title_part2": "ECOLOGICALLY",
         "description": "A company specialized in the manufacturing of molded wood products, with the goal of reducing the carbon footprint.",
-        "learnMore": "Learn more"
+        "learnMore": "Learn more",
+        "learnMoreLink": "/pages/about"
     },
     "About": {
         "title_part1": "About",
@@ -78,6 +89,7 @@
             "tag5": "With a negative carbon footprint"
         },
         "learnMore": "Learn more",
+        "learnMoreLink": "/pages/about",
         "loading": "Loading..."
     },
     "Contact": {
@@ -93,7 +105,8 @@
         "title_part1": "Latest News",
         "title_part2": "and Articles",
         "description": "Stay informed about the latest trends in sustainable construction, innovations in the molded wood sector, and ecological initiatives through our blog posts.",
-        "ViewMore": "View more"
+        "ViewMore": "View more",
+        "ViewMoreLink": "/pages/blogs"
     },
     "Reviews": {
         "title_part1": "What our",

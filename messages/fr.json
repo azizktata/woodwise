@@ -7,9 +7,19 @@
     },
     "Nav": {
         "home": "Accueil",
+        "homeLink": "/",
         "about": "À propos",
+        "aboutLink": "/pages/à-propos",
         "projects": "Projets",
-        "news": "Actualités"
+        "projectsLink": "/pages/projets",
+        "news": "Actualités",
+        "newsLink": "/pages/actualités"
+    },
+    "Banner": {
+        "about": "à propos",
+        "projects": "projets",
+        "news": "actualités"
+
     },
     "Hero": {
         "subtitle_1": "Avec",
@@ -17,7 +27,9 @@
         "title_part1": "Construire Mieux",
         "title_part2": "ECOLOGIQUEMENT",
         "description": "Une entreprise spécialisée dans la fabrication de produits en bois moulé, avec un objectif de réduction de l&apos;empreinte carbone.",
-        "learnMore": "Découvrir plus"
+        "learnMore": "Découvrir plus",
+        "learnMoreLink": "/pages/à-propos"
+        
     },
     "About": {
         "title_part1": "À Propos de",
@@ -77,7 +89,8 @@
             "tag4": "Léger, modulaire, facile à poser",
             "tag5": "Avec une empreinte carbone négative"
         },
-        "learnMore": "Découvrir plus"
+        "learnMore": "Découvrir plus",
+        "learnMoreLink": "/pages/à-propos"
     },
     "Contact": {
         "title": "Contactez-nous",
@@ -93,7 +106,8 @@
         "title_part1": "Dernières Nouvelles",
         "title_part2": "et articles",
         "description": "Restez informé des dernières tendances en matière de construction durable, des innovations dans le secteur du bois moulé, et des initiatives écologiques à travers nos articles de blog.",
-        "ViewMore": "Voir plus"
+        "ViewMore": "Voir plus",
+        "ViewMoreLink": "/pages/actualités"
     },
     "Reviews": {
         "title_part1": "Ce que nos",

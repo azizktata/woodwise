@@ -31,6 +31,7 @@ import { hasLocale, NextIntlClientProvider, useTranslations } from "next-intl";
 import NotFound from "../not-found";
 import { Link, routing } from "@/i18n/routing";
 import { LangToggle } from "@/components/lang-toggle";
+import {getTranslations} from 'next-intl/server';
 
 const font = Roboto({
   subsets: ["latin"],
@@ -70,19 +71,16 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     NotFound();
   }
-   const mainMenu = locale === 'fr' ? {
-  accueil: "/",
-  projets: "/pages/projets",
-  "à propos": "/pages/à-propos",
-  actualités: "/pages/actualités",
-} : {
-  home: "/",
-  projets: "/pages/projets",
-  about: "/pages/about",
-  news: "/pages/news",
-};
+    const t = await getTranslations('Nav');
+
+   const mainMenu =  [
+    {key: t('home'), href: t('homeLink')},
+    {key: t('about'), href: t('aboutLink')},
+    {key: t('projects'), href: t('projectsLink')},
+    {key: t('news'), href: t('newsLink')},
+   ]
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head />
       <body className={cn("min-h-screen font-sans antialiased", font.variable)}>
         <ThemeProvider
@@ -167,7 +165,7 @@ const Nav = ({ className, children, id, locale, mainMenu }: NavProps) => {
         {children}
         <div className="flex items-center gap-2">
           <div className="mx-2 hidden md:flex md:self-center">
-            {Object.entries(mainMenu).map(([key, href]) => (
+            {mainMenu.map(({ key, href }) => (
               <Button
                 key={href}
                 asChild
@@ -199,7 +197,7 @@ const contactInfo = {
   email: "contact@woodwise.fr",
   address: "QUARTIER CUNI, SOSPEL, 06380, FR",
 };
-const Footer = ({ mainMenu }: { mainMenu: { [key: string]: string } }) => {
+const Footer = ({ mainMenu }: { mainMenu: { key: string; href: string }[] }) => {
   return (
     <footer className={cn("font-sans antialiased", font2.variable)}>
       <Section className="bg-[#0d7f40] text-white">
@@ -215,7 +213,7 @@ const Footer = ({ mainMenu }: { mainMenu: { [key: string]: string } }) => {
           </div>
           <div className="flex flex-col gap-2 text-sm">
             <h6 className={cn("font-semibold text-xl", font.variable)}>Menu</h6>
-            {Object.entries(mainMenu).map(([key, href]) => (
+             {mainMenu.map(({ key, href }) => (
               <Link
                 className="hover:underline underline-offset-4 text-base"
                 key={href}

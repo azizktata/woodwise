@@ -3,5 +3,5 @@ type NavProps = {
   children?: React.ReactNode;
   id?: string;
   locale: string;
-  mainMenu: { [key: string]: string };
+  mainMenu: { key: string; href: string }[];
 };

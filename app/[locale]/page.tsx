@@ -111,7 +111,7 @@ const Hero = ({ locale }: { locale: string }) => {
             </p>
           </h3>
 
-          <CustomButton asChild label={t("learnMore")} href="/pages/à-propos" locale={locale} />
+          <CustomButton asChild label={t("learnMore")} href={t("learnMoreLink")} locale={locale} />
         </div>
         <div className="not-prose w-full overflow-hidden rounded-lg  md:rounded-xl md:w-1/2">
           <Image
@@ -388,7 +388,7 @@ const Mbio7 = ({locale}: {locale: string}) => {
           <CustomButton
             asChild
             label={t("learnMore")}
-            href="/pages/à-propos"
+            href={t("learnMoreLink")}
             className="self-start"
             locale={locale}
           />
@@ -525,9 +525,10 @@ const Blogs = () => {
           <CustomButton
             label={t("ViewMore")}
             inverted
-            href="/pages/actualités"
+            href={t("ViewMoreLink")}
             asChild
             className="bg-white"
+            locale={useLocale()}
           />
         </div>
       </Container>

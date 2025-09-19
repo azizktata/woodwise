@@ -37,6 +37,7 @@ import {
 import { date } from "zod";
 import { use } from "react";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 // Revalidate pages every hour
 // export const revalidate = 3600;
 
@@ -107,7 +108,26 @@ export default async function Page({
   params: Promise<{ slug: string; locale: string }>;
 }) {
   const { slug, locale } = await params;
-  // const page = await getPageBySlug(slug);
+  
+  const handleTranslateTitle = (slug: string) => {
+    const translationsToEn: Record<string, string> = {
+      "à propos": "about",
+      "actualités": "news",
+      "projets": "projects",
+    };
+   if (locale === "en") {
+     return translationsToEn[slug] || slug;
+   }
+   else {
+     const translationsToFr: Record<string, string> = {
+       "about": "à propos",
+       "news": "actualités",
+       "projects": "projets",
+     };
+     return translationsToFr[slug] || slug;
+   }
+
+  };
 
   return (
     <div>
@@ -123,7 +143,7 @@ export default async function Page({
         </div>
         <div className="absolute inset-0 border z-10 flex flex-col items-center justify-center gap-2">
           <h1 className="text-white sm:text-6xl text-5xl font-semibold capitalize mb-1">
-            <Balancer>{decodeURIComponent(slug.replace(/-/g, " "))}</Balancer>
+            <Balancer>{handleTranslateTitle(decodeURIComponent(slug.replace(/-/g, " ")))}</Balancer>
           </h1>
           <p
             className={cn(
@@ -132,7 +152,7 @@ export default async function Page({
             )}
           >
             <Link href={"/"}> {locale === "fr" ? "Accueil" : "Home"} </Link> /{" "}
-            <Balancer>{decodeURIComponent(slug.replace(/-/g, " "))}</Balancer>
+            <Balancer>{handleTranslateTitle(decodeURIComponent(slug.replace(/-/g, " ")))}</Balancer>
           </p>
         </div>
       </div>
@@ -154,7 +174,7 @@ export default async function Page({
           <Blogs />
         </Container>
       )}
-      {decodeURIComponent(slug) === "projets" && (
+      { (decodeURIComponent(slug) === "projets" || decodeURIComponent(slug) === "projects") && (
         <Container>
           <Project />
         </Container>
