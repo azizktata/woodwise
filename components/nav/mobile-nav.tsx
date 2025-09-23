@@ -2,7 +2,6 @@
 
 // React and Next Imports
 import * as React from "react";
-import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
 
 // Utility Imports
@@ -23,11 +22,19 @@ import { Separator } from "@/components/ui/separator";
 
 import { mainMenu, contentMenu } from "@/menu.config";
 import { siteConfig } from "@/site.config";
-import { ThemeToggle } from "../theme/theme-toggle";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
+import { LinkProps } from "next/link";
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
-
+  const t = useTranslations('Nav');
+   const mainMenu =  [
+    {key: t('home'), href: t('homeLink')},
+    {key: t('about'), href: t('aboutLink')},
+    {key: t('projects'), href: t('projectsLink')},
+    {key: t('news'), href: t('newsLink')},
+   ]
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
@@ -56,18 +63,18 @@ export function MobileNav() {
           <div className="flex flex-col space-y-3">
             <h3 className="text-small mt-6">Menu</h3>
             <Separator />
-            {Object.entries(mainMenu).map(([key, href]) => (
+            {mainMenu.map(({ key, href }) => (
               <MobileLink key={key} href={href} onOpenChange={setOpen}>
                 {key.charAt(0).toUpperCase() + key.slice(1)}
               </MobileLink>
             ))}
-            <h3 className="text-small pt-6">Blog Menu</h3>
+            {/* <h3 className="text-small pt-6">Blog Menu</h3>
             <Separator />
             {Object.entries(contentMenu).map(([key, href]) => (
               <MobileLink key={key} href={href} onOpenChange={setOpen}>
                 {key.charAt(0).toUpperCase() + key.slice(1)}
               </MobileLink>
-            ))}
+            ))} */}
           </div>
         {/* <ThemeToggle /> */}
         </ScrollArea>
@@ -80,6 +87,7 @@ interface MobileLinkProps extends LinkProps {
   onOpenChange?: (open: boolean) => void;
   children: React.ReactNode;
   className?: string;
+  locale?: string;
 }
 
 function MobileLink({

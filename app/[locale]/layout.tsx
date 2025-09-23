@@ -28,7 +28,7 @@ import { Toaster } from "sonner";
 import CustomButton from "@/components/CustomButton";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { hasLocale, NextIntlClientProvider, useTranslations } from "next-intl";
-import NotFound from "../not-found";
+import NotFound from "./not-found";
 import { Link, routing } from "@/i18n/routing";
 import { LangToggle } from "@/components/lang-toggle";
 import {getTranslations} from 'next-intl/server';

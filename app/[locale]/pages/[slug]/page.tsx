@@ -136,7 +136,7 @@ export default async function Page({
           <Image
             src={banner}
             alt={`banner`}
-            className="object-cover w-full object-top"
+            className="object-cover w-full object-right md:object-top"
             fill
           />
           <div className="absolute inset-0 bg-[#0D7F40]/60 "></div>
