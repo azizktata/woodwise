@@ -10,6 +10,9 @@ import AproposImage from "@/public/Apropos.jpg";
 import Mbio7Image from "@/public/Mbio7.jpg";
 import Mbio7ProductImage from "@/public/mbio7product.png";
 import Mbio7logo from "@/public/mbio7-logo.png";
+import NiceMatin from "@/public/nice-matin.png";
+import Liberation from "@/public/liberation.png";
+import Monaco from "@/public/monaco.png";
 // import ContactBg from "@/public/Asset 2@4x 1.jpg";
 import ContactBg from "@/public/contactbg.jpg";
 // import ContactBg from "@/public/rawlogo.jpg";
@@ -257,7 +260,7 @@ const Apropos = () => {
             {services.map((service, index) => (
               <div
                 className={cn(
-                  "flex flex-col gap-2 py-6 transition-all duration-200 group hover:bg-gradient rounded-2xl p-4  hover:text-white"
+                  "flex flex-col gap-2 py-6 transition-all duration-200 group hover:bg-gradient rounded-2xl p-4 hover:text-white"
                 )}
                 key={index}
               >
@@ -475,12 +478,11 @@ const blogs = [
   {
     date: "06 Mars 2019",
     title:
-      "Grâce à ces panneaux en bois, il fabrique des maisons qui résistent à toutes conditions climatiques",
+      "Il fabrique des maisons qui résistent à toutes conditions climatiques",
     description:
       "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux MBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
     link: "https://www.nicematin.com/vie-locale/grace-a-ces-panneaux-en-bois-il-fabrique-des-maisons-qui-resistent-a-toutes-conditions-climatiques-303801",
-    image:
-      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: NiceMatin,
   },
   {
     date: " 1er janvier 2019",
@@ -488,8 +490,7 @@ const blogs = [
     description:
       "Parmi les inventeurs, il y a les grands rêveurs et les gens carrés. La maison écologique MBio7 est l’alliance des deux. Dominique Tallarida dans le rôle du Géo Trouvetou, Denis Mary dans celui du technicien. Ces habitants de Sospel (Alpes-Maritimes) ont créé des maisons en panneaux de bois recyclé.",
     link: "https://www.liberation.fr/france/2019/01/01/le-bois-mis-en-demeure_1700633/",
-    image:
-      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: Liberation,
   },
   {
     date: "14 Août 2018",
@@ -497,8 +498,7 @@ const blogs = [
     description:
       "Lauréats du concours Lépine, le Sospellois Dominique Tallarida et son ami Denis Mary s’apprêtent à commercialiser leur concept d’habitat humanitaire. Ils ont besoin d’un dernier coup de pouce",
     link: "https://www.pressreader.com/monaco/monaco-matin/20180814/281702615548883",
-    image:
-      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: Monaco,
   },
 ];
 
@@ -555,7 +555,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
           alt={blog.title}
           width={400}
           height={200}
-          className="w-full h-48 object-cover rounded-t-md"
+          className="w-full h-full object-top rounded-t-md"
         />
       </CardHeader>
       <CardContent>

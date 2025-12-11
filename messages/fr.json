@@ -26,7 +26,7 @@
         "subtitle_2": "par WoodWise",
         "title_part1": "Construire Mieux",
         "title_part2": "ECOLOGIQUEMENT",
-        "description": "Une entreprise spécialisée dans la fabrication de produits en bois moulé, avec un objectif de réduction de l&apos;empreinte carbone.",
+        "description": "WoodWise Une entreprise spécialisée dans la fabrication des produits durables dans un matériau composite de bois recyclé, réduisant le CO2 de la planète.",
         "learnMore": "Découvrir plus",
         "learnMoreLink": "/pages/à-propos"
         
@@ -40,7 +40,7 @@
         },
         "ourVision": {
             "title": "Notre Vision",
-            "description": "Notre vision est de devenir le leader mondial des solutions de construction à bilan CO2 négatif, en faisant du bois moulé le matériau de choix pour bâtir un avenir plus vert."
+            "description": "L'écologie au service de la construction: bâtir un avenir durable avec le bois moulé."
         },
         "services": {
             "service1": {
@@ -167,7 +167,7 @@
     "Apropos": {
         "subtitle": " Qui sommes-nous",
         "title": "WoodWise est une entreprise engagée dans la fabrication de produits en bois moulé.",
-        "description": "Depuis notre création, nous travaillons à développer une nouvelle approche de la construction et du design : moins de gaspillage, plus d’impact positif. Avec l’innovation MBio7, nous avons prouvé qu’il était possible de fabriquer des panneaux de construction performants, respectueux de l’environnement et accessibles. Aujourd’hui, WoodWise Holding se positionne comme un acteur global du recyclage du bois, bien au-delà d’un simple produit.",
+        "description": "WoodWise Une entreprise spécialisée dans la fabrication des produits durables dans un matériau composite de bois recyclé, réduisant le CO2 de la planète. Depuis notre création, nous travaillons à développer une nouvelle approche de la construction et du design : moins de gaspillage, plus d’impact positif.",
         "contactUs": "Contactez-nous"
     },
     "Features": {

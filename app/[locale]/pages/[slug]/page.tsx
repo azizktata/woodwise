@@ -9,7 +9,11 @@ import projectImage from "@/public/project.png";
 import contactBanner from "@/public/contact-banner.jpg";
 import Link from "next/link";
 import { Lato } from "next/font/google";
-
+import NiceMatin from "@/public/nice-matin.png";
+import NiceBlog from "@/public/nice-blog.png";
+import Liberation from "@/public/liberation.png";
+import Monaco from "@/public/monaco.png";
+import BlogImg from "@/public/blog-img.png";
 import Balancer from "react-wrap-balancer";
 import {
   ArrowRight,
@@ -197,7 +201,7 @@ const CTA = () => {
         </h1>
       </div>
       <div>
-        <Balancer className="text-muted-foreground text-sm leading-relaxed max-w-[65ch]">
+        <Balancer className="text-muted-foreground text-sm leading-relaxed max-w-[65ch] mt-4">
           {t("description")}
         </Balancer>
         <Button className="bg-[#051229] rounded-full px-1 py-6 mt-5">
@@ -322,14 +326,14 @@ const Team = () => {
   const t = useTranslations("Team");
   return (
     <Section>
-      <h2 className="font-semibold text-black text-6xl mb-12 text-center">
+      <h2 className="font-semibold text-black text-6xl text-center">
         {t("title_part1")}{" "}
         <span className="bg-gradient bg-clip-text text-transparent capitalize">
           {t("title_part2")}
         </span>
       </h2>
 
-      <Carousel className="mt-6 w-auto">
+      <Carousel className="p-24 w-auto">
         <CarouselContent className="-ml-1">
           {members.map((member, index) => (
             <CarouselItem key={index} className="pl-1 md:basis-1/2 ">
@@ -401,15 +405,14 @@ const ContactBanner = ({ locale }: { locale: string }) => {
 };
 
 const blogs = [
-  {
+ {
     date: "06 Mars 2019",
     title:
-      "Grâce à ces panneaux en bois, il fabrique des maisons qui résistent à toutes conditions climatiques",
+      "Il fabrique des maisons qui résistent à toutes conditions climatiques",
     description:
       "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux MBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
     link: "https://www.nicematin.com/vie-locale/grace-a-ces-panneaux-en-bois-il-fabrique-des-maisons-qui-resistent-a-toutes-conditions-climatiques-303801",
-    image:
-      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: NiceMatin,
   },
   {
     date: " 1er janvier 2019",
@@ -417,8 +420,7 @@ const blogs = [
     description:
       "Parmi les inventeurs, il y a les grands rêveurs et les gens carrés. La maison écologique MBio7 est l’alliance des deux. Dominique Tallarida dans le rôle du Géo Trouvetou, Denis Mary dans celui du technicien. Ces habitants de Sospel (Alpes-Maritimes) ont créé des maisons en panneaux de bois recyclé.",
     link: "https://www.liberation.fr/france/2019/01/01/le-bois-mis-en-demeure_1700633/",
-    image:
-      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: Liberation,
   },
   {
     date: "14 Août 2018",
@@ -426,8 +428,7 @@ const blogs = [
     description:
       "Lauréats du concours Lépine, le Sospellois Dominique Tallarida et son ami Denis Mary s’apprêtent à commercialiser leur concept d’habitat humanitaire. Ils ont besoin d’un dernier coup de pouce",
     link: "https://www.pressreader.com/monaco/monaco-matin/20180814/281702615548883",
-    image:
-      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: Monaco,
   },
   {
     date: "11 Septembre 2018",
@@ -436,8 +437,7 @@ const blogs = [
     description:
       "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux MBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
     link: "https://onpassealacte.fr/initiative.on-a-decide-de-creer-un-materiau-de-construction-durable-et-eco-responsable.98346240768.html",
-    image:
-      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image:  projectImage,
   },
   {
     date: "2015",
@@ -445,8 +445,7 @@ const blogs = [
     description:
       "An innovative ecomaterial for simple construction , economique, ecologic and easy to fast building.",
     link: "https://solarimpulse.com/companies/woodwise-holding-ex-mbio7-sas",
-    image:
-      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: BlogImg,
   },
   {
     date: "06 Marse 2019",
@@ -455,8 +454,7 @@ const blogs = [
     description:
       "C’est le rêve un peu fou de Dominique Tallarida, Géo Trouvetou des temps modernes, qui commence à prendre forme, cinq ans après, grâce à l’aide de Denis Mary, ingénieux ingénieur.",
     link: "https://www.nicematin.com/vie-locale/encore-une-etape-de-franchie-pour-le-panneau-ecolo-mbio7-les-etapes-de-la-fabrication-303840",
-    image:
-      "https://images.unsplash.com/photo-1721137287642-43b251bd6f00?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: NiceBlog,
   },
 ];
 
@@ -477,6 +475,7 @@ interface BlogCardProps {
     title: string;
     description: string;
     image: string;
+    link: string;
   };
 }
 
@@ -493,12 +492,13 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         />
       </CardHeader>
       <CardContent>
+        <Link href={blog.link} target="_blank" rel="noopener noreferrer">
         <p
           className={cn(
             "bg-gradient bg-clip-text text-transparent font-sans ",
             font3.variable
           )}
-        >
+          >
           {blog.date}
         </p>
         <h5 className="text-black font-semibold text-2xl py-4 ">
@@ -512,6 +512,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         >
           {blog.description}
         </p>
+          </Link>
       </CardContent>
     </Card>
   );
