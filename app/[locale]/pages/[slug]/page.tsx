@@ -3,7 +3,7 @@ import { Section, Container, Prose, cn } from "@/components/craft";
 import { siteConfig } from "@/site.config";
 
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import banner from "@/public/banner.jpg";
 import projectImage from "@/public/project.png";
 import contactBanner from "@/public/contact-banner.jpg";
@@ -474,7 +474,7 @@ interface BlogCardProps {
     date: string;
     title: string;
     description: string;
-    image: string;
+    image: StaticImageData;
     link: string;
   };
 }
