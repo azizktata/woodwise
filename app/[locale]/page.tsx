@@ -17,7 +17,7 @@ import Monaco from "@/public/monaco.png";
 import ContactBg from "@/public/contactbg.jpg";
 // import ContactBg from "@/public/rawlogo.jpg";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import CustomButton from "@/components/CustomButton";
 import {
   Accordion,
@@ -542,7 +542,7 @@ interface BlogCardProps {
     title: string;
     link: string;
     description: string;
-    image: string;
+    image: StaticImageData;
   };
 }
 
