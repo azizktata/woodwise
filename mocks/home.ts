@@ -27,7 +27,7 @@ export const homeMock: WPPostResponse<HomePageACF> = {
     },
 
     aboutsection_fr: {
-      title_part1: "À Propos de",
+      title_part1: "  ",
       title_part2: "WoodWise",
       ourVision: {
         title: "Notre Vision",
@@ -61,6 +61,7 @@ export const homeMock: WPPostResponse<HomePageACF> = {
             "Notre engagement envers une construction durable a été salué par de prestigieuses distinctions, notamment le Label Solar Impulse, la médaille au Concours Lépine Paris 2015, et notre statut de finaliste au CLEAN TECH OPEN France.",
         },
       },
+      image: undefined,
     },
     aboutsection_en: {
       title_part1: "About",
@@ -97,6 +98,7 @@ export const homeMock: WPPostResponse<HomePageACF> = {
             "Our commitment to sustainable construction has been recognized with prestigious awards, including the Solar Impulse Label, a medal at the Concours Lépine Paris 2015, and our status as a finalist at the CLEAN TECH OPEN France.",
         },
       },
+      image: undefined,
     },
 
     impactsection_fr: {
@@ -138,6 +140,7 @@ export const homeMock: WPPostResponse<HomePageACF> = {
         tag4: "Léger, modulaire, facile à poser",
         tag5: "Avec une empreinte carbone négative",
       },
+      image: undefined,
     },
     mbio7section_en: {
       title_part1: "MBio7 by",
@@ -153,18 +156,21 @@ export const homeMock: WPPostResponse<HomePageACF> = {
         tag4: "Lightweight, modular, easy to install",
         tag5: "With a negative carbon footprint",
       },
+      image: undefined,
     },
 
     contactsection_fr: {
-      title: "Contactez-nous",
+      title: "  ",
       description:
         "Vous avez des questions ou souhaitez en savoir plus sur nos produits et services ? N'hésitez pas à nous contacter, nous sommes là pour vous aider.",
       contactInfo: {
         title: "Informations de contact",
         description: "N'hésitez pas à nous contacter pour toute question.",
+        phone: "80157 59053",
+        mail: "contact@woodwise.fr",
+        map: "QUARTIER CUNI, SOSPEL, 06380, FR"
       },
-      send: "Envoyer",
-      loading: "En cours...",
+     
     },
     contactsection_en: {
       title: "Contact Us",
@@ -173,9 +179,11 @@ export const homeMock: WPPostResponse<HomePageACF> = {
       contactInfo: {
         title: "Contact information",
         description: "Feel free to reach out to us with any questions.",
+        phone: "80157 59053",
+        mail: "contact@woodwise.fr",
+        map: "QUARTIER CUNI, SOSPEL, 06380, FR"
       },
-      send: "Send",
-      loading: "Loading...",
+     
     },
 
     blogssection_fr: {
@@ -184,7 +192,34 @@ export const homeMock: WPPostResponse<HomePageACF> = {
       description:
         "Restez informé des dernières tendances en matière de construction durable, des innovations dans le secteur du bois moulé, et des initiatives écologiques à travers nos articles de blog.",
       ViewMore: "Voir plus",
-      ViewMoreLink: "/pages/actualités",
+      blogs: {
+        blog1: {
+          date: "06 Mars 2019",
+    title:
+      "Il fabrique des maisons qui résistent à toutes conditions climatiques",
+    description:
+      "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux MBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
+    link: " ",
+    image: undefined,
+        },
+        blog2: {
+           date: " 1er janvier 2019",
+    title: "Libé des solutions : Le bois mis en demeure",
+    description:
+      "Parmi les inventeurs, il y a les grands rêveurs et les gens carrés. La maison écologique MBio7 est l'alliance des deux. Dominique Tallarida dans le rôle du Géo Trouvetou, Denis Mary dans celui du technicien. Ces habitants de Sospel (Alpes-Maritimes) ont créé des maisons en panneaux de bois recyclé.",
+    link: "https://www.liberation.fr/france/2019/01/01/le-bois-mis-en-demeure_1700633/",
+    image: undefined,
+        },
+        blog3: {
+          date: "14 Août 2018",
+    title: "Une souscription lancée pour des maisons d'urgence",
+    description:
+      "Lauréats du concours Lépine, le Sospellois Dominique Tallarida et son ami Denis Mary s'apprêtent à commercialiser leur concept d'habitat humanitaire. Ils ont besoin d'un dernier coup de pouce",
+    link: "https://www.pressreader.com/monaco/monaco-matin/20180814/281702615548883",
+    image: undefined,
+      },
+    },
+      // ViewMoreLink: "/pages/actualités",
     },
     blogssection_en: {
       title_part1: "Latest News",
@@ -192,7 +227,34 @@ export const homeMock: WPPostResponse<HomePageACF> = {
       description:
         "Stay informed about the latest trends in sustainable construction, innovations in the molded wood sector, and ecological initiatives through our blog posts.",
       ViewMore: "View more",
-      ViewMoreLink: "/pages/news",
+      blogs: {
+        blog1: {
+          date: "March 6, 2019",
+          title:
+            "He builds houses that withstand all weather conditions",
+          description:
+            "Denis Mary and Dominique Tallarida will start production of the famous MBio7 panels next week. They have also been noticed by the Red Cross and the Red Crescent.",
+          link: " ",
+          image: undefined,
+        },
+        blog2: {
+          date: "January 1, 2019",
+          title: "Libé des solutions: Wood put on notice",
+          description:
+            "Among the inventors, there are big dreamers and square people. The ecological house MBio7 is the alliance of both. Dominique Tallarida in the role of Géo Trouvetou, Denis Mary in that of the technician. These inhabitants of Sospel (Alpes-Maritimes) created houses made of recycled wood panels.",
+          link: "https://www.liberation.fr/france/2019/01/01/le-bois-mis-en-demeure_1700633/",
+          image: undefined,
+        },
+        blog3: {
+          date: "August 14, 2018",
+          title: "A subscription launched for emergency housing",
+          description:
+            "Winners of the Lépine competition, Sospellois Dominique Tallarida and his friend Denis Mary are preparing to market their concept of humanitarian habitat. They need one last boost.",
+          link: "https://www.pressreader.com/monaco/monaco-matin/20180814/281702615548883",
+          image: undefined,
+        },
+      },
+      // ViewMoreLink: "/pages/news",
     },
 
     reviewssection_fr: {

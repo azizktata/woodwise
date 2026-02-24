@@ -33,6 +33,7 @@ export interface AboutSection {
     service4: AboutService;
     [key: string]: AboutService;
   };
+  image: string | undefined;
 }
 
 export interface ImpactStat {
@@ -63,6 +64,7 @@ export interface Mbio7Section {
     tag5: string;
     [key: string]: string;
   };
+  image: string | undefined;
 }
 
 export interface ContactSectionContent {
@@ -71,9 +73,11 @@ export interface ContactSectionContent {
   contactInfo: {
     title: string;
     description: string;
+    phone: string;
+    mail: string;
+    map: string;
   };
-  send: string;
-  loading: string;
+  
 }
 
 export interface BlogsSection {
@@ -81,7 +85,30 @@ export interface BlogsSection {
   title_part2: string;
   description: string;
   ViewMore: string;
-  ViewMoreLink: string;
+  // ViewMoreLink: string;
+  blogs: {
+    blog1: {
+      date: string;
+      title: string;
+      description: string;
+      link: string;
+      image?: string;
+    };
+    blog2: {
+      date: string;
+      title: string;
+      description: string;
+      link: string;
+      image?: string;
+    };
+    blog3: {
+      date: string;
+      title: string;
+      description: string;
+      link: string;
+      image?: string;
+    };
+  };
 }
 
 export interface ReviewItem {

@@ -461,11 +461,11 @@ const pressBlogs = [
       "Il fabrique des maisons qui résistent à toutes conditions climatiques",
     description:
       "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux MBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
-    link: "https://www.nicematin.com/vie-locale/grace-a-ces-panneaux-en-bois-il-fabrique-des-maisons-qui-resistent-a-toutes-conditions-climatiques-303801",
+    link: " ",
     image: NiceMatin,
   },
   {
-    date: " 1er janvier 2019",
+    date: "1er janvier 2019",
     title: "Libé des solutions : Le bois mis en demeure",
     description:
       "Parmi les inventeurs, il y a les grands rêveurs et les gens carrés. La maison écologique MBio7 est l'alliance des deux. Dominique Tallarida dans le rôle du Géo Trouvetou, Denis Mary dans celui du technicien. Ces habitants de Sospel (Alpes-Maritimes) ont créé des maisons en panneaux de bois recyclé.",
