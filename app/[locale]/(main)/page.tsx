@@ -67,6 +67,7 @@ import type {
   ReviewsSection,
   FAQSection,
 } from "@/lib/wp-types";
+import { resolveWPImageUrl } from "@/lib/wp-types";
 
 const font2 = Onest({
   subsets: ["latin"],
@@ -168,8 +169,8 @@ const Hero = ({ data, locale }: { data: HeroSection; locale: string }) => (
         </h3>
         <CustomButton
           asChild
-          label={data.learnMore}
-          href={data.learnMoreLink}
+          label={data.learnmore}
+          href={data.learnmorelink}
           locale={locale}
         />
       </div>
@@ -232,27 +233,28 @@ const Apropos = ({ data }: { data: AboutSection }) => {
           <div className="flex flex-col justify-between gap-6 rounded-2xl  p-6 bg-card transition-all hover:-mt-2 hover:mb-2">
             <div className="grid gap-4 ">
               <Eye className="h-6 w-6" />
-              <h4 className="text-4xl text-black">{data.ourVision.title}</h4>
-              <p className="text-base opacity-75">{data.ourVision.description}</p>
+              <h4 className="text-4xl text-black">{data.ourvision.title}</h4>
+              <p className="text-base opacity-75">{data.ourvision.description}</p>
             </div>
           </div>
           <div className="flex flex-col justify-between gap-6 rounded-2xl  p-6 bg-card transition-all hover:-mt-2 hover:mb-2">
             <div className="grid gap-4 ">
               <Projector className="h-6 w-6" />
-              <h4 className="text-4xl text-black">{data.ourMission.title}</h4>
+              <h4 className="text-4xl text-black">{data.ourmission.title}</h4>
               <p className="text-base opacity-75">
-                {data.ourMission.description}
+                {data.ourmission.description}
               </p>
             </div>
           </div>
         </div>
 
         <div className="grid items-stretch md:grid-cols-2 md:gap-12 mt-6">
-          <div className="not-prose relative flex  overflow-hidden rounded-xl border">
+          <div className="not-prose relative overflow-hidden rounded-xl border min-h-[400px]">
             <Image
-              src={AproposImage}
-              alt="placeholder"
-              className="fill object-cover"
+              src={resolveWPImageUrl(data.image) ?? AproposImage}
+              alt="À propos"
+              fill
+              className="object-cover"
             />
           </div>
           <div className="py-6">
@@ -333,7 +335,7 @@ const Mbio7 = ({ data, locale }: { data: Mbio7Section; locale: string }) => (
     <Container className="grid items-center md:grid-cols-2 gap-2 sm:gap-6 md:gap-12 max-w-7xl">
       <div className="not-prose relative  flex overflow-hidden rounded-lg relative ">
         <Image
-          src={Mbio7Image}
+          src={resolveWPImageUrl(data.image) ?? Mbio7Image}
           alt="Mbio7"
           className="object-cover object-top rounded-lg w-full "
           width={300}
@@ -378,8 +380,8 @@ const Mbio7 = ({ data, locale }: { data: Mbio7Section; locale: string }) => (
         </div>
         <CustomButton
           asChild
-          label={data.learnMore}
-          href={data.learnMoreLink}
+          label={data.learnmore}
+          href={data.learnmorelink}
           className="self-start"
           locale={locale}
         />
@@ -396,12 +398,6 @@ const Mbio7 = ({ data, locale }: { data: Mbio7Section; locale: string }) => (
     </Container>
   </Section>
 );
-
-const contactInfo = {
-  phone: "80157 59053",
-  email: "contact@woodwise.fr",
-  address: "QUARTIER CUNI, SOSPEL, 06380, FR",
-};
 
 const Contact = ({ data }: { data: ContactSectionContent }) => (
   <Section id="contact" className="">
@@ -423,28 +419,28 @@ const Contact = ({ data }: { data: ContactSectionContent }) => (
             {data.title}
           </h2>
           <div id="contact-form" className="w-full">
-            <ContactForm sendLabel={data.send} loadingLabel={data.loading} />
+            <ContactForm />
           </div>
         </div>
       </div>
       <div className="bg-[#084d27] p-4 min-h-96 text-white flex flex-col justify-center">
         <div className={cn("mx-auto pr-2 font-sans ", font2.variable)}>
           <p className="font-semibold text-3xl mb-3 tracking-wider">
-            {data.contactInfo.title}
+            {data.contactinfo.title}
           </p>
-          <p className="text-base">{data.contactInfo.description}</p>
+          <p className="text-base">{data.contactinfo.description}</p>
           <div className="flex flex-col gap-6 text-sm mt-6">
             <div className="flex items-center gap-6 text-base">
               <Phone className="h-6 w-6" />
-              <span>{contactInfo.phone}</span>
+              <span>{data.contactinfo.phone}</span>
             </div>
             <div className="flex items-center gap-6 text-base">
               <Mail className="h-6 w-6" />
-              <span>{contactInfo.email}</span>
+              <span>{data.contactinfo.mail}</span>
             </div>
             <div className="flex items-center gap-6 text-base">
               <PinIcon className="h-6 w-6" />
-              <span>{contactInfo.address}</span>
+              <span>{data.contactinfo.map}</span>
             </div>
           </div>
         </div>
@@ -453,65 +449,46 @@ const Contact = ({ data }: { data: ContactSectionContent }) => (
   </Section>
 );
 
-// Press articles are hardcoded — these are external links, not WP CMS content.
-const pressBlogs = [
-  {
-    date: "06 Mars 2019",
-    title:
-      "Il fabrique des maisons qui résistent à toutes conditions climatiques",
-    description:
-      "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux MBio7. Ils ont également été repérés par la Croix-Rouge et le Croissant-Rouge.",
-    link: " ",
-    image: NiceMatin,
-  },
-  {
-    date: "1er janvier 2019",
-    title: "Libé des solutions : Le bois mis en demeure",
-    description:
-      "Parmi les inventeurs, il y a les grands rêveurs et les gens carrés. La maison écologique MBio7 est l'alliance des deux. Dominique Tallarida dans le rôle du Géo Trouvetou, Denis Mary dans celui du technicien. Ces habitants de Sospel (Alpes-Maritimes) ont créé des maisons en panneaux de bois recyclé.",
-    link: "https://www.liberation.fr/france/2019/01/01/le-bois-mis-en-demeure_1700633/",
-    image: Liberation,
-  },
-  {
-    date: "14 Août 2018",
-    title: "Une souscription lancée pour des maisons d'urgence",
-    description:
-      "Lauréats du concours Lépine, le Sospellois Dominique Tallarida et son ami Denis Mary s'apprêtent à commercialiser leur concept d'habitat humanitaire. Ils ont besoin d'un dernier coup de pouce",
-    link: "https://www.pressreader.com/monaco/monaco-matin/20180814/281702615548883",
-    image: Monaco,
-  },
-];
+const blogFallbackImages = [NiceMatin, Liberation, Monaco];
 
-const Blogs = ({ data, locale }: { data: BlogsSection; locale: string }) => (
-  <Section>
-    <Container>
-      <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
-        <span className="bg-gradient bg-clip-text text-transparent">
-          {data.title_part1}
-        </span>{" "}
-        {data.title_part2}
-      </h2>
-      <p className="text-muted-foreground text-sm text-center max-w-[65ch] mx-auto mb-14">
-        {data.description}
-      </p>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {pressBlogs.map((blog, index) => (
-          <BlogCard key={index} blog={blog} />
-        ))}
-      </div>
-      <div className="mt-12 flex justify-center">
-        <CustomButton
-          label={data.ViewMore}
-          inverted
-          href={data.ViewMoreLink}
-          asChild
-          className="bg-white"
-          locale={locale}
-        />
-      </div>
-    </Container>
-  </Section>
-);
+const Blogs = ({ data, locale }: { data: BlogsSection; locale: string }) => {
+  const blogs = Object.values(data.blogs).map((blog, i) => ({
+    ...blog,
+    image: resolveWPImageUrl(blog.image) ?? blogFallbackImages[i],
+  }));
+  const viewMoreHref = locale === "fr" ? "/pages/actualités" : "/pages/news";
+
+  return (
+    <Section>
+      <Container>
+        <h2 className="font-semibold text-black text-4xl sm:text-5xl lg:text-6xl mb-6 text-center">
+          <span className="bg-gradient bg-clip-text text-transparent">
+            {data.title_part1}
+          </span>{" "}
+          {data.title_part2}
+        </h2>
+        <p className="text-muted-foreground text-sm text-center max-w-[65ch] mx-auto mb-14">
+          {data.description}
+        </p>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {blogs.map((blog, index) => (
+            <BlogCard key={index} blog={blog} />
+          ))}
+        </div>
+        <div className="mt-12 flex justify-center">
+          <CustomButton
+            label={data.viewmore}
+            inverted
+            href={viewMoreHref}
+            asChild
+            className="bg-white"
+            locale={locale}
+          />
+        </div>
+      </Container>
+    </Section>
+  );
+};
 
 interface BlogCardProps {
   blog: {
@@ -519,7 +496,7 @@ interface BlogCardProps {
     title: string;
     link: string;
     description: string;
-    image: StaticImageData;
+    image: string | StaticImageData;
   };
 }
 

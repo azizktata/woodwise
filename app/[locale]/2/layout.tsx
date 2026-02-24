@@ -1,4 +1,4 @@
-// Version 3 Layout — Warm Organic Nav
+// Version 2 Layout — Warm Organic Nav
 import { Onest } from "next/font/google";
 import { MobileNav } from "@/components/nav/mobile-nav";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,7 @@ import { getTranslations } from "next-intl/server";
 
 const font = Onest({ subsets: ["latin"], variable: "--font-onest", weight: ["400", "500", "600", "700"] });
 
-export default async function Layout3({
+export default async function Layout2({
   children,
   params,
 }: {
@@ -34,15 +34,15 @@ export default async function Layout3({
 
   return (
     <>
-      <TopNavV3 />
-      <NavV3 locale={locale} mainMenu={mainMenu} />
+      <TopNavV2 />
+      <NavV2 locale={locale} mainMenu={mainMenu} />
       {children}
-      <FooterV3 mainMenu={mainMenu} />
+      <FooterV2 mainMenu={mainMenu} />
     </>
   );
 }
 
-const TopNavV3 = () => {
+const TopNavV2 = () => {
   const t = useTranslations("TopNav");
   return (
     <nav className="py-2.5" style={{ background: "#1a3d2b" }}>
@@ -50,8 +50,7 @@ const TopNavV3 = () => {
         <div className="flex items-center justify-center gap-2 flex-wrap">
           <TreePine className="h-3.5 w-3.5" style={{ color: "#84bc40" }} />
           <span style={{ color: "rgba(250,246,239,0.8)" }} className="text-xs">{t("certifiedPartner")}</span>
-          <a href="#contact" className="flex items-center gap-1 text-xs font-semibold hover:opacity-80 transition-opacity"
-            style={{ color: "#d4b896" }}>
+          <a href="#contact" className="flex items-center gap-1 text-xs font-semibold hover:opacity-80 transition-opacity" style={{ color: "#d4b896" }}>
             {t("joinUs")} <ChevronRight className="h-3 w-3" />
           </a>
         </div>
@@ -71,25 +70,19 @@ const TopNavV3 = () => {
   );
 };
 
-const NavV3 = ({ locale, mainMenu }: { locale: string; mainMenu: { key: string; href: string }[] }) => (
+const NavV2 = ({ locale, mainMenu }: { locale: string; mainMenu: { key: string; href: string }[] }) => (
   <nav style={{ background: "#faf6ef", borderBottom: "1px solid #e8dcc8" }}>
     <div className="max-w-7xl mx-auto py-4 px-6 sm:px-8 flex justify-between items-center">
       <Link href="/" className="hover:opacity-80 transition-opacity">
         <Image src={Logo} alt="WoodWise" width={140} height={32} />
       </Link>
-
       <div className="hidden md:flex items-center gap-1">
         {mainMenu.map(({ key, href }) => (
-          <Button key={href} asChild variant="ghost" size="sm"
-            className="font-medium text-sm rounded-xl hover:bg-[#1a3d2b]/8"
-            style={{ color: "#3d2b1a" }}>
-            <Link href={href} locale={locale}>
-              {key.charAt(0).toUpperCase() + key.slice(1)}
-            </Link>
+          <Button key={href} asChild variant="ghost" size="sm" className="font-medium text-sm rounded-xl hover:bg-[#1a3d2b]/8" style={{ color: "#3d2b1a" }}>
+            <Link href={href} locale={locale}>{key.charAt(0).toUpperCase() + key.slice(1)}</Link>
           </Button>
         ))}
       </div>
-
       <div className="flex items-center gap-3">
         <a href="#contact"
           className="hidden md:inline-flex items-center gap-2 font-semibold text-sm px-5 py-2.5 rounded-2xl text-white transition-all duration-200 hover:opacity-90"
@@ -106,7 +99,7 @@ const NavV3 = ({ locale, mainMenu }: { locale: string; mainMenu: { key: string; 
 
 const contactInfo = { phone: "80157 59053", email: "contact@woodwise.fr", address: "QUARTIER CUNI, SOSPEL, 06380, FR" };
 
-const FooterV3 = ({ mainMenu }: { mainMenu: { key: string; href: string }[] }) => (
+const FooterV2 = ({ mainMenu }: { mainMenu: { key: string; href: string }[] }) => (
   <footer className={cn("font-sans", font.variable)}>
     <div style={{ background: "#1a3d2b" }}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8 py-16">
@@ -127,9 +120,7 @@ const FooterV3 = ({ mainMenu }: { mainMenu: { key: string; href: string }[] }) =
             <h6 className="font-semibold text-xs uppercase tracking-widest mb-5" style={{ color: "#84bc40" }}>Navigation</h6>
             <div className="flex flex-col gap-2.5">
               {mainMenu.map(({ key, href }) => (
-                <Link key={href} href={href}
-                  className="text-sm transition-colors hover:opacity-80"
-                  style={{ color: "rgba(250,246,239,0.6)" }}>
+                <Link key={href} href={href} className="text-sm transition-colors hover:opacity-80" style={{ color: "rgba(250,246,239,0.6)" }}>
                   {key.charAt(0).toUpperCase() + key.slice(1)}
                 </Link>
               ))}
@@ -151,8 +142,7 @@ const FooterV3 = ({ mainMenu }: { mainMenu: { key: string; href: string }[] }) =
             </div>
           </div>
         </div>
-        <div className="mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2"
-          style={{ borderTop: "1px solid rgba(250,246,239,0.1)" }}>
+        <div className="mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2" style={{ borderTop: "1px solid rgba(250,246,239,0.1)" }}>
           <p className="text-xs" style={{ color: "rgba(250,246,239,0.25)" }}>© 2025 WoodWise. Tous droits réservés.</p>
           <div className="flex items-center gap-1 text-xs" style={{ color: "rgba(250,246,239,0.25)" }}>
             <TreePine className="h-3 w-3" style={{ color: "#84bc40" }} />

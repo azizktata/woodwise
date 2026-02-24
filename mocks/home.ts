@@ -12,8 +12,8 @@ export const homeMock: WPPostResponse<HomePageACF> = {
       title_part2: "ECOLOGIQUEMENT",
       description:
         "WoodWise Une entreprise spécialisée dans la fabrication des produits durables dans un matériau composite de bois recyclé, réduisant le CO2 de la planète.",
-      learnMore: "Découvrir plus",
-      learnMoreLink: "/pages/à-propos",
+      learnmore: "Découvrir plus",
+      learnmorelink: "/pages/à-propos",
     },
     herosection_en: {
       subtitle_1: "With",
@@ -22,19 +22,19 @@ export const homeMock: WPPostResponse<HomePageACF> = {
       title_part2: "ECOLOGICALLY",
       description:
         "WoodWise A company specialized in manufacturing sustainable products in a recycled wood composite material, reducing the planet's CO2.",
-      learnMore: "Learn more",
-      learnMoreLink: "/pages/about",
+      learnmore: "Learn more",
+      learnmorelink: "/pages/about",
     },
 
     aboutsection_fr: {
       title_part1: "  ",
       title_part2: "WoodWise",
-      ourVision: {
+      ourvision: {
         title: "Notre Vision",
         description:
           "L'écologie au service de la construction: bâtir un avenir durable avec le bois moulé.",
       },
-      ourMission: {
+      ourmission: {
         title: "Notre Mission",
         description:
           "Chez WoodWise, notre mission est de révolutionner l'industrie de la construction en proposant des solutions innovantes et durables à base de bois moulé.",
@@ -66,12 +66,12 @@ export const homeMock: WPPostResponse<HomePageACF> = {
     aboutsection_en: {
       title_part1: "About",
       title_part2: "WoodWise",
-      ourVision: {
+      ourvision: {
         title: "Our Vision",
         description:
           "Our vision is to become the world leader in CO2-negative construction solutions, making molded wood the material of choice for building a greener future.",
       },
-      ourMission: {
+      ourmission: {
         title: "Our Mission",
         description:
           "At WoodWise, our mission is to revolutionize the construction industry by providing sustainable, high-performance molded wood products that reduce environmental impact and promote circular economy practices.",
@@ -131,8 +131,8 @@ export const homeMock: WPPostResponse<HomePageACF> = {
       title_part2: "WoodWise",
       description:
         "Le panneau nouvelle génération pour une construction durable. Issu de bois recyclé et de résidus forestiers, MBio7 est un panneau de construction unique.",
-      learnMore: "Découvrir plus",
-      learnMoreLink: "/pages/à-propos",
+      learnmore: "Découvrir plus",
+      learnmorelink: "/pages/à-propos",
       tags: {
         tag1: "Résistant au feu",
         tag2: "Hydrofuge",
@@ -147,8 +147,8 @@ export const homeMock: WPPostResponse<HomePageACF> = {
       title_part2: "WoodWise",
       description:
         "The ecological alternative to traditional construction materials, combining performance, sustainability, and ease of use.",
-      learnMore: "Learn more",
-      learnMoreLink: "/pages/about",
+      learnmore: "Learn more",
+      learnmorelink: "/pages/about",
       tags: {
         tag1: "Fire-resistant",
         tag2: "Water-repellent",
@@ -163,7 +163,7 @@ export const homeMock: WPPostResponse<HomePageACF> = {
       title: "  ",
       description:
         "Vous avez des questions ou souhaitez en savoir plus sur nos produits et services ? N'hésitez pas à nous contacter, nous sommes là pour vous aider.",
-      contactInfo: {
+      contactinfo: {
         title: "Informations de contact",
         description: "N'hésitez pas à nous contacter pour toute question.",
         phone: "80157 59053",
@@ -176,7 +176,7 @@ export const homeMock: WPPostResponse<HomePageACF> = {
       title: "Contact Us",
       description:
         "If you have any questions or would like to know more about our products and services, please feel free to contact us. We are here to help you.",
-      contactInfo: {
+      contactinfo: {
         title: "Contact information",
         description: "Feel free to reach out to us with any questions.",
         phone: "80157 59053",
@@ -191,7 +191,7 @@ export const homeMock: WPPostResponse<HomePageACF> = {
       title_part2: "et articles",
       description:
         "Restez informé des dernières tendances en matière de construction durable, des innovations dans le secteur du bois moulé, et des initiatives écologiques à travers nos articles de blog.",
-      ViewMore: "Voir plus",
+      viewmore: "Voir plus",
       blogs: {
         blog1: {
           date: "06 Mars 2019",
@@ -226,7 +226,7 @@ export const homeMock: WPPostResponse<HomePageACF> = {
       title_part2: "and Articles",
       description:
         "Stay informed about the latest trends in sustainable construction, innovations in the molded wood sector, and ecological initiatives through our blog posts.",
-      ViewMore: "View more",
+      viewmore: "View more",
       blogs: {
         blog1: {
           date: "March 6, 2019",

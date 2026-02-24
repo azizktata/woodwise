@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "lightgoldenrodyellow-eagle-227943.hostingersite.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "placehold.co",
         port: "",
         pathname: "/**",

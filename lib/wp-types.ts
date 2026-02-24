@@ -1,14 +1,48 @@
-// TypeScript interfaces mirroring the WordPress ACF structure for the home page.
-// Each section has _fr and _en variants in the ACF response.
+// TypeScript interfaces mirroring the WordPress ACF structure.
+// All field names are lowercase to match ACF's output exactly.
+
+// ---------------------------------------------------------------------------
+// Shared helpers
+// ---------------------------------------------------------------------------
+
+/**
+ * ACF image fields can come back in several formats depending on the
+ * field's "Return Format" setting and whether acf_format=standard is used.
+ *  - string  → direct URL  (Return Format: URL, or legacy string)
+ *  - number  → attachment ID  (Return Format: ID)
+ *  - object  → full media object  (Return Format: Array + acf_format=standard)
+ *  - false   → empty / unset
+ */
+export type WPImageField =
+  | string
+  | number
+  | false
+  | null
+  | { url: string; [key: string]: unknown }
+  | undefined;
+
+/** Resolve any WPImageField to a plain URL string, or undefined if unavailable. */
+export function resolveWPImageUrl(img: WPImageField): string | undefined {
+  if (!img && img !== 0) return undefined;
+  if (typeof img === "string") return img || undefined;
+  if (typeof img === "object" && img !== null && "url" in img)
+    return img.url as string;
+  return undefined; // integer IDs need an extra API call — callers provide a local fallback
+}
+
+// ---------------------------------------------------------------------------
+// Home page  (slug: landingpage)
+// ---------------------------------------------------------------------------
 
 export interface HeroSection {
-  subtitle_1: string;
-  subtitle_2: string;
+  subtitle_1?: string; // optional — not always present in WP
+  subtitle_2?: string;
   title_part1: string;
   title_part2: string;
   description: string;
-  learnMore: string;
-  learnMoreLink: string;
+  learnmore: string;
+  learnmorelink: string; // all lowercase
+  image?: string;
 }
 
 export interface AboutVisionMission {
@@ -24,8 +58,8 @@ export interface AboutService {
 export interface AboutSection {
   title_part1: string;
   title_part2: string;
-  ourVision: AboutVisionMission;
-  ourMission: AboutVisionMission;
+  ourvision: AboutVisionMission;
+  ourmission: AboutVisionMission;
   services: {
     service1: AboutService;
     service2: AboutService;
@@ -33,7 +67,7 @@ export interface AboutSection {
     service4: AboutService;
     [key: string]: AboutService;
   };
-  image: string | undefined;
+  image: WPImageField;
 }
 
 export interface ImpactStat {
@@ -54,8 +88,8 @@ export interface Mbio7Section {
   title_part1: string;
   title_part2: string;
   description: string;
-  learnMore: string;
-  learnMoreLink: string;
+  learnmore: string;
+  learnmorelink: string; // all lowercase
   tags: {
     tag1: string;
     tag2: string;
@@ -64,50 +98,39 @@ export interface Mbio7Section {
     tag5: string;
     [key: string]: string;
   };
-  image: string | undefined;
+  image: WPImageField;
 }
 
 export interface ContactSectionContent {
   title: string;
   description: string;
-  contactInfo: {
+  contactinfo: {
     title: string;
     description: string;
     phone: string;
     mail: string;
     map: string;
   };
-  
+}
+
+export interface BlogItem {
+  date: string;
+  title: string;
+  description: string;
+  link: string;
+  image: WPImageField;
 }
 
 export interface BlogsSection {
   title_part1: string;
   title_part2: string;
   description: string;
-  ViewMore: string;
-  // ViewMoreLink: string;
+  viewmore: string;
   blogs: {
-    blog1: {
-      date: string;
-      title: string;
-      description: string;
-      link: string;
-      image?: string;
-    };
-    blog2: {
-      date: string;
-      title: string;
-      description: string;
-      link: string;
-      image?: string;
-    };
-    blog3: {
-      date: string;
-      title: string;
-      description: string;
-      link: string;
-      image?: string;
-    };
+    blog1: BlogItem;
+    blog2: BlogItem;
+    blog3: BlogItem;
+    [key: string]: BlogItem;
   };
 }
 
@@ -158,6 +181,79 @@ export interface HomePageACF {
   faqsection_en: FAQSection;
   [key: string]: unknown;
 }
+
+// ---------------------------------------------------------------------------
+// About-us page  (slug: about-us)
+// ---------------------------------------------------------------------------
+
+/** Combined CTA + Feature section from aboutussection_fr/en */
+export interface AboutUsCTASection {
+  subtitle: string;
+  title: string;
+  description: string;
+  contactus?: string; // optional — may not be present in WP
+  services: {
+    service1: AboutService;
+    service2: AboutService;
+    service3: AboutService;
+    service4: AboutService;
+    [key: string]: AboutService;
+  };
+}
+
+export interface WPTeamMember {
+  name: string;
+  position: string;
+  image: WPImageField;
+}
+
+export interface WPTeamSection {
+  title: string; // single string from WP (not part1/part2)
+  members: {
+    [key: string]: WPTeamMember;
+  };
+}
+
+export interface AboutUsACF {
+  banner?: string;
+  aboutussection_fr: AboutUsCTASection;
+  aboutussection_en: AboutUsCTASection;
+  team_fr: WPTeamSection;
+  team_en: WPTeamSection;
+  [key: string]: unknown;
+}
+
+// ---------------------------------------------------------------------------
+// Projets page  (slug: projets)
+// ---------------------------------------------------------------------------
+
+export interface ProjectSection {
+  subtitle: string;    // watch-video label text
+  title: string;
+  description: string;
+  image: WPImageField;
+  videolink: string;   // actual YouTube URL
+}
+
+export interface ProjetsACF {
+  banner?: string;
+  projectsection_fr: ProjectSection;
+  projectsection_en: ProjectSection;
+  [key: string]: unknown;
+}
+
+// ---------------------------------------------------------------------------
+// Contact banner  (static — no WP post for this yet)
+// ---------------------------------------------------------------------------
+
+export interface ContactBannerSection {
+  title: string;
+  ctalabel: string;
+}
+
+// ---------------------------------------------------------------------------
+// Generic WP post wrapper
+// ---------------------------------------------------------------------------
 
 export interface WPPostResponse<T> {
   id: number;

@@ -1,17 +1,14 @@
-// Version 2 — Magazine Editorial
-// Design: White/light, editorial magazine layout, asymmetric, large photography
+// Version 2 — Warm Nature / Organic Story
+// Design: Earthy tones, organic shapes, story-telling, warm greens + cream
 import { Section, Container, cn } from "@/components/craft";
-import Balancer from "react-wrap-balancer";
 import { Link } from "@/i18n/routing";
-import HeroImage from "@/public/hero.jpg";
-import AproposImage from "@/public/Apropos.jpg";
-import Mbio7Image from "@/public/Mbio7.jpg";
-import Mbio7ProductImage from "@/public/mbio7product.png";
 import Mbio7logo from "@/public/mbio7-logo.png";
 import NiceMatin from "@/public/nice-matin.png";
 import Liberation from "@/public/liberation.png";
 import Monaco from "@/public/monaco.png";
-import ContactBg from "@/public/contactbg.jpg";
+import HeroImg from "@/public/hero-4.jpg";
+import AproposImg from "@/public/Apropos.jpg";
+import Mbio7Img from "@/public/Mbio7.jpg";
 import Image, { StaticImageData } from "next/image";
 import {
   BrickWall,
@@ -25,21 +22,22 @@ import {
   Projector,
   Sprout,
   Star,
-  ArrowUpRight,
-  Quote,
-  CheckCheck,
+  Leaf,
+  TreePine,
+  Recycle,
+  ArrowRight,
+  Globe2,
 } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Onest } from "next/font/google";
 import ContactForm from "@/components/contact-form";
-import { Button } from "@/components/ui/button";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import {
   getHeroSection,
   getAboutSection,
@@ -64,8 +62,21 @@ import type {
 const font = Onest({
   subsets: ["latin"],
   variable: "--font-onest",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700"],
 });
+
+// Warm color palette
+const C = {
+  cream: "#faf6ef",
+  warmWhite: "#f5f0e8",
+  sand: "#e8dcc8",
+  brown: "#8b6b3d",
+  darkBrown: "#3d2b1a",
+  forest: "#1a3d2b",
+  leafGreen: "#4a8c3f",
+  brightGreen: "#84bc40",
+  accent: "#d4a853",
+};
 
 export default async function Home2({
   params,
@@ -78,17 +89,26 @@ export default async function Home2({
   const [
     heroData, aboutData, impactData, mbio7Data,
     contactData, blogsData, reviewsData, faqData,
+    tHero,
   ] = await Promise.all([
     getHeroSection(locale), getAboutSection(locale), getImpactSection(locale),
     getMbio7Section(locale), getContactSection(locale), getBlogsSection(locale),
     getReviewsSection(locale), getFAQSection(locale),
+    getTranslations("Hero"),
   ]);
 
+  const enrichedHeroData: HeroSection = {
+    ...heroData,
+    subtitle_1: heroData.subtitle_1 ?? tHero("subtitle_1"),
+    subtitle_2: heroData.subtitle_2 ?? tHero("subtitle_2"),
+  };
+
   return (
-    <div className={cn("font-sans bg-[#fafaf8]", font.variable)}>
-      <HeroV2 data={heroData} locale={locale} />
-      <ImpactV2 data={impactData} />
+    <div className={cn("font-sans", font.variable)} style={{ background: C.cream }}>
+      <HeroV2 data={enrichedHeroData} locale={locale} />
+      <NatureStrip />
       <AboutV2 data={aboutData} />
+      <ImpactV2 data={impactData} />
       <ProductV2 data={mbio7Data} locale={locale} />
       <PressV2 data={blogsData} locale={locale} />
       <ReviewsV2 data={reviewsData} />
@@ -101,30 +121,40 @@ export default async function Home2({
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
 const HeroV2 = ({ data, locale }: { data: HeroSection; locale: string }) => (
-  <section className="bg-white border-b border-gray-100">
-    <div className="max-w-7xl mx-auto px-6 sm:px-8 pt-12 pb-0">
-      {/* Eyebrow */}
-      <div className="flex items-center gap-3 mb-10">
-        <div className="h-px flex-1 bg-gray-200 max-w-[60px]" />
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">
-          {data.subtitle_1}
-        </span>
-        <Image src={Mbio7logo} alt="MBio7" width={56} height={28} className="h-7 w-auto" />
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400">
-          {data.subtitle_2}
-        </span>
-        <div className="h-px flex-1 bg-gray-200 max-w-[60px]" />
-      </div>
+  <section
+    className="relative min-h-[90vh] flex items-center overflow-hidden"
+    style={{ background: `linear-gradient(135deg, ${C.cream} 0%, ${C.warmWhite} 50%, #e8f5e4 100%)` }}
+  >
+    <div
+      className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full opacity-20"
+      style={{ background: `radial-gradient(circle, ${C.brightGreen}, transparent 70%)` }}
+    />
+    <div
+      className="absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full opacity-15"
+      style={{ background: `radial-gradient(circle, ${C.leafGreen}, transparent 70%)` }}
+    />
 
-      <div className="grid lg:grid-cols-[1fr_auto] gap-8 lg:gap-16 items-end">
-        {/* Headline */}
+    <div className="max-w-7xl mx-auto px-6 sm:px-8 py-24 w-full">
+      <div className="grid lg:grid-cols-2 gap-16 items-center">
         <div>
-          <h1 className="text-[clamp(3rem,8vw,7rem)] font-black leading-[0.9] tracking-tighter text-[#111] uppercase mb-8">
-            <span className="block">{data.title_part1}</span>
+          <div
+            className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8 text-sm font-medium"
+            style={{ background: `${C.leafGreen}20`, color: C.forest, border: `1px solid ${C.leafGreen}40` }}
+          >
+            <Leaf className="h-4 w-4" />
+            {data.subtitle_1}
+            <Image src={Mbio7logo} alt="MBio7" width={56} height={28} className="h-6 w-auto" />
+            {data.subtitle_2}
+          </div>
+
+          <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight mb-6"
+            style={{ color: C.forest }}
+          >
+            {data.title_part1}
+            <br />
             <span
-              className="block"
               style={{
-                background: "linear-gradient(135deg, #84bc40 0%, #0d7f40 60%)",
+                background: `linear-gradient(135deg, ${C.brightGreen}, ${C.leafGreen})`,
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -134,83 +164,90 @@ const HeroV2 = ({ data, locale }: { data: HeroSection; locale: string }) => (
             </span>
           </h1>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <p className="text-gray-500 text-base max-w-[42ch] leading-relaxed">
-              {data.description}
-            </p>
+          <p className="text-base leading-relaxed mb-10 max-w-[44ch]" style={{ color: `${C.forest}99` }}>
+            {data.description}
+          </p>
+
+          <div className="flex flex-wrap gap-4">
             <Link
-              href={data.learnMoreLink as any}
+              href={data.learnmorelink as any}
               locale={locale}
-              className="flex-shrink-0 inline-flex items-center gap-2 bg-[#111] hover:bg-[#0d7f40] text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 text-sm group"
+              className="inline-flex items-center gap-2 font-semibold px-7 py-4 rounded-2xl transition-all duration-300 hover:scale-[1.02] group text-white"
+              style={{ background: `linear-gradient(135deg, ${C.brightGreen}, ${C.leafGreen})` }}
             >
-              {data.learnMore}
-              <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              {data.learnmore}
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
+            <a
+              href="#contact-form"
+              className="inline-flex items-center gap-2 font-medium px-7 py-4 rounded-2xl transition-all duration-300 hover:scale-[1.02]"
+              style={{ background: "transparent", border: `2px solid ${C.leafGreen}60`, color: C.forest }}
+            >
+              Nous contacter
+            </a>
+          </div>
+
+          <div className="flex flex-wrap gap-6 mt-10 pt-10" style={{ borderTop: `1px solid ${C.sand}` }}>
+            {[
+              { icon: <Globe2 className="h-4 w-4" />, label: "Solar Impulse Label" },
+              { icon: <Medal className="h-4 w-4" />, label: "Médaille Concours Lépine 2015" },
+              { icon: <Recycle className="h-4 w-4" />, label: "95% bois recyclé" },
+            ].map((t, i) => (
+              <div key={i} className="flex items-center gap-2 text-sm" style={{ color: `${C.forest}80` }}>
+                <span style={{ color: C.leafGreen }}>{t.icon}</span>
+                {t.label}
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Right side — vertical label */}
-        <div className="hidden lg:flex flex-col items-center gap-4 pb-4">
-          <div className="writing-mode-vertical text-xs font-medium text-gray-300 uppercase tracking-[0.3em]" style={{ writingMode: "vertical-rl" }}>
-            Construction écologique
+        <div className="relative">
+          <div
+            className="relative overflow-hidden shadow-2xl"
+            style={{ borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", border: `4px solid ${C.sand}` }}
+          >
+            <Image
+              src={HeroImg}
+              alt="WoodWise"
+              width={600}
+              height={600}
+              className="w-full object-cover"
+              placeholder="blur"
+              style={{ aspectRatio: "1/1" }}
+            />
+            <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${C.leafGreen}20, transparent)` }} />
           </div>
-          <div className="w-px h-16 bg-gray-200" />
-        </div>
-      </div>
-    </div>
-
-    {/* Full-width hero image */}
-    <div className="mt-10 relative h-[50vh] sm:h-[60vh] overflow-hidden">
-      <Image
-        src={HeroImage}
-        alt="WoodWise"
-        fill
-        className="object-cover object-center"
-        placeholder="blur"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-white/30 to-transparent" />
-      {/* Overlay stats */}
-      <div className="absolute bottom-6 left-6 right-6 flex justify-end gap-4">
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-sm">
-          <p className="text-[#0d7f40] text-3xl font-black">95%</p>
-          <p className="text-gray-500 text-xs">bois recyclé</p>
-        </div>
-        <div className="bg-[#0d7f40]/90 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-sm">
-          <p className="text-white text-3xl font-black">−7,66</p>
-          <p className="text-green-200 text-xs">kg CO₂ / panneau</p>
+          <div className="absolute -bottom-4 -left-4 rounded-2xl px-5 py-4 shadow-lg" style={{ background: C.forest, color: "white" }}>
+            <p className="text-3xl font-bold" style={{ color: C.brightGreen }}>95%</p>
+            <p className="text-xs opacity-70 mt-0.5">Bois recyclé</p>
+          </div>
+          <div className="absolute top-8 -right-4 rounded-2xl px-5 py-4 shadow-lg" style={{ background: C.warmWhite, border: `1px solid ${C.sand}` }}>
+            <p className="text-3xl font-bold" style={{ color: C.leafGreen }}>−7,66</p>
+            <p className="text-xs mt-0.5" style={{ color: C.brown }}>kg CO₂ / panneau</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 );
 
-// ─── Impact — dark stripe ─────────────────────────────────────────────────────
+// ─── Nature strip ─────────────────────────────────────────────────────────────
 
-const ImpactV2 = ({ data }: { data: ImpactSection }) => (
-  <div className="bg-[#111] py-10">
-    <div className="max-w-7xl mx-auto px-6 sm:px-8">
-      <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
-        {[
-          { value: data.stat1.value, title: data.stat1.title },
-          { value: data.stat2.value, title: data.stat2.title },
-          { value: data.stat3.value, title: data.stat3.title },
-        ].map((stat, i) => (
-          <div key={i} className="flex flex-col items-center text-center py-8 px-6">
-            <span
-              className="text-5xl sm:text-6xl font-black"
-              style={{
-                background: "linear-gradient(135deg, #84bc40, #0d7f40)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              {stat.value}
-            </span>
-            <span className="text-white/50 text-sm mt-2 max-w-[20ch]">{stat.title}</span>
-          </div>
-        ))}
-      </div>
+const NatureStrip = () => (
+  <div className="py-4 overflow-hidden" style={{ background: C.forest }}>
+    <div className="flex items-center gap-12 px-12 w-full justify-center flex-wrap">
+      {[
+        { icon: <TreePine className="h-4 w-4" />, text: "Forêts préservées" },
+        { icon: <Recycle className="h-4 w-4" />, text: "Économie circulaire" },
+        { icon: <Leaf className="h-4 w-4" />, text: "Bilan carbone négatif" },
+        { icon: <Globe2 className="h-4 w-4" />, text: "Impact mondial" },
+        { icon: <Sprout className="h-4 w-4" />, text: "Innovation durable" },
+      ].map((item, i) => (
+        <div key={i} className="flex items-center gap-2 text-white/70 text-sm whitespace-nowrap">
+          <span style={{ color: C.brightGreen }}>{item.icon}</span>
+          {item.text}
+        </div>
+      ))}
     </div>
   </div>
 );
@@ -219,159 +256,150 @@ const ImpactV2 = ({ data }: { data: ImpactSection }) => (
 
 const AboutV2 = ({ data }: { data: AboutSection }) => {
   const services = [
-    { title: data.services.service1.title, desc: data.services.service1.description, icon: <BrickWall className="h-5 w-5" /> },
-    { title: data.services.service2.title, desc: data.services.service2.description, icon: <Sprout className="h-5 w-5" /> },
-    { title: data.services.service3.title, desc: data.services.service3.description, icon: <Handshake className="h-5 w-5" /> },
-    { title: data.services.service4.title, desc: data.services.service4.description, icon: <Medal className="h-5 w-5" /> },
+    { title: data.services.service1.title, desc: data.services.service1.description, icon: <BrickWall className="h-6 w-6" />, color: "#84bc40" },
+    { title: data.services.service2.title, desc: data.services.service2.description, icon: <Sprout className="h-6 w-6" />, color: "#4a8c3f" },
+    { title: data.services.service3.title, desc: data.services.service3.description, icon: <Handshake className="h-6 w-6" />, color: "#d4a853" },
+    { title: data.services.service4.title, desc: data.services.service4.description, icon: <Medal className="h-6 w-6" />, color: "#c07830" },
   ];
 
   return (
-    <section className="bg-[#fafaf8] py-20 sm:py-28">
+    <section className="py-20 sm:py-28" style={{ background: C.warmWhite }}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        {/* Top: asymmetric grid */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-20">
-          {/* Left: image */}
-          <div className="relative rounded-3xl overflow-hidden" style={{ minHeight: 400 }}>
-            <Image
-              src={AproposImage}
-              alt="À propos"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0d7f40]/40 to-transparent" />
-            <div className="absolute bottom-8 left-8 right-8">
-              <p className="text-white/90 text-2xl font-bold leading-snug">
-                &ldquo;{data.ourVision.description}&rdquo;
-              </p>
+        <div className="flex items-center gap-3 mb-12">
+          <Leaf className="h-5 w-5" style={{ color: C.leafGreen }} />
+          <span className="text-sm font-semibold uppercase tracking-widest" style={{ color: C.leafGreen }}>Notre Histoire</span>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-16 mb-16">
+          <div>
+            <h2 className="text-4xl sm:text-5xl font-bold leading-tight mb-8" style={{ color: C.forest }}>
+              {data.title_part1}{" "}
+              <span style={{ background: `linear-gradient(135deg, ${C.brightGreen}, ${C.leafGreen})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+                {data.title_part2}
+              </span>
+            </h2>
+            <div className="space-y-8">
+              <div className="rounded-2xl p-6 border" style={{ background: `${C.leafGreen}08`, borderColor: `${C.leafGreen}20` }}>
+                <div className="flex items-center gap-2 mb-3">
+                  <Eye className="h-5 w-5" style={{ color: C.leafGreen }} />
+                  <h4 className="font-bold text-lg" style={{ color: C.forest }}>{data.ourvision.title}</h4>
+                </div>
+                <p className="text-sm leading-relaxed" style={{ color: C.darkBrown }}>{data.ourvision.description}</p>
+              </div>
+              <div className="rounded-2xl p-6 border" style={{ background: `${C.brightGreen}08`, borderColor: `${C.brightGreen}20` }}>
+                <div className="flex items-center gap-2 mb-3">
+                  <Projector className="h-5 w-5" style={{ color: C.brightGreen }} />
+                  <h4 className="font-bold text-lg" style={{ color: C.forest }}>{data.ourmission.title}</h4>
+                </div>
+                <p className="text-sm leading-relaxed" style={{ color: C.darkBrown }}>{data.ourmission.description}</p>
+              </div>
             </div>
           </div>
 
-          {/* Right: text */}
-          <div className="flex flex-col justify-center">
-            <div className="border-l-4 border-[#84bc40] pl-6 mb-8">
-              <h2 className="text-4xl sm:text-5xl font-black text-[#111] leading-tight">
-                {data.title_part1}
-                <br />
-                <span
-                  style={{
-                    background: "linear-gradient(135deg, #84bc40, #0d7f40)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  {data.title_part2}
-                </span>
-              </h2>
-            </div>
-
-            <div className="space-y-6">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <Eye className="h-4 w-4 text-[#0d7f40]" />
-                  <h4 className="font-bold text-[#111]">{data.ourVision.title}</h4>
-                </div>
-                <p className="text-gray-500 text-sm leading-relaxed pl-6">{data.ourVision.description}</p>
-              </div>
-              <div className="h-px bg-gray-100" />
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <Projector className="h-4 w-4 text-[#0d7f40]" />
-                  <h4 className="font-bold text-[#111]">{data.ourMission.title}</h4>
-                </div>
-                <p className="text-gray-500 text-sm leading-relaxed pl-6">{data.ourMission.description}</p>
-              </div>
+          <div className="relative flex items-center justify-center">
+            <div className="w-full max-w-md overflow-hidden shadow-xl" style={{ borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%", border: `3px solid ${C.sand}` }}>
+              <Image src={AproposImg} alt="À propos" width={500} height={500} placeholder="blur" className="w-full object-cover" style={{ aspectRatio: "1/1" }} />
             </div>
           </div>
         </div>
 
-        {/* Services — horizontal list */}
-        <div className="border-t border-gray-200 pt-12">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-8">
-            Nos engagements
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200">
-            {services.map((s, i) => (
-              <div key={i} className="bg-[#fafaf8] hover:bg-white p-6 transition-colors group">
-                <div className="text-[#0d7f40] mb-4 group-hover:scale-110 transition-transform inline-block">
-                  {s.icon}
-                </div>
-                <h4 className="font-bold text-[#111] text-sm mb-2 leading-snug">{s.title}</h4>
-                <p className="text-gray-400 text-xs leading-relaxed">{s.desc}</p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {services.map((s, i) => (
+            <div key={i} className="group rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              style={{ background: "white", border: `1px solid ${C.sand}`, boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}>
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style={{ background: `${s.color}15`, color: s.color }}>
+                {s.icon}
               </div>
-            ))}
-          </div>
+              <h4 className="font-semibold text-sm leading-snug mb-2" style={{ color: C.forest }}>{s.title}</h4>
+              <p className="text-xs leading-relaxed" style={{ color: `${C.darkBrown}99` }}>{s.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
+// ─── Impact ───────────────────────────────────────────────────────────────────
+
+const ImpactV2 = ({ data }: { data: ImpactSection }) => (
+  <section className="py-20 sm:py-28 relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${C.forest}, #0d7f40)` }}>
+    <div className="absolute right-0 top-0 w-96 h-96 rounded-full opacity-10" style={{ background: `radial-gradient(circle, ${C.brightGreen}, transparent)` }} />
+    <div className="absolute left-0 bottom-0 w-64 h-64 rounded-full opacity-10" style={{ background: `radial-gradient(circle, ${C.brightGreen}, transparent)` }} />
+    <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
+      <div className="text-center mb-16">
+        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}>
+          <Leaf className="h-4 w-4" style={{ color: C.brightGreen }} />
+          <span className="text-white/80 text-sm">Notre Impact</span>
+        </div>
+        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+          {data.title_part1}{" "}<span style={{ color: C.brightGreen }}>{data.title_part2}</span>
+        </h2>
+        <p className="text-white/60 max-w-[50ch] mx-auto text-sm">{data.description}</p>
+      </div>
+      <div className="grid sm:grid-cols-3 gap-6">
+        {[
+          { value: data.stat1.value, title: data.stat1.title, accent: C.brightGreen },
+          { value: data.stat2.value, title: data.stat2.title, accent: C.accent },
+          { value: data.stat3.value, title: data.stat3.title, accent: "#7dd87d" },
+        ].map((stat, i) => (
+          <div key={i} className="text-center rounded-3xl p-10 transition-transform hover:-translate-y-1"
+            style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(10px)" }}>
+            <p className="text-7xl font-bold mb-4" style={{ color: stat.accent }}>{stat.value}</p>
+            <p className="text-white/70 text-sm leading-relaxed">{stat.title}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 // ─── Product ─────────────────────────────────────────────────────────────────
 
 const ProductV2 = ({ data, locale }: { data: Mbio7Section; locale: string }) => (
-  <section className="bg-white py-20 sm:py-28">
+  <section className="py-20 sm:py-28" style={{ background: C.cream }}>
     <div className="max-w-7xl mx-auto px-6 sm:px-8">
       <div className="grid lg:grid-cols-2 gap-16 items-center">
-        {/* Text first on desktop */}
-        <div className="order-2 lg:order-1">
-          <div className="h-px w-16 bg-[#84bc40] mb-8" />
-          <h2 className="text-4xl sm:text-5xl font-black text-[#111] leading-tight mb-6">
-            {data.title_part1}
-            <br />
-            <span
-              style={{
-                background: "linear-gradient(135deg, #84bc40, #0d7f40)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
+        <div>
+          <div className="flex items-center gap-2 mb-6">
+            <TreePine className="h-5 w-5" style={{ color: C.leafGreen }} />
+            <span className="text-sm font-semibold uppercase tracking-widest" style={{ color: C.leafGreen }}>Notre Produit</span>
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-bold leading-tight mb-6" style={{ color: C.forest }}>
+            {data.title_part1}{" "}
+            <span style={{ background: `linear-gradient(135deg, ${C.brightGreen}, ${C.leafGreen})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
               {data.title_part2}
             </span>
           </h2>
-          <p className="text-gray-500 leading-relaxed mb-8 text-base">{data.description}</p>
-
-          {/* Tags as badges */}
-          <div className="flex flex-wrap gap-2 mb-8">
+          <p className="leading-relaxed mb-8 text-sm" style={{ color: `${C.darkBrown}cc` }}>{data.description}</p>
+          <div className="flex flex-col gap-3 mb-8">
             {Object.values(data.tags).map((tag, i) => (
-              <span
-                key={i}
-                className="inline-flex items-center gap-1.5 bg-[#f0f8f0] text-[#0d7f40] text-xs font-semibold px-3 py-1.5 rounded-full"
-              >
-                <CheckCheck className="h-3 w-3" />
-                {tag}
-              </span>
+              <div key={i} className="flex items-center gap-3">
+                <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: `${C.brightGreen}20` }}>
+                  <Leaf className="h-3 w-3" style={{ color: C.leafGreen }} />
+                </div>
+                <span className="text-sm" style={{ color: C.darkBrown }}>{tag}</span>
+              </div>
             ))}
           </div>
-
-          <Link
-            href={data.learnMoreLink as any}
-            locale={locale}
-            className="inline-flex items-center gap-2 border-2 border-[#111] hover:bg-[#111] text-[#111] hover:text-white font-bold px-7 py-3.5 rounded-xl transition-all duration-200 group text-sm"
-          >
-            {data.learnMore}
-            <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          <Link href={data.learnmorelink as any} locale={locale}
+            className="inline-flex items-center gap-2 font-semibold px-7 py-4 rounded-2xl transition-all duration-300 hover:scale-[1.02] group text-white text-sm"
+            style={{ background: C.forest }}>
+            {data.learnmore}
+            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
-
-        {/* Image with video overlay */}
-        <div className="order-1 lg:order-2 relative">
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
-            <Image src={Mbio7Image} alt="MBio7" fill className="object-cover" />
-            <div className="absolute inset-0 bg-black/30" />
+        <div className="relative">
+          <div className="relative rounded-3xl overflow-hidden shadow-xl" style={{ border: `3px solid ${C.sand}` }}>
+            <Image src={Mbio7Img} alt="MBio7" width={600} height={450} className="w-full object-cover" placeholder="blur" />
+            <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.forest}60, transparent)` }} />
             <div className="absolute inset-0 flex items-center justify-center">
               <Link href="https://www.youtube.com/watch?v=jUQu9_26Gdg" target="_blank" rel="noopener noreferrer">
-                <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-xl hover:scale-110 transition-transform">
-                  <PlayIcon className="h-6 w-6 fill-[#0d7f40] text-[#0d7f40] ml-0.5" />
+                <div className="w-16 h-16 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-xl" style={{ background: "rgba(255,255,255,0.9)" }}>
+                  <PlayIcon className="h-6 w-6 ml-0.5" style={{ fill: C.leafGreen, color: C.leafGreen }} />
                 </div>
               </Link>
             </div>
-          </div>
-
-          {/* Product image overlay */}
-          <div className="absolute -bottom-8 -right-4 bg-white rounded-2xl p-3 shadow-xl hidden lg:block">
-            <Image src={Mbio7ProductImage} alt="MBio7 product" width={140} height={140} className="rounded-xl" />
           </div>
         </div>
       </div>
@@ -379,7 +407,7 @@ const ProductV2 = ({ data, locale }: { data: Mbio7Section; locale: string }) => 
   </section>
 );
 
-// ─── Press / Blogs ───────────────────────────────────────────────────────────
+// ─── Press ────────────────────────────────────────────────────────────────────
 
 const pressBlogs = [
   { date: "06 Mars 2019", title: "Il fabrique des maisons qui résistent à toutes conditions climatiques", description: "Denis Mary et Dominique Tallarida vont lancer dès la semaine prochaine la production des fameux panneaux MBio7.", link: "https://www.nicematin.com/vie-locale/grace-a-ces-panneaux-en-bois-il-fabrique-des-maisons-qui-resistent-a-toutes-conditions-climatiques-303801", image: NiceMatin },
@@ -388,63 +416,39 @@ const pressBlogs = [
 ];
 
 const PressV2 = ({ data, locale }: { data: BlogsSection; locale: string }) => (
-  <section className="bg-[#fafaf8] py-20 sm:py-28">
+  <section className="py-20 sm:py-28" style={{ background: C.warmWhite }}>
     <div className="max-w-7xl mx-auto px-6 sm:px-8">
-      {/* Header line */}
-      <div className="flex items-baseline justify-between mb-12 border-b border-gray-200 pb-6">
-        <h2 className="text-3xl sm:text-4xl font-black text-[#111]">
-          <span
-            style={{
-              background: "linear-gradient(135deg, #84bc40, #0d7f40)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
+      <div className="flex items-center gap-3 mb-4">
+        <Leaf className="h-5 w-5" style={{ color: C.leafGreen }} />
+        <span className="text-sm font-semibold uppercase tracking-widest" style={{ color: C.leafGreen }}>Presse</span>
+      </div>
+      <div className="flex justify-between items-end mb-12">
+        <h2 className="text-4xl sm:text-5xl font-bold" style={{ color: C.forest }}>
+          <span style={{ background: `linear-gradient(135deg, ${C.brightGreen}, ${C.leafGreen})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
             {data.title_part1}
-          </span>{" "}
-          <span className="text-[#111]">{data.title_part2}</span>
+          </span>{" "}{data.title_part2}
         </h2>
-        <Link
-          href={data.ViewMoreLink as any}
-          locale={locale}
-          className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-[#0d7f40] hover:text-[#84bc40] transition-colors"
-        >
-          {data.ViewMore} <ArrowUpRight className="h-4 w-4" />
+        <Link href={locale === "fr" ? "/pages/actualités" : "/pages/news"} locale={locale}
+          className="hidden sm:flex items-center gap-2 text-sm font-semibold transition-colors" style={{ color: C.leafGreen }}>
+          {data.viewmore} <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
-
-      {/* Featured + 2 small */}
-      <div className="grid lg:grid-cols-[2fr_1fr] gap-6">
-        {/* Featured */}
-        <Link href={pressBlogs[0].link as any} target="_blank" rel="noopener noreferrer" className="group">
-          <div className="relative rounded-3xl overflow-hidden aspect-[16/10] mb-4">
-            <Image src={pressBlogs[0].image} alt={pressBlogs[0].title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#111]/80 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <span className="text-green-300 text-xs font-medium">{pressBlogs[0].date}</span>
-              <h3 className="text-white text-xl font-bold mt-1 leading-snug">{pressBlogs[0].title}</h3>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {pressBlogs.map((blog, i) => (
+          <Link key={i} href={blog.link as any} target="_blank" rel="noopener noreferrer" className="group">
+            <div className="rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl h-full flex flex-col"
+              style={{ background: "white", border: `1px solid ${C.sand}` }}>
+              <div className="overflow-hidden h-44">
+                <Image src={blog.image} alt={blog.title} width={400} height={200} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <span className="text-xs font-medium mb-2" style={{ color: C.leafGreen }}>{blog.date}</span>
+                <h4 className="font-bold text-base leading-snug mb-3 flex-1" style={{ color: C.forest }}>{blog.title}</h4>
+                <p className="text-xs leading-relaxed" style={{ color: `${C.darkBrown}99` }}>{blog.description}</p>
+              </div>
             </div>
-          </div>
-          <p className="text-gray-500 text-sm leading-relaxed">{pressBlogs[0].description}</p>
-        </Link>
-
-        {/* Small cards */}
-        <div className="flex flex-col gap-6">
-          {pressBlogs.slice(1).map((blog, i) => (
-            <Link key={i} href={blog.link as any} target="_blank" rel="noopener noreferrer" className="group flex gap-4">
-              <div className="relative w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden">
-                <Image src={blog.image} alt={blog.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
-              </div>
-              <div>
-                <span className="text-[#0d7f40] text-xs font-medium">{blog.date}</span>
-                <h4 className="text-[#111] text-sm font-bold leading-snug mt-1 group-hover:text-[#0d7f40] transition-colors">
-                  {blog.title}
-                </h4>
-              </div>
-            </Link>
-          ))}
-        </div>
+          </Link>
+        ))}
       </div>
     </div>
   </section>
@@ -453,59 +457,39 @@ const PressV2 = ({ data, locale }: { data: BlogsSection; locale: string }) => (
 // ─── Reviews ─────────────────────────────────────────────────────────────────
 
 const ReviewsV2 = ({ data }: { data: ReviewsSection }) => {
-  const reviews = Object.values(data.reviews).map((r) => ({
-    name: r.name,
-    rating: parseInt(r.stars, 10),
-    comment: r.comment,
-  }));
-
+  const reviews = Object.values(data.reviews).map((r) => ({ name: r.name, rating: parseInt(r.stars, 10), comment: r.comment }));
   return (
-    <section className="bg-white py-20 sm:py-28">
+    <section className="py-20 sm:py-28" style={{ background: C.cream }}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Label */}
-          <div>
-            <h2 className="text-4xl sm:text-5xl font-black text-[#111] leading-tight mb-6">
-              {data.title_part1}
-              <br />
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #84bc40, #0d7f40)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                {data.title_part2}
-              </span>
-            </h2>
-            <p className="text-gray-400 text-base leading-relaxed max-w-[40ch]">{data.description}</p>
-          </div>
-
-          {/* Reviews */}
-          <div className="flex flex-col gap-6">
-            {reviews.map((r, i) => (
-              <div key={i} className="bg-[#fafaf8] rounded-2xl p-6 border border-gray-100">
-                <Quote className="h-8 w-8 text-[#84bc40] mb-4 opacity-60" />
-                <p className="text-[#111] text-base leading-relaxed mb-6 italic">&ldquo;{r.comment}&rdquo;</p>
-                <div className="flex items-center gap-3">
-                  <Avatar className="h-10 w-10">
-                    <AvatarFallback className="bg-[#0d7f40] text-white text-sm font-bold">
-                      {r.name.charAt(0)}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <p className="font-semibold text-[#111] text-sm">{r.name}</p>
-                    <div className="flex gap-0.5 mt-0.5">
-                      {Array.from({ length: r.rating }).map((_, j) => (
-                        <Star key={j} className="h-3 w-3 fill-[#84bc40] text-[#84bc40]" />
-                      ))}
-                    </div>
-                  </div>
-                </div>
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-4" style={{ color: C.forest }}>
+            {data.title_part1}<br />
+            <span style={{ background: `linear-gradient(135deg, ${C.brightGreen}, ${C.leafGreen})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              {data.title_part2}
+            </span>
+          </h2>
+          <p className="text-sm max-w-[50ch] mx-auto" style={{ color: `${C.darkBrown}99` }}>{data.description}</p>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          {reviews.map((r, i) => (
+            <div key={i} className="rounded-3xl p-8 transition-all hover:-translate-y-1 hover:shadow-lg" style={{ background: "white", border: `1px solid ${C.sand}` }}>
+              <div className="flex gap-0.5 mb-4">
+                {Array.from({ length: r.rating }).map((_, j) => (
+                  <Star key={j} className="h-4 w-4" style={{ fill: C.brightGreen, color: C.brightGreen }} />
+                ))}
               </div>
-            ))}
-          </div>
+              <p className="text-sm leading-relaxed mb-6 italic" style={{ color: C.darkBrown }}>&ldquo;{r.comment}&rdquo;</p>
+              <div className="flex items-center gap-3">
+                <Avatar className="h-10 w-10">
+                  <AvatarFallback className="font-bold text-sm"
+                    style={{ background: `linear-gradient(135deg, ${C.brightGreen}, ${C.leafGreen})`, color: "white" }}>
+                    {r.name.charAt(0)}
+                  </AvatarFallback>
+                </Avatar>
+                <p className="font-semibold text-sm" style={{ color: C.forest }}>{r.name}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -517,42 +501,30 @@ const ReviewsV2 = ({ data }: { data: ReviewsSection }) => {
 const FAQV2 = ({ data }: { data: FAQSection }) => {
   const items = Object.values(data.questions);
   return (
-    <section className="bg-[#fafaf8] py-20 sm:py-28">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="grid lg:grid-cols-[1fr_2fr] gap-16">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-4">FAQ</p>
-            <h2 className="text-4xl font-black text-[#111] leading-tight">
-              {data.title_part1}
-              <br />
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #84bc40, #0d7f40)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                {data.title_part2}
-              </span>
-            </h2>
-          </div>
-
-          <div className="flex flex-col divide-y divide-gray-200">
-            {items.map((item, i) => (
-              <Accordion key={i} type="single" collapsible>
-                <AccordionItem value={item.question} className="border-0">
-                  <AccordionTrigger className="text-left text-[#111] font-semibold py-5 hover:no-underline hover:text-[#0d7f40] transition-colors text-sm">
-                    <span className="mr-4 text-[#84bc40] font-black">{String(i + 1).padStart(2, "0")}</span>
-                    {item.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-500 pb-5 pl-10 leading-relaxed text-sm">
-                    {item.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            ))}
-          </div>
+    <section className="py-20 sm:py-28" style={{ background: C.warmWhite }}>
+      <div className="max-w-3xl mx-auto px-6 sm:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-4" style={{ color: C.forest }}>
+            {data.title_part1}{" "}
+            <span style={{ background: `linear-gradient(135deg, ${C.brightGreen}, ${C.leafGreen})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              {data.title_part2}
+            </span>
+          </h2>
+        </div>
+        <div className="flex flex-col gap-3">
+          {items.map((item, i) => (
+            <Accordion key={i} type="single" collapsible>
+              <AccordionItem value={item.question} className="rounded-2xl px-6 overflow-hidden border-0"
+                style={{ background: "white", border: `1px solid ${C.sand}` }}>
+                <AccordionTrigger className="text-left font-semibold py-5 hover:no-underline text-sm" style={{ color: C.forest }}>
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="pb-5 text-sm leading-relaxed" style={{ color: `${C.darkBrown}cc` }}>
+                  {item.answer}
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          ))}
         </div>
       </div>
     </section>
@@ -561,46 +533,74 @@ const FAQV2 = ({ data }: { data: FAQSection }) => {
 
 // ─── Contact ─────────────────────────────────────────────────────────────────
 
-const contactInfo = {
-  phone: "80157 59053",
-  email: "contact@woodwise.fr",
-  address: "QUARTIER CUNI, SOSPEL, 06380, FR",
-};
-
 const ContactV2 = ({ data }: { data: ContactSectionContent }) => (
-  <section id="contact" className="bg-white py-20 sm:py-28 border-t border-gray-100">
-    <div className="max-w-7xl mx-auto px-6 sm:px-8">
-      <div className="grid lg:grid-cols-[3fr_2fr] gap-16 items-start">
-        {/* Form */}
-        <div>
-          <h2 className="text-4xl font-black text-[#111] mb-2">{data.title}</h2>
-          <p className="text-gray-400 mb-8 text-sm">{data.description}</p>
-          <ContactForm sendLabel={data.send} loadingLabel={data.loading} />
-        </div>
+  <section id="contact" className="relative overflow-hidden" style={{ background: C.forest }}>
+    {/* Organic decorative orbs */}
+    <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full pointer-events-none"
+      style={{ background: `radial-gradient(circle, ${C.leafGreen}30, transparent 70%)` }} />
+    <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] rounded-full pointer-events-none"
+      style={{ background: `radial-gradient(circle, ${C.brightGreen}20, transparent 70%)` }} />
 
-        {/* Info block */}
-        <div className="relative rounded-3xl overflow-hidden min-h-[360px]">
-          <Image src={ContactBg} alt="Contact" fill className="object-cover" />
-          <div className="absolute inset-0 bg-[#0d7f40]/80" />
-          <div className="relative z-10 p-8 h-full flex flex-col justify-between">
-            <div>
-              <h3 className="text-white text-2xl font-bold mb-3">{data.contactInfo.title}</h3>
-              <p className="text-white/70 text-sm">{data.contactInfo.description}</p>
-            </div>
-            <div className="flex flex-col gap-5 mt-8">
-              {[
-                { icon: <Phone className="h-4 w-4" />, val: contactInfo.phone },
-                { icon: <Mail className="h-4 w-4" />, val: contactInfo.email },
-                { icon: <PinIcon className="h-4 w-4" />, val: contactInfo.address },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 text-white/80 text-sm">
-                  <div className="text-white/60">{item.icon}</div>
-                  {item.val}
+    <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 py-20 sm:py-28">
+      <div className="grid lg:grid-cols-[5fr_6fr] gap-12 items-start">
+
+        {/* Left: brand info */}
+        <div>
+          <div className="flex items-center gap-2 mb-6">
+            <Leaf className="h-5 w-5" style={{ color: C.brightGreen }} />
+            <span className="text-sm font-semibold uppercase tracking-widest" style={{ color: C.brightGreen }}>Contact</span>
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-bold text-white leading-tight mb-4">
+            {data.title}
+          </h2>
+          <p className="text-white/55 text-sm leading-relaxed mb-10 max-w-[42ch]">
+            {data.description}
+          </p>
+
+          {/* Contact info cards */}
+          <div className="flex flex-col gap-3 mb-8">
+            {[
+              { icon: <Phone className="h-4 w-4" />, label: data.contactinfo.phone ?? "80157 59053" },
+              { icon: <Mail className="h-4 w-4" />, label: data.contactinfo.mail ?? "contact@woodwise.fr" },
+              { icon: <PinIcon className="h-4 w-4" />, label: data.contactinfo.map ?? "Quartier Cuni, Sospel, 06380, FR" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-4 rounded-2xl px-5 py-4"
+                style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)" }}>
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: `${C.brightGreen}25`, color: C.brightGreen }}>
+                  {item.icon}
                 </div>
-              ))}
+                <span className="text-white/80 text-sm">{item.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Hours */}
+          <div className="rounded-2xl px-5 py-4 flex items-center gap-4"
+            style={{ background: `${C.brightGreen}15`, border: `1px solid ${C.brightGreen}30` }}>
+            <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: C.brightGreen }} />
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-0.5" style={{ color: C.brightGreen }}>Horaires</p>
+              <p className="text-white/60 text-sm">Lundi – Vendredi · 9h00 – 17h00</p>
             </div>
           </div>
         </div>
+
+        {/* Right: form card */}
+        <div className="rounded-3xl p-8 sm:p-10" id="contact-form"
+          style={{ background: C.cream, boxShadow: "0 24px 80px rgba(0,0,0,0.3)" }}>
+          <div className="flex items-center gap-2 mb-2">
+            <Leaf className="h-4 w-4" style={{ color: C.leafGreen }} />
+            <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: C.leafGreen }}>
+              {data.contactinfo.title}
+            </span>
+          </div>
+          <p className="text-sm mb-8 max-w-[38ch]" style={{ color: `${C.darkBrown}99` }}>
+            {data.contactinfo.description}
+          </p>
+          <ContactForm />
+        </div>
+
       </div>
     </div>
   </section>

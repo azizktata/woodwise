@@ -41,7 +41,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import {
   getHeroSection,
   getAboutSection,
@@ -86,6 +86,7 @@ export default async function Home1({
     blogsData,
     reviewsData,
     faqData,
+    tHero,
   ] = await Promise.all([
     getHeroSection(locale),
     getAboutSection(locale),
@@ -95,12 +96,19 @@ export default async function Home1({
     getBlogsSection(locale),
     getReviewsSection(locale),
     getFAQSection(locale),
+    getTranslations("Hero"),
   ]);
+
+  const enrichedHeroData: HeroSection = {
+    ...heroData,
+    subtitle_1: heroData.subtitle_1 ?? tHero("subtitle_1"),
+    subtitle_2: heroData.subtitle_2 ?? tHero("subtitle_2"),
+  };
 
   return (
     <div className={cn("font-sans", font2.variable)}>
       {/* HERO — full dark green */}
-      <HeroV1 data={heroData} locale={locale} />
+      <HeroV1 data={enrichedHeroData} locale={locale} />
 
       {/* ABOUT */}
       <AboutV1 data={aboutData} />
@@ -183,11 +191,11 @@ const HeroV1 = ({ data, locale }: { data: HeroSection; locale: string }) => (
 
         <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4">
           <Link
-            href={data.learnMoreLink as any}
+            href={data.learnmorelink as any}
             locale={locale}
             className="inline-flex items-center gap-2 bg-[#84bc40] hover:bg-[#0d7f40] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-base group"
           >
-            {data.learnMore}
+            {data.learnmore}
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link
@@ -274,8 +282,8 @@ const AboutV1 = ({ data }: { data: AboutSection }) => {
               <div className="w-10 h-10 rounded-xl bg-[#84bc40]/20 flex items-center justify-center mb-6">
                 <Eye className="h-5 w-5 text-[#84bc40]" />
               </div>
-              <h3 className="text-white text-2xl font-bold mb-3">{data.ourVision.title}</h3>
-              <p className="text-white/60 leading-relaxed">{data.ourVision.description}</p>
+              <h3 className="text-white text-2xl font-bold mb-3">{data.ourvision.title}</h3>
+              <p className="text-white/60 leading-relaxed">{data.ourvision.description}</p>
             </div>
           </div>
 
@@ -285,8 +293,8 @@ const AboutV1 = ({ data }: { data: AboutSection }) => {
               <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center mb-6">
                 <Projector className="h-5 w-5 text-white" />
               </div>
-              <h3 className="text-white text-2xl font-bold mb-3">{data.ourMission.title}</h3>
-              <p className="text-white/80 leading-relaxed">{data.ourMission.description}</p>
+              <h3 className="text-white text-2xl font-bold mb-3">{data.ourmission.title}</h3>
+              <p className="text-white/80 leading-relaxed">{data.ourmission.description}</p>
             </div>
           </div>
         </div>
@@ -411,11 +419,11 @@ const ProductV1 = ({ data, locale }: { data: Mbio7Section; locale: string }) => 
           </div>
 
           <Link
-            href={data.learnMoreLink as any}
+            href={data.learnmorelink as any}
             locale={locale}
             className="inline-flex items-center gap-2 bg-[#071a0e] hover:bg-[#0d7f40] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 group"
           >
-            {data.learnMore}
+            {data.learnmore}
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
@@ -446,15 +454,15 @@ const ContactV1 = ({ data }: { data: ContactSectionContent }) => (
             <Image src={ContactBg} alt="" fill className="object-cover" placeholder="blur" />
           </div>
           <div className="relative z-10">
-            <ContactForm sendLabel={data.send} loadingLabel={data.loading} />
+            <ContactForm />
           </div>
         </div>
 
         {/* Info — 2 cols */}
         <div className="lg:col-span-2 bg-[#071a0e] rounded-3xl p-8 text-white flex flex-col justify-between">
           <div>
-            <h3 className="text-2xl font-bold mb-2">{data.contactInfo.title}</h3>
-            <p className="text-white/60 text-sm mb-8">{data.contactInfo.description}</p>
+            <h3 className="text-2xl font-bold mb-2">{data.contactinfo.title}</h3>
+            <p className="text-white/60 text-sm mb-8">{data.contactinfo.description}</p>
           </div>
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-4">
@@ -514,11 +522,11 @@ const PressV1 = ({ data, locale }: { data: BlogsSection; locale: string }) => (
           </h2>
         </div>
         <Link
-          href={data.ViewMoreLink as any}
+          href={locale === "fr" ? "/pages/actualités" : "/pages/news"}
           locale={locale}
           className="text-[#0d7f40] hover:text-[#84bc40] font-medium flex items-center gap-2 group whitespace-nowrap transition-colors"
         >
-          {data.ViewMore}
+          {data.viewmore}
           <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
