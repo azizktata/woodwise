@@ -96,7 +96,7 @@ export default function ContactForm({
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="Sujet" className="bg-white/40 rounded-none" {...field} />
+                <Input placeholder="Sujet" className="bg-white/40 rounded-none border border-gray-200 " {...field} />
               </FormControl>
 
               <FormMessage />
@@ -112,7 +112,7 @@ export default function ContactForm({
                 <textarea
                   placeholder="Message"
                   {...field}
-                  className="resize-none border border-gray-300 p-2 w-full h-32 bg-white/40 rounded-none placeholder:text-[#084d27]"
+                  className="resize-none border border-gray-200 border-b-2 p-2 w-full h-32 bg-white/40 rounded-none placeholder:text-[#084d27]"
                 />
               </FormControl>
 

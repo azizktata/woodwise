@@ -26,10 +26,10 @@ export default async function Layout1({
   const { locale } = await params;
   const t = await getTranslations("Nav");
   const mainMenu = [
-    { key: t("home"), href: t("homeLink") },
-    { key: t("about"), href: t("aboutLink") },
-    { key: t("projects"), href: t("projectsLink") },
-    { key: t("news"), href: t("newsLink") },
+    { key: t("home"), href: "/1" },
+    { key: t("about"), href: `/1${t("aboutLink")}` },
+    { key: t("projects"), href: `/1${t("projectsLink")}` },
+    { key: t("news"), href: `/1${t("newsLink")}` },
   ];
 
   return (
@@ -73,7 +73,7 @@ const TopNavV1 = () => {
 const NavV1 = ({ locale, mainMenu }: { locale: string; mainMenu: { key: string; href: string }[] }) => (
   <nav className="bg-[#0d2e15] border-b border-white/10">
     <div className="max-w-7xl mx-auto py-4 px-6 sm:px-8 flex justify-between items-center">
-      <Link href="/" className="hover:opacity-80 transition-opacity">
+      <Link href="/1" className="hover:opacity-80 transition-opacity">
         <Image src={Logo2} alt="WoodWise" width={140} height={32} />
       </Link>
 

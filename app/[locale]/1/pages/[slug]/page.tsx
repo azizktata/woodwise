@@ -12,18 +12,14 @@ import Monaco from "@/public/monaco.png";
 import BlogImg from "@/public/blog-img.png";
 import {
   ArrowRight,
-  Leaf,
   PlayIcon,
   BrickWall,
   Sprout,
   Handshake,
   Medal,
-  CheckCircle2,
   Phone,
   Mail,
   PinIcon,
-  Recycle,
-  Globe2,
 } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
@@ -33,9 +29,10 @@ import {
   getProjectSection,
   getAboutUsBanner,
   getProjetsBanner,
+  getBlogsSection,
 } from "@/lib/wp-fetch";
 import { resolveWPImageUrl } from "@/lib/wp-types";
-import type { AboutUsCTASection, WPTeamSection, ProjectSection } from "@/lib/wp-types";
+import type { AboutUsCTASection, WPTeamSection, ProjectSection, BlogsSection } from "@/lib/wp-types";
 import ContactForm from "@/components/contact-form";
 import Balancer from "react-wrap-balancer";
 
@@ -62,11 +59,12 @@ export default async function SlugPage1({
   const isProjects = decoded === "projets" || decoded === "projects";
   const isNews = decoded === "actualités" || decoded === "news";
 
-  const [ctaData, teamData, projectData, bannerUrl] = await Promise.all([
+  const [ctaData, teamData, projectData, bannerUrl, blogsData] = await Promise.all([
     isAbout ? getAboutUsCTASection(locale) : Promise.resolve(null),
     isAbout ? getWPTeamSection(locale) : Promise.resolve(null),
     isProjects ? getProjectSection(locale) : Promise.resolve(null),
     isAbout ? getAboutUsBanner() : isProjects ? getProjetsBanner() : Promise.resolve(undefined),
+    isNews ? getBlogsSection(locale) : Promise.resolve(null),
   ]);
 
   // Unsplash fallbacks per page type (used when WP banner is absent)
@@ -115,7 +113,7 @@ export default async function SlugPage1({
       {isProjects && projectData && <ProjectV1 data={projectData} />}
 
       {/* News page */}
-      {isNews && <NewsV1 locale={locale} />}
+      {isNews && <NewsV1 data={blogsData} />}
 
       {/* Contact CTA bottom */}
       <ContactBannerV1 locale={locale} />
@@ -128,31 +126,28 @@ export default async function SlugPage1({
 const AboutCTAV1 = ({ data, locale }: { data: AboutUsCTASection; locale: string }) => (
   <section className="py-20 sm:py-28 bg-white">
     <div className="max-w-7xl mx-auto px-6 sm:px-8">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="grid md:grid-cols-2 gap-8 sm:gap-16">
+        {/* Left: label + title */}
         <div>
-          <span className="text-[#0d7f40] uppercase tracking-widest text-xs font-semibold mb-4 block">{data.subtitle}</span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#071a0e] leading-tight mb-6">
-            <Balancer>{data.title}</Balancer>
-          </h2>
-          <p className="text-gray-600 leading-relaxed mb-8 text-sm max-w-[52ch]">{data.description}</p>
-          <a href="#contact"
-            className="inline-flex items-center gap-2 bg-[#071a0e] hover:bg-[#0d7f40] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 group text-sm">
-            {data.contactus ?? (locale === "fr" ? "Contactez-nous" : "Contact us")}
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+          <p className="text-[#0d7f40] font-bold text-xs mb-4 uppercase tracking-widest">
+            {data.subtitle}
+          </p>
+          <h1 className="font-semibold text-3xl sm:text-4xl text-[#071a0e] leading-snug max-w-[50ch]">
+            {data.title}
+          </h1>
         </div>
-        <div className="grid grid-cols-2 gap-4">
-          {[
-            { icon: <Globe2 className="h-6 w-6" />, label: "Solar Impulse Label" },
-            { icon: <Recycle className="h-6 w-6" />, label: "95% bois recyclé" },
-            { icon: <CheckCircle2 className="h-6 w-6" />, label: "−7,66 kg CO₂ / panneau" },
-            { icon: <Leaf className="h-6 w-6" />, label: "Médaille Lépine 2015" },
-          ].map((item, i) => (
-            <div key={i} className="bg-[#f5faf5] border border-[#84bc40]/20 rounded-2xl p-5 flex flex-col gap-3">
-              <div className="text-[#0d7f40]">{item.icon}</div>
-              <p className="text-[#071a0e] font-semibold text-sm leading-snug">{item.label}</p>
-            </div>
-          ))}
+        {/* Right: description + pill CTA */}
+        <div>
+          <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-[52ch]">
+            {data.description}
+          </p>
+          <a href="#contact"
+            className="inline-flex items-center gap-2 bg-[#071a0e] hover:bg-[#0d2e15] text-white font-semibold pl-1 pr-5 py-1.5 rounded-full transition-all duration-300 text-sm">
+            <span className="rounded-full p-3 bg-[#0d7f40] flex items-center">
+              <ArrowRight className="h-4 w-4" />
+            </span>
+            {data.contactus ?? (locale === "fr" ? "Contactez-nous" : "Contact us")}
+          </a>
         </div>
       </div>
     </div>
@@ -173,9 +168,7 @@ const AboutFeaturesV1 = ({ data }: { data: AboutUsCTASection }) => {
   return (
     <section className="py-16 bg-[#071a0e]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <p className="text-[#84bc40] uppercase tracking-widest text-xs font-semibold mb-12 text-center">
-          Nos Engagements
-        </p>
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {features.map((f, i) => (
             <div key={i} className="group bg-[#0d2e15] border border-[#84bc40]/20 hover:border-[#84bc40]/50 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
@@ -278,28 +271,49 @@ const staticBlogs = [
   { date: "06 Mars 2019", title: "Encore une étape de franchie pour le panneau écolo MBio7", description: "C'est le rêve un peu fou de Dominique Tallarida, Géo Trouvetou des temps modernes.", link: "https://www.nicematin.com/vie-locale/encore-une-etape-de-franchie-pour-le-panneau-ecolo-mbio7-les-etapes-de-la-fabrication-303840", image: NiceBlog },
 ];
 
-const NewsV1 = ({ locale }: { locale: string }) => (
-  <section className="py-20 sm:py-28 bg-white">
-    <div className="max-w-7xl mx-auto px-6 sm:px-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {staticBlogs.map((blog, i) => (
-          <Link key={i} href={blog.link as any} target="_blank" rel="noopener noreferrer" className="group">
-            <div className="rounded-2xl overflow-hidden border border-gray-100 hover:border-[#84bc40]/40 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white h-full flex flex-col">
-              <div className="overflow-hidden h-48">
-                <Image src={blog.image} alt={blog.title} width={400} height={200} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+const imgFallbacksV1 = [NiceMatin, Liberation, Monaco, BlogImg, BlogImg, NiceBlog];
+
+const NewsV1 = ({ data }: { data: BlogsSection | null }) => {
+  type Entry = { date: string; title: string; description: string; link: string; imgSrc: string | typeof NiceMatin };
+  const blogs: Entry[] = data
+    ? Object.values(data.blogs).map((b, i) => ({
+        date: b.date,
+        title: b.title,
+        description: b.description,
+        link: b.link,
+        imgSrc: (resolveWPImageUrl(b.image) ?? imgFallbacksV1[i % imgFallbacksV1.length]) as string | typeof NiceMatin,
+      }))
+    : staticBlogs.map((b) => ({ ...b, imgSrc: b.image }));
+
+  return (
+    <section className="py-20 sm:py-28 bg-white">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {blogs.map((blog, i) => (
+            <Link key={i} href={blog.link as any} target="_blank" rel="noopener noreferrer" className="group">
+              <div className="rounded-2xl overflow-hidden border border-gray-100 hover:border-[#84bc40]/40 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white h-full flex flex-col">
+                <div className="overflow-hidden h-48">
+                  <Image
+                    src={blog.imgSrc as any}
+                    alt={blog.title}
+                    width={400}
+                    height={200}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6 flex flex-col flex-1">
+                  <span className="text-xs text-[#0d7f40] font-semibold mb-2">{blog.date}</span>
+                  <h4 className="font-bold text-[#071a0e] text-base mb-3 leading-snug flex-1">{blog.title}</h4>
+                  <p className="text-gray-500 text-sm leading-relaxed">{blog.description}</p>
+                </div>
               </div>
-              <div className="p-6 flex flex-col flex-1">
-                <span className="text-xs text-[#0d7f40] font-semibold mb-2">{blog.date}</span>
-                <h4 className="font-bold text-[#071a0e] text-base mb-3 leading-snug flex-1">{blog.title}</h4>
-                <p className="text-gray-500 text-sm leading-relaxed">{blog.description}</p>
-              </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 // ─── Contact Banner ───────────────────────────────────────────────────────────
 

@@ -191,7 +191,7 @@ const HeroV1 = ({ data, locale }: { data: HeroSection; locale: string }) => (
 
         <div className="flex flex-col sm:flex-row items-center lg:items-start gap-4">
           <Link
-            href={data.learnmorelink as any}
+            href={locale === "fr" ? "1/pages/à-propos" : "1/pages/about"}
             locale={locale}
             className="inline-flex items-center gap-2 bg-[#84bc40] hover:bg-[#0d7f40] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 text-base group"
           >
@@ -419,7 +419,7 @@ const ProductV1 = ({ data, locale }: { data: Mbio7Section; locale: string }) => 
           </div>
 
           <Link
-            href={data.learnmorelink as any}
+            href={locale === "fr" ? "1/pages/à-propos" : "1/pages/about"}
             locale={locale}
             className="inline-flex items-center gap-2 bg-[#071a0e] hover:bg-[#0d7f40] text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 group"
           >
@@ -522,7 +522,7 @@ const PressV1 = ({ data, locale }: { data: BlogsSection; locale: string }) => (
           </h2>
         </div>
         <Link
-          href={locale === "fr" ? "/pages/actualités" : "/pages/news"}
+          href={locale === "fr" ? "1/pages/actualités" : "1/pages/news"}
           locale={locale}
           className="text-[#0d7f40] hover:text-[#84bc40] font-medium flex items-center gap-2 group whitespace-nowrap transition-colors"
         >

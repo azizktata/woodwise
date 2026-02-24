@@ -1,7 +1,6 @@
 // V2 Slug Page — Warm Organic Style
 import Image, { StaticImageData } from "next/image";
 import ProjectImg from "@/public/project.png";
-import ContactBg from "@/public/contactbg.jpg";
 import LotfiImg from "@/public/lotfi-dogi.png";
 import DenisImg from "@/public/Denis-Mary.jpg";
 import NiceMatin from "@/public/nice-matin.png";
@@ -32,9 +31,10 @@ import {
   getProjectSection,
   getAboutUsBanner,
   getProjetsBanner,
+  getBlogsSection,
 } from "@/lib/wp-fetch";
 import { resolveWPImageUrl } from "@/lib/wp-types";
-import type { AboutUsCTASection, WPTeamSection, ProjectSection } from "@/lib/wp-types";
+import type { AboutUsCTASection, WPTeamSection, ProjectSection, BlogsSection } from "@/lib/wp-types";
 import ContactForm from "@/components/contact-form";
 import Balancer from "react-wrap-balancer";
 
@@ -63,11 +63,12 @@ export default async function SlugPage2({
   const isProjects = decoded === "projets" || decoded === "projects";
   const isNews = decoded === "actualités" || decoded === "news";
 
-  const [ctaData, teamData, projectData, bannerUrl] = await Promise.all([
+  const [ctaData, teamData, projectData, bannerUrl, blogsData] = await Promise.all([
     isAbout ? getAboutUsCTASection(locale) : Promise.resolve(null),
     isAbout ? getWPTeamSection(locale) : Promise.resolve(null),
     isProjects ? getProjectSection(locale) : Promise.resolve(null),
     isAbout ? getAboutUsBanner() : isProjects ? getProjetsBanner() : Promise.resolve(undefined),
+    isNews ? getBlogsSection(locale) : Promise.resolve(null),
   ]);
 
   // Unsplash fallbacks per page type (used when WP banner is absent)
@@ -132,7 +133,7 @@ export default async function SlugPage2({
       {isProjects && projectData && <ProjectV2 data={projectData} />}
 
       {/* News page */}
-      {isNews && <NewsV2 locale={locale} />}
+      {isNews && <NewsV2 data={blogsData} />}
 
       {/* Contact CTA bottom */}
       <ContactBannerV2 locale={locale} />
@@ -145,36 +146,27 @@ export default async function SlugPage2({
 const AboutCTAV2 = ({ data, locale }: { data: AboutUsCTASection; locale: string }) => (
   <section className="py-20 sm:py-28" style={{ background: C.warmWhite }}>
     <div className="max-w-7xl mx-auto px-6 sm:px-8">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="grid md:grid-cols-2 gap-8 sm:gap-16">
         <div>
-          <div className="flex items-center gap-2 mb-4">
-            <Leaf className="h-4 w-4" style={{ color: C.leafGreen }} />
-            <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: C.leafGreen }}>{data.subtitle}</span>
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-bold leading-tight mb-6" style={{ color: C.forest }}>
-            <Balancer>{data.title}</Balancer>
-          </h2>
-          <p className="leading-relaxed mb-8 text-sm max-w-[52ch]" style={{ color: `${C.darkBrown}cc` }}>{data.description}</p>
-          <a href="#contact"
-            className="inline-flex items-center gap-2 font-semibold px-7 py-4 rounded-2xl text-white transition-all duration-300 hover:scale-[1.02] group text-sm"
-            style={{ background: `linear-gradient(135deg, ${C.brightGreen}, ${C.leafGreen})` }}>
-            {data.contactus ?? (locale === "fr" ? "Contactez-nous" : "Contact us")}
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+          <p className="font-bold text-xs mb-4 uppercase tracking-widest" style={{ color: C.leafGreen }}>
+            {data.subtitle}
+          </p>
+          <h1 className="font-semibold text-3xl sm:text-4xl leading-snug max-w-[50ch]" style={{ color: C.forest }}>
+            {data.title}
+          </h1>
         </div>
-        <div className="grid grid-cols-2 gap-4">
-          {[
-            { icon: <Globe2 className="h-6 w-6" />, label: "Solar Impulse Label" },
-            { icon: <Recycle className="h-6 w-6" />, label: "95% bois recyclé" },
-            { icon: <Leaf className="h-6 w-6" />, label: "−7,66 kg CO₂ / panneau" },
-            { icon: <Medal className="h-6 w-6" />, label: "Médaille Lépine 2015" },
-          ].map((item, i) => (
-            <div key={i} className="rounded-2xl p-5 flex flex-col gap-3 transition-all hover:-translate-y-0.5"
-              style={{ background: "white", border: `1px solid ${C.sand}`, boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}>
-              <div style={{ color: C.leafGreen }}>{item.icon}</div>
-              <p className="font-semibold text-sm leading-snug" style={{ color: C.forest }}>{item.label}</p>
-            </div>
-          ))}
+        <div>
+          <p className="text-sm leading-relaxed mb-8 max-w-[52ch]" style={{ color: `${C.darkBrown}99` }}>
+            {data.description}
+          </p>
+          <a href="#contact"
+            className="inline-flex items-center gap-2 font-semibold pl-1 pr-5 py-1.5 rounded-full transition-all duration-300 text-white text-sm"
+            style={{ background: C.forest }}>
+            <span className="rounded-full p-3 flex items-center" style={{ background: C.leafGreen }}>
+              <ArrowRight className="h-4 w-4" />
+            </span>
+            {data.contactus ?? (locale === "fr" ? "Contactez-nous" : "Contact us")}
+          </a>
         </div>
       </div>
     </div>
@@ -362,76 +354,119 @@ const staticBlogs = [
   { date: "06 Mars 2019", title: "Encore une étape de franchie pour le panneau écolo MBio7", description: "C'est le rêve un peu fou de Dominique Tallarida, Géo Trouvetou des temps modernes.", link: "https://www.nicematin.com/vie-locale/encore-une-etape-de-franchie-pour-le-panneau-ecolo-mbio7-les-etapes-de-la-fabrication-303840", image: NiceBlog },
 ];
 
-const NewsV2 = ({ locale }: { locale: string }) => (
-  <section className="py-20 sm:py-28" style={{ background: C.cream }}>
-    <div className="max-w-7xl mx-auto px-6 sm:px-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {staticBlogs.map((blog, i) => (
-          <Link key={i} href={blog.link as any} target="_blank" rel="noopener noreferrer" className="group">
-            <div className="rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl h-full flex flex-col"
-              style={{ background: "white", border: `1px solid ${C.sand}` }}>
-              <div className="overflow-hidden h-48">
-                <Image src={blog.image} alt={blog.title} width={400} height={200} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+const imgFallbacksV2 = [NiceMatin, Liberation, Monaco, BlogImg, BlogImg, NiceBlog];
+
+const NewsV2 = ({ data }: { data: BlogsSection | null }) => {
+  type Entry = { date: string; title: string; description: string; link: string; imgSrc: string | typeof NiceMatin };
+  const blogs: Entry[] = data
+    ? Object.values(data.blogs).map((b, i) => ({
+        date: b.date,
+        title: b.title,
+        description: b.description,
+        link: b.link,
+        imgSrc: (resolveWPImageUrl(b.image) ?? imgFallbacksV2[i % imgFallbacksV2.length]) as string | typeof NiceMatin,
+      }))
+    : staticBlogs.map((b) => ({ ...b, imgSrc: b.image }));
+
+  return (
+    <section className="py-20 sm:py-28" style={{ background: C.cream }}>
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {blogs.map((blog, i) => (
+            <Link key={i} href={blog.link as any} target="_blank" rel="noopener noreferrer" className="group">
+              <div className="rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl h-full flex flex-col"
+                style={{ background: "white", border: `1px solid ${C.sand}` }}>
+                <div className="overflow-hidden h-48">
+                  <Image
+                    src={blog.imgSrc as any}
+                    alt={blog.title}
+                    width={400}
+                    height={200}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6 flex flex-col flex-1">
+                  <span className="text-xs font-semibold mb-2" style={{ color: C.leafGreen }}>{blog.date}</span>
+                  <h4 className="font-bold text-base leading-snug mb-3 flex-1" style={{ color: C.forest }}>{blog.title}</h4>
+                  <p className="text-xs leading-relaxed" style={{ color: `${C.darkBrown}99` }}>{blog.description}</p>
+                </div>
               </div>
-              <div className="p-6 flex flex-col flex-1">
-                <span className="text-xs font-semibold mb-2" style={{ color: C.leafGreen }}>{blog.date}</span>
-                <h4 className="font-bold text-base leading-snug mb-3 flex-1" style={{ color: C.forest }}>{blog.title}</h4>
-                <p className="text-xs leading-relaxed" style={{ color: `${C.darkBrown}99` }}>{blog.description}</p>
-              </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 // ─── Contact Banner ───────────────────────────────────────────────────────────
 
 const ContactBannerV2 = ({ locale }: { locale: string }) => (
-  <section id="contact" className="py-20 sm:py-28" style={{ background: C.warmWhite }}>
-    <div className="max-w-5xl mx-auto px-6 sm:px-8">
-      <div className="text-center mb-12">
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <Leaf className="h-5 w-5" style={{ color: C.leafGreen }} />
-          <span className="text-sm font-semibold uppercase tracking-widest" style={{ color: C.leafGreen }}>Contact</span>
-        </div>
-        <h2 className="text-4xl sm:text-5xl font-bold" style={{ color: C.forest }}>
-          {locale === "fr" ? "Parlons de votre projet" : "Let's talk about your project"}
-        </h2>
-      </div>
-      <div className="grid lg:grid-cols-[3fr_2fr] gap-8">
-        <div className="rounded-3xl p-8" style={{ background: "white", border: `1px solid ${C.sand}`, boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}>
-          <ContactForm />
-        </div>
-        <div className="flex flex-col gap-4">
-          <div className="rounded-3xl overflow-hidden relative" style={{ minHeight: 180 }}>
-            <Image src={ContactBg} alt="Contact" fill className="object-cover" placeholder="blur" />
-            <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${C.forest}cc, ${C.leafGreen}80)` }} />
-            <div className="relative z-10 p-6">
-              <h3 className="text-white font-bold text-lg mb-1">
-                {locale === "fr" ? "Informations de contact" : "Contact information"}
-              </h3>
-              <p className="text-white/70 text-sm">
-                {locale === "fr" ? "N'hésitez pas à nous contacter." : "Feel free to reach out."}
-              </p>
-            </div>
+  <section id="contact" className="relative overflow-hidden" style={{ background: C.forest }}>
+    <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full pointer-events-none"
+      style={{ background: `radial-gradient(circle, ${C.leafGreen}30, transparent 70%)` }} />
+    <div className="absolute -bottom-24 -left-24 w-[300px] h-[300px] rounded-full pointer-events-none"
+      style={{ background: `radial-gradient(circle, ${C.brightGreen}20, transparent 70%)` }} />
+
+    <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 py-20 sm:py-28">
+      <div className="grid lg:grid-cols-[5fr_6fr] gap-12 items-start">
+
+        {/* Left: info */}
+        <div>
+          <div className="flex items-center gap-2 mb-6">
+            <Leaf className="h-5 w-5" style={{ color: C.brightGreen }} />
+            <span className="text-sm font-semibold uppercase tracking-widest" style={{ color: C.brightGreen }}>Contact</span>
           </div>
-          <div className="rounded-3xl p-6 flex flex-col gap-4" style={{ background: "white", border: `1px solid ${C.sand}` }}>
+          <h2 className="text-4xl sm:text-5xl font-bold text-white leading-tight mb-4">
+            {locale === "fr" ? "Parlons de votre projet" : "Let's talk about your project"}
+          </h2>
+          <p className="text-white/55 text-sm leading-relaxed mb-10 max-w-[42ch]">
+            {locale === "fr"
+              ? "Une question ? Notre équipe vous répond rapidement."
+              : "A question? Our team will get back to you quickly."}
+          </p>
+
+          <div className="flex flex-col gap-3 mb-8">
             {[
               { icon: <Phone className="h-4 w-4" />, val: "80157 59053" },
               { icon: <Mail className="h-4 w-4" />, val: "contact@woodwise.fr" },
               { icon: <PinIcon className="h-4 w-4" />, val: "Quartier Cuni, Sospel, 06380" },
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3 text-sm" style={{ color: C.darkBrown }}>
-                <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${C.leafGreen}15`, color: C.leafGreen }}>
+              <div key={i} className="flex items-center gap-4 rounded-2xl px-5 py-4"
+                style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)" }}>
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: `${C.brightGreen}25`, color: C.brightGreen }}>
                   {item.icon}
                 </div>
-                {item.val}
+                <span className="text-white/80 text-sm">{item.val}</span>
               </div>
             ))}
           </div>
+
+          {/* <div className="rounded-2xl px-5 py-4 flex items-center gap-4"
+            style={{ background: `${C.brightGreen}15`, border: `1px solid ${C.brightGreen}30` }}>
+            <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: C.brightGreen }} />
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-0.5" style={{ color: C.brightGreen }}>Horaires</p>
+              <p className="text-white/60 text-sm">Lundi – Vendredi · 9h00 – 17h00</p>
+            </div>
+          </div> */}
         </div>
+
+        {/* Right: form card */}
+        <div className="rounded-3xl p-8 sm:p-10"
+          style={{ background: C.cream, boxShadow: "0 24px 80px rgba(0,0,0,0.3)" }}>
+          <h3 className="font-bold text-xl mb-2" style={{ color: C.forest }}>
+            {locale === "fr" ? "Envoyez-nous un message" : "Send us a message"}
+          </h3>
+          <p className="text-sm mb-8" style={{ color: `${C.darkBrown}99` }}>
+            {locale === "fr"
+              ? "Notre équipe vous répondra dans les plus brefs délais."
+              : "Our team will respond as soon as possible."}
+          </p>
+          <ContactForm />
+        </div>
+
       </div>
     </div>
   </section>

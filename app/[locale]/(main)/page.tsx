@@ -42,7 +42,7 @@ import ContactForm from "@/components/contact-form";
 import { Button } from "@/components/ui/button";
 
 // next-intl
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 
 // WP data layer
 import {
@@ -83,6 +83,8 @@ export default async function Home({
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const tHero = await getTranslations("Hero");
+
   const [
     heroData,
     aboutData,
@@ -102,6 +104,9 @@ export default async function Home({
     getReviewsSection(locale),
     getFAQSection(locale),
   ]);
+
+  heroData.subtitle_1 = tHero("subtitle_1");
+  heroData.subtitle_2 = tHero("subtitle_2");
 
   return (
     <div>

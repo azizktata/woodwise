@@ -170,7 +170,7 @@ const HeroV2 = ({ data, locale }: { data: HeroSection; locale: string }) => (
 
           <div className="flex flex-wrap gap-4">
             <Link
-              href={data.learnmorelink as any}
+              href={locale === "fr" ? "2/pages/à-propos" : "2/pages/about"}
               locale={locale}
               className="inline-flex items-center gap-2 font-semibold px-7 py-4 rounded-2xl transition-all duration-300 hover:scale-[1.02] group text-white"
               style={{ background: `linear-gradient(135deg, ${C.brightGreen}, ${C.leafGreen})` }}
@@ -382,7 +382,7 @@ const ProductV2 = ({ data, locale }: { data: Mbio7Section; locale: string }) => 
               </div>
             ))}
           </div>
-          <Link href={data.learnmorelink as any} locale={locale}
+          <Link  href={locale === "fr" ? "2/pages/à-propos" : "2/pages/about"} locale={locale}
             className="inline-flex items-center gap-2 font-semibold px-7 py-4 rounded-2xl transition-all duration-300 hover:scale-[1.02] group text-white text-sm"
             style={{ background: C.forest }}>
             {data.learnmore}
@@ -428,7 +428,7 @@ const PressV2 = ({ data, locale }: { data: BlogsSection; locale: string }) => (
             {data.title_part1}
           </span>{" "}{data.title_part2}
         </h2>
-        <Link href={locale === "fr" ? "/pages/actualités" : "/pages/news"} locale={locale}
+        <Link href={locale === "fr" ? "2/pages/actualités" : "2/pages/news"} locale={locale}
           className="hidden sm:flex items-center gap-2 text-sm font-semibold transition-colors" style={{ color: C.leafGreen }}>
           {data.viewmore} <ArrowRight className="h-4 w-4" />
         </Link>

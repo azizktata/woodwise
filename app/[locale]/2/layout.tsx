@@ -26,10 +26,10 @@ export default async function Layout2({
   const { locale } = await params;
   const t = await getTranslations("Nav");
   const mainMenu = [
-    { key: t("home"), href: t("homeLink") },
-    { key: t("about"), href: t("aboutLink") },
-    { key: t("projects"), href: t("projectsLink") },
-    { key: t("news"), href: t("newsLink") },
+    { key: t("home"), href: "/2" },
+    { key: t("about"), href: `/2${t("aboutLink")}` },
+    { key: t("projects"), href: `/2${t("projectsLink")}` },
+    { key: t("news"), href: `/2${t("newsLink")}` },
   ];
 
   return (
@@ -73,7 +73,7 @@ const TopNavV2 = () => {
 const NavV2 = ({ locale, mainMenu }: { locale: string; mainMenu: { key: string; href: string }[] }) => (
   <nav style={{ background: "#faf6ef", borderBottom: "1px solid #e8dcc8" }}>
     <div className="max-w-7xl mx-auto py-4 px-6 sm:px-8 flex justify-between items-center">
-      <Link href="/" className="hover:opacity-80 transition-opacity">
+      <Link href="/2" className="hover:opacity-80 transition-opacity">
         <Image src={Logo} alt="WoodWise" width={140} height={32} />
       </Link>
       <div className="hidden md:flex items-center gap-1">
@@ -105,7 +105,7 @@ const FooterV2 = ({ mainMenu }: { mainMenu: { key: string; href: string }[] }) =
       <div className="max-w-7xl mx-auto px-6 sm:px-8 py-16">
         <div className="grid md:grid-cols-[2fr_1fr_1fr] gap-12">
           <div>
-            <Link href="/"><Image src={Logo2} alt="WoodWise" width={140} height={32} className="mb-6" /></Link>
+            <Link href="/2"><Image src={Logo2} alt="WoodWise" width={140} height={32} className="mb-6" /></Link>
             <p className="text-sm leading-relaxed max-w-[40ch]" style={{ color: "rgba(250,246,239,0.55)" }}>
               <Balancer>{siteConfig.site_description}</Balancer>
             </p>
