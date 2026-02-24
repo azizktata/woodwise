@@ -18,8 +18,6 @@ import { Input } from "@/components/ui/input";
 import { Loader2, Send } from "lucide-react";
 import { sendEmail } from "@/utils/send-email";
 import { toast } from "sonner";
-import { useTranslations } from "next-intl";
-
 const formSchema = z.object({
   nom: z.string().min(2, { message: "entrez votre nom." }),
   email: z.string().email({ message: "entrez un email valide." }),
@@ -30,8 +28,13 @@ const formSchema = z.object({
     message: "votre message doit contenir au moins 10 caractères.",
   }),
 });
-export default function ContactForm() {
-  const t = useTranslations("Contact");
+export default function ContactForm({
+  sendLabel = "Envoyer",
+  loadingLabel = "En cours...",
+}: {
+  sendLabel?: string;
+  loadingLabel?: string;
+}) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { nom: "", email: "", sujet: "", message: "" },
@@ -125,12 +128,12 @@ export default function ContactForm() {
           {isLoading ? (
             <span className="bg-gradient bg-clip-text text-transparent flex items-center">
                 <Loader2 className="mr-2 h-5 w-5 animate-spin inline-block" />
-              {t("loading")}
+              {loadingLabel}
             </span>
           ) : (
-      
+
               <span className="bg-gradient bg-clip-text text-transparent font-bold">
-                {t("send")}
+                {sendLabel}
               </span>
 
           )}
