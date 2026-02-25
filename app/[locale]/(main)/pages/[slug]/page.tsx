@@ -34,6 +34,10 @@ import {
   getAboutUsCTASection,
   getWPTeamSection,
   getProjectSection,
+  getNewsSection,
+  getAboutUsBanner,
+  getProjetsBanner,
+  getNewsBanner,
 } from "@/lib/wp-fetch";
 import { resolveWPImageUrl } from "@/lib/wp-types";
 
@@ -42,6 +46,8 @@ import type {
   AboutUsCTASection,
   WPTeamSection,
   ProjectSection,
+  BlogsSection,
+  BlogItem,
 } from "@/lib/wp-types";
 
 const font3 = Lato({
@@ -61,12 +67,17 @@ export default async function Page({
   const decodedSlug = decodeURIComponent(slug);
   const isAbout = decodedSlug === "à-propos" || decodedSlug === "about";
   const isProjects = decodedSlug === "projets" || decodedSlug === "projects";
+  const isNews = decodedSlug === "actualités" || decodedSlug === "news";
 
-  const [ctaData, teamData, projectData] = await Promise.all([
+  const [ctaData, teamData, projectData, newsData, bannerUrl] = await Promise.all([
     isAbout ? getAboutUsCTASection(locale) : Promise.resolve(null),
     isAbout ? getWPTeamSection(locale) : Promise.resolve(null),
-    isProjects ? getProjectSection(locale) : Promise.resolve(null),
+    isProjects ? getProjectSection(locale) : Promise.resolve(null), 
+    isNews ? getNewsSection(locale) : Promise.resolve(null),
+    isAbout ? getAboutUsBanner() : isProjects ? getProjetsBanner() : isNews ?  getNewsBanner() : Promise.resolve(undefined),
   ]);
+
+   const bannerSrc = bannerUrl ?? banner;
 
   const handleTranslateTitle = (slug: string) => {
     if (locale === "en") {
@@ -91,7 +102,7 @@ export default async function Page({
       <div id="banner" className="relative">
         <div className="relative h-64 w-full">
           <Image
-            src={banner}
+            src={bannerSrc}
             alt="banner"
             className="object-cover w-full object-right md:object-top"
             fill
@@ -126,9 +137,9 @@ export default async function Page({
         </Container>
       )}
 
-      {(decodedSlug === "actualités" || decodedSlug === "news") && (
+      {isNews && newsData && (
         <Container>
-          <Blogs />
+          <Blogs data={newsData} />
         </Container>
       )}
 
@@ -314,26 +325,32 @@ interface BlogCardProps {
     date: string;
     title: string;
     description: string;
-    image: string | StaticImageData;
+    image: string | undefined ;
     link: string;
   };
 }
 
-const Blogs = () => (
-  <Section>
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {staticBlogs.map((blog, index) => (
-        <BlogCard key={index} blog={blog} />
-      ))}
-    </div>
-  </Section>
-);
+const Blogs = ({ data }: { data: BlogsSection | null }) => {
+  const blogs: BlogItem[] = data
+    ? Object.values(data)
+    : staticBlogs;
+
+  return (
+    <Section>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {blogs.map((blog) => (
+          blog.title && <BlogCard key={blog.title} blog={blog} />
+        ))}
+      </div>
+    </Section>
+  );
+};
 
 const BlogCard = ({ blog }: BlogCardProps) => (
   <Card className="hover:shadow-lg transition-shadow cursor-pointer shadow-sm rounded-2xl">
     <CardHeader className="px-0 pt-0">
       <Image
-        src={blog.image}
+        src={resolveWPImageUrl(blog.image) ?? BlogImg}
         alt={blog.title}
         width={400}
         height={200}

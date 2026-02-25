@@ -99,6 +99,7 @@ export interface Mbio7Section {
     [key: string]: string;
   };
   image: WPImageField;
+  videolink: string; // actual YouTube URL
 }
 
 export interface ContactSectionContent {
@@ -127,9 +128,6 @@ export interface BlogsSection {
   description: string;
   viewmore: string;
   blogs: {
-    blog1: BlogItem;
-    blog2: BlogItem;
-    blog3: BlogItem;
     [key: string]: BlogItem;
   };
 }

@@ -182,11 +182,11 @@ const Hero = ({ data, locale }: { data: HeroSection; locale: string }) => (
       <div className="not-prose w-full overflow-hidden rounded-lg  md:rounded-xl md:w-1/2">
         <Image
           className="h-full w-full object-cover object-bottom "
-          src={HeroImage}
+          src={resolveWPImageUrl(data.image) ?? HeroImage}
           width={512}
           height={508}
           alt="hero image"
-          placeholder="blur"
+          // placeholder="blur"
         />
       </div>
     </Container>
@@ -349,7 +349,7 @@ const Mbio7 = ({ data, locale }: { data: Mbio7Section; locale: string }) => (
         <div className="absolute inset-0  bg-black/30" />
         <div className="absolute inset-0 flex items-center justify-center">
           <Link
-            href="https://www.youtube.com/watch?v=jUQu9_26Gdg"
+            href={data.videolink}
             target="_blank"
             rel="noopener noreferrer"
           >

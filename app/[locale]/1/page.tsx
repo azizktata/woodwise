@@ -393,7 +393,6 @@ const ProductV1 = ({ data, locale }: { data: Mbio7Section; locale: string }) => 
 
         {/* Text */}
         <div>
-          <span className="text-[#0d7f40] uppercase tracking-widest text-sm font-semibold mb-4 block">Notre produit phare</span>
           <h2 className="text-4xl sm:text-5xl font-bold text-[#071a0e] mb-6">
             {data.title_part1}{" "}
             <span
@@ -484,9 +483,7 @@ const ContactV1 = ({ data }: { data: ContactSectionContent }) => (
               <span className="text-white/80 text-sm">{contactInfo.address}</span>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-white/10">
-            <p className="text-white/40 text-xs">Lundi – Vendredi · 9h00–17h00</p>
-          </div>
+        
         </div>
       </div>
     </Container>

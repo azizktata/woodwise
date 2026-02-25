@@ -154,6 +154,40 @@ export const getProjectSection = async (locale: string): Promise<ProjectSection>
 };
 
 // ---------------------------------------------------------------------------
+// News page  (slug: actualités)
+// ---------------------------------------------------------------------------
+
+export const fetchNews = cache(
+  async (): Promise<WPPostResponse<ProjetsACF>> => {
+    try {
+      const res = await fetch(
+        `${BASE_URL}/woodwise?slug=actualites&_fields=acf,slug,title&acf_format=standard`,
+        { next: { revalidate: 3600 } }
+      );
+      if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
+      const data = await res.json();
+      if (!data || data.length === 0) throw new Error("Empty response");
+      return data[0];
+    } catch {
+      // No mock for news yet, return empty structure
+      return {
+        id: 0,
+        slug: "actualités",
+        title: { rendered: "Actualités" },
+        acf: {} as ProjetsACF,
+      };
+    }
+  }
+);
+
+export const getNewsSection = async (locale: string): Promise<BlogsSection | null> => {
+  const page = await fetchNews();
+  const key = `blogssection_${locale}` as keyof ProjetsACF;
+  return (page.acf[key] as BlogsSection) || null;
+} 
+
+
+// ---------------------------------------------------------------------------
 // Banner images (page-level ACF field, locale-independent)
 // ---------------------------------------------------------------------------
 
@@ -165,6 +199,12 @@ export const getAboutUsBanner = async (): Promise<string | undefined> => {
 
 export const getProjetsBanner = async (): Promise<string | undefined> => {
   const page = await fetchProjets();
+  const b = page.acf.banner;
+  return typeof b === "string" && b ? b : undefined;
+};
+
+export const getNewsBanner = async (): Promise<string | undefined> => {
+  const page = await fetchNews();
   const b = page.acf.banner;
   return typeof b === "string" && b ? b : undefined;
 };

@@ -57,7 +57,7 @@ export default async function SlugPage1({
   const decoded = decodeURIComponent(slug);
   const isAbout = decoded === "à-propos" || decoded === "about";
   const isProjects = decoded === "projets" || decoded === "projects";
-  const isNews = decoded === "actualités" || decoded === "news";
+  const isNews = decoded === "actualités" || decoded === "news"; 
 
   const [ctaData, teamData, projectData, bannerUrl, blogsData] = await Promise.all([
     isAbout ? getAboutUsCTASection(locale) : Promise.resolve(null),

@@ -15,6 +15,7 @@ import { useTranslations } from "next-intl";
 import { Link, routing } from "@/i18n/routing";
 import { LangToggle } from "@/components/lang-toggle";
 import { getTranslations } from "next-intl/server";
+import { getContactSection } from "@/lib/wp-fetch";
 
 const font = Roboto({ subsets: ["latin"], variable: "--font-sans", weight: ["300", "400", "500", "600", "700"] });
 const font2 = Onest({ subsets: ["latin"], variable: "--font-sans", weight: ["400"] });
@@ -49,7 +50,7 @@ export default async function MainLayout({
       <TopNav />
       <Nav locale={locale} mainMenu={mainMenu} />
       {children}
-      <Footer mainMenu={mainMenu} />
+      <Footer mainMenu={mainMenu} locale={locale} />
     </>
   );
 }
@@ -113,15 +114,22 @@ const Nav = ({ className, locale, mainMenu }: NavProps) => (
   </nav>
 );
 
-const contactInfo = { phone: "80157 59053", email: "contact@woodwise.fr", address: "QUARTIER CUNI, SOSPEL, 06380, FR" };
+const contact = await  getContactSection("fr");
+const contactInfo = contact ? contact.contactinfo : { phone: "80157 59053", mail: "contact@woodwise.fr", map: "QUARTIER CUNI, SOSPEL, 06380, FR" };
 
-const Footer = ({ mainMenu }: { mainMenu: { key: string; href: string }[] }) => (
+const Footer = ({ mainMenu, locale }: { mainMenu: { key: string; href: string }[]; locale: string }) => (
   <footer className={cn("font-sans antialiased", font2.variable)}>
     <Section className="bg-[#0d7f40] text-white">
       <Container className="grid md:grid-cols-[1.5fr_0.5fr_0.5fr] gap-12">
         <div className="flex flex-col gap-6 not-prose">
           <Link href="/"><Image src={Logo2} alt="Logo" width={168} height={35} /></Link>
-          <p><Balancer>{siteConfig.site_description}</Balancer></p>
+          <p><Balancer>
+              {
+                locale === "fr"
+                  ? "Une entreprise spécialisée dans la fabrication de produits en bois moulés et durables."
+                  : "A company specializing in the manufacture of molded and sustainable wood products."
+              }
+            </Balancer></p>
         </div>
         <div className="flex flex-col gap-2 text-sm">
           <h6 className={cn("font-semibold text-xl", font.variable)}>Menu</h6>
@@ -133,8 +141,8 @@ const Footer = ({ mainMenu }: { mainMenu: { key: string; href: string }[] }) => 
         </div>
         <div className="flex flex-col gap-2 text-sm">
           <h5 className={cn("font-semibold text-xl", font.variable)}>Contact</h5>
-          <div className="flex items-center gap-2"><Mail className="h-4 w-4" /><span>{contactInfo.email}</span></div>
-          <div className="flex items-center gap-2"><PinIcon className="h-8 w-8" /><span>{contactInfo.address}</span></div>
+          <div className="flex items-center gap-2"><Mail className="h-4 w-4" /><span>{contactInfo.mail}</span></div>
+          <div className="flex items-center gap-2"><PinIcon className="h-6 w-6" /><span>{contactInfo.map}</span></div>
           <div className="flex items-center gap-2"><Phone className="h-4 w-4" /><span>{contactInfo.phone}</span></div>
         </div>
       </Container>
