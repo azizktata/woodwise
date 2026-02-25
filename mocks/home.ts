@@ -141,6 +141,7 @@ export const homeMock: WPPostResponse<HomePageACF> = {
         tag5: "Avec une empreinte carbone négative",
       },
       image: undefined,
+      videolink: "https://www.youtube.com/watch?v=jUQu9_26Gdg",
     },
     mbio7section_en: {
       title_part1: "MBio7 by",
@@ -157,6 +158,7 @@ export const homeMock: WPPostResponse<HomePageACF> = {
         tag5: "With a negative carbon footprint",
       },
       image: undefined,
+      videolink: "https://www.youtube.com/watch?v=jUQu9_26Gdg",
     },
 
     contactsection_fr: {

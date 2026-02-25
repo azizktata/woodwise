@@ -321,13 +321,7 @@ const staticBlogs = [
 ];
 
 interface BlogCardProps {
-  blog: {
-    date: string;
-    title: string;
-    description: string;
-    image: string | undefined ;
-    link: string;
-  };
+  blog: BlogItem;
 }
 
 const Blogs = ({ data }: { data: BlogsSection | null }) => {
