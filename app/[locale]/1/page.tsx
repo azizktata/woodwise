@@ -196,7 +196,7 @@ const HeroV1 = ({ data, locale }: { data: HeroSection; locale: string }) => (
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link
-            href="#contact-form"
+            href="#contact"
             locale={locale}
             className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 text-white/80 hover:text-white font-medium px-8 py-4 rounded-xl transition-all duration-300 text-base"
           >

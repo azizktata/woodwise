@@ -26,15 +26,15 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { LinkProps } from "next/link";
 
-export function MobileNav() {
+export function MobileNav({ mainMenu: mainMenuProp }: { mainMenu?: { key: string; href: string }[] } = {}) {
   const [open, setOpen] = React.useState(false);
   const t = useTranslations('Nav');
-   const mainMenu =  [
+  const mainMenu = mainMenuProp ?? [
     {key: t('home'), href: t('homeLink')},
     {key: t('about'), href: t('aboutLink')},
     {key: t('projects'), href: t('projectsLink')},
     {key: t('news'), href: t('newsLink')},
-   ]
+  ];
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>

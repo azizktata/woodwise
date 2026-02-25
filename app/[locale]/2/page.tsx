@@ -177,7 +177,7 @@ const HeroV2 = ({ data, locale }: { data: HeroSection; locale: string }) => (
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
-              href="#contact-form"
+              href="#contact"
               className="inline-flex items-center gap-2 font-medium px-7 py-4 rounded-2xl transition-all duration-300 hover:scale-[1.02]"
               style={{ background: "transparent", border: `2px solid ${C.leafGreen}60`, color: C.forest }}
             >
@@ -232,7 +232,7 @@ const HeroV2 = ({ data, locale }: { data: HeroSection; locale: string }) => (
 
 const NatureStrip = () => (
   <div className="py-4 overflow-hidden" style={{ background: C.forest }}>
-    <div className="flex items-center justify-center flex-wrap gap-x-6 gap-y-2.5 sm:gap-x-10 px-6 sm:px-12">
+    <div className="flex items-center justify-center flex-wrap gap-x-6 gap-y-5 sm:gap-x-10 px-6 sm:px-12 ">
       {[
         { icon: <TreePine className="h-4 w-4" />, text: "Forêts préservées" },
         { icon: <Recycle className="h-4 w-4" />, text: "Économie circulaire" },

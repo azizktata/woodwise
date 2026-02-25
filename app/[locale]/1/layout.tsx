@@ -94,7 +94,7 @@ const NavV1 = ({ locale, mainMenu }: { locale: string; mainMenu: { key: string; 
           Contact
         </a>
         <LangToggle />
-        <MobileNav />
+        <MobileNav mainMenu={mainMenu} />
       </div>
     </div>
   </nav>
