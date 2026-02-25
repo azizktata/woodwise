@@ -52,15 +52,16 @@ import {
   getReviewsSection,
   getFAQSection,
 } from "@/lib/wp-fetch";
-import type {
-  HeroSection,
-  AboutSection,
-  ImpactSection,
-  Mbio7Section,
-  ContactSectionContent,
-  BlogsSection,
-  ReviewsSection,
-  FAQSection,
+import {
+  type HeroSection,
+  type AboutSection,
+  type ImpactSection,
+  type Mbio7Section,
+  type ContactSectionContent,
+  type BlogsSection,
+  type ReviewsSection,
+  type FAQSection,
+  resolveWPImageUrl,
 } from "@/lib/wp-types";
 
 const font2 = Onest({
@@ -77,6 +78,8 @@ export default async function Home1({
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const tHero = await getTranslations("Hero");
+
   const [
     heroData,
     aboutData,
@@ -86,7 +89,6 @@ export default async function Home1({
     blogsData,
     reviewsData,
     faqData,
-    tHero,
   ] = await Promise.all([
     getHeroSection(locale),
     getAboutSection(locale),
@@ -96,19 +98,15 @@ export default async function Home1({
     getBlogsSection(locale),
     getReviewsSection(locale),
     getFAQSection(locale),
-    getTranslations("Hero"),
   ]);
 
-  const enrichedHeroData: HeroSection = {
-    ...heroData,
-    subtitle_1: heroData.subtitle_1 ?? tHero("subtitle_1"),
-    subtitle_2: heroData.subtitle_2 ?? tHero("subtitle_2"),
-  };
+  heroData.subtitle_1 = tHero("subtitle_1");
+  heroData.subtitle_2 = tHero("subtitle_2");
 
   return (
     <div className={cn("font-sans", font2.variable)}>
       {/* HERO — full dark green */}
-      <HeroV1 data={enrichedHeroData} locale={locale} />
+      <HeroV1 data={heroData} locale={locale} />
 
       {/* ABOUT */}
       <AboutV1 data={aboutData} />
@@ -141,11 +139,10 @@ const HeroV1 = ({ data, locale }: { data: HeroSection; locale: string }) => (
     {/* Background texture */}
     <div className="absolute inset-0 opacity-20">
       <Image
-        src={HeroBg}
+        src={HeroFg}
         alt=""
         fill
         className="object-cover object-center"
-        placeholder="blur"
       />
     </div>
     {/* Gradient overlay */}
@@ -212,12 +209,11 @@ const HeroV1 = ({ data, locale }: { data: HeroSection; locale: string }) => (
       <div className="flex-1 relative w-full max-w-lg lg:max-w-none">
         <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50">
           <Image
-            src={HeroFg}
+            src={resolveWPImageUrl(data.image) ?? HeroFg}
             alt="WoodWise"
             width={600}
             height={500}
             className="w-full object-cover"
-            placeholder="blur"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#071a0e]/60 to-transparent" />
         </div>

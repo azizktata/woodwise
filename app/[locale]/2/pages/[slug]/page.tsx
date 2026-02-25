@@ -8,6 +8,8 @@ import NiceBlog from "@/public/nice-blog.png";
 import Liberation from "@/public/liberation.png";
 import Monaco from "@/public/monaco.png";
 import BlogImg from "@/public/blog-img.png";
+import banner from "@/public/banner.jpg";
+
 import {
   ArrowRight,
   Leaf,
@@ -29,9 +31,10 @@ import {
   getAboutUsCTASection,
   getWPTeamSection,
   getProjectSection,
+  getNewsSection,
   getAboutUsBanner,
   getProjetsBanner,
-  getBlogsSection,
+  getNewsBanner,
 } from "@/lib/wp-fetch";
 import { resolveWPImageUrl } from "@/lib/wp-types";
 import type { AboutUsCTASection, WPTeamSection, ProjectSection, BlogsSection } from "@/lib/wp-types";
@@ -63,21 +66,18 @@ export default async function SlugPage2({
   const isProjects = decoded === "projets" || decoded === "projects";
   const isNews = decoded === "actualités" || decoded === "news";
 
-  const [ctaData, teamData, projectData, bannerUrl, blogsData] = await Promise.all([
+  const [ctaData, teamData, projectData, newsData, bannerUrl] = await Promise.all([
     isAbout ? getAboutUsCTASection(locale) : Promise.resolve(null),
     isAbout ? getWPTeamSection(locale) : Promise.resolve(null),
     isProjects ? getProjectSection(locale) : Promise.resolve(null),
-    isAbout ? getAboutUsBanner() : isProjects ? getProjetsBanner() : Promise.resolve(undefined),
-    isNews ? getBlogsSection(locale) : Promise.resolve(null),
+    isNews ? getNewsSection(locale) : Promise.resolve(null),
+    isAbout ? getAboutUsBanner() : isProjects ? getProjetsBanner() : isNews ? getNewsBanner() : Promise.resolve(undefined),
   ]);
 
   // Unsplash fallbacks per page type (used when WP banner is absent)
-  const unsplashFallback =
-    isAbout    ? "https://images.unsplash.com/photo-1518611507436-f9221403cca2?w=1920&q=80"
-    : isProjects ? "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&q=80"
-    :              "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80";
 
-  const bannerSrc = bannerUrl ?? unsplashFallback;
+
+  const bannerSrc = bannerUrl ?? banner;
 
   const pageLabel =
     isAbout ? (locale === "fr" ? "À Propos" : "About")
@@ -133,7 +133,7 @@ export default async function SlugPage2({
       {isProjects && projectData && <ProjectV2 data={projectData} />}
 
       {/* News page */}
-      {isNews && <NewsV2 data={blogsData} />}
+      {isNews && <NewsV2 data={newsData} />}
 
       {/* Contact CTA bottom */}
       <ContactBannerV2 locale={locale} />

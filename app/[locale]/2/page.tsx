@@ -48,15 +48,16 @@ import {
   getReviewsSection,
   getFAQSection,
 } from "@/lib/wp-fetch";
-import type {
-  HeroSection,
-  AboutSection,
-  ImpactSection,
-  Mbio7Section,
-  ContactSectionContent,
-  BlogsSection,
-  ReviewsSection,
-  FAQSection,
+import {
+  type HeroSection,
+  type AboutSection,
+  type ImpactSection,
+  type Mbio7Section,
+  type ContactSectionContent,
+  type BlogsSection,
+  type ReviewsSection,
+  type FAQSection,
+  resolveWPImageUrl,
 } from "@/lib/wp-types";
 
 const font = Onest({
@@ -86,26 +87,23 @@ export default async function Home2({
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const tHero = await getTranslations("Hero");
+
   const [
     heroData, aboutData, impactData, mbio7Data,
     contactData, blogsData, reviewsData, faqData,
-    tHero,
   ] = await Promise.all([
     getHeroSection(locale), getAboutSection(locale), getImpactSection(locale),
     getMbio7Section(locale), getContactSection(locale), getBlogsSection(locale),
     getReviewsSection(locale), getFAQSection(locale),
-    getTranslations("Hero"),
   ]);
 
-  const enrichedHeroData: HeroSection = {
-    ...heroData,
-    subtitle_1: heroData.subtitle_1 ?? tHero("subtitle_1"),
-    subtitle_2: heroData.subtitle_2 ?? tHero("subtitle_2"),
-  };
+  heroData.subtitle_1 = tHero("subtitle_1");
+  heroData.subtitle_2 = tHero("subtitle_2");
 
   return (
     <div className={cn("font-sans", font.variable)} style={{ background: C.cream }}>
-      <HeroV2 data={enrichedHeroData} locale={locale} />
+      <HeroV2 data={heroData} locale={locale} />
       <NatureStrip />
       <AboutV2 data={aboutData} />
       <ImpactV2 data={impactData} />
@@ -207,12 +205,11 @@ const HeroV2 = ({ data, locale }: { data: HeroSection; locale: string }) => (
             style={{ borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%", border: `4px solid ${C.sand}` }}
           >
             <Image
-              src={HeroImg}
+              src={resolveWPImageUrl(data.image) ?? HeroImg}
               alt="WoodWise"
               width={600}
               height={600}
               className="w-full object-cover"
-              placeholder="blur"
               style={{ aspectRatio: "1/1" }}
             />
             <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${C.leafGreen}20, transparent)` }} />
