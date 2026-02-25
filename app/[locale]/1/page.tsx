@@ -232,7 +232,7 @@ const HeroV1 = ({ data, locale }: { data: HeroSection; locale: string }) => (
 
     {/* Scroll indicator */}
     <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-      <span className="text-white/30 text-xs uppercase tracking-widest">Découvrir</span>
+      {/* <span className="text-white/30 text-xs uppercase tracking-widest">Découvrir</span> */}
       <ChevronDown className="h-5 w-5 text-white/30 animate-bounce" />
     </div>
   </div>
@@ -252,7 +252,7 @@ const AboutV1 = ({ data }: { data: AboutSection }) => {
     <Section className="bg-white">
       <Container>
         <div className="flex flex-col items-center mb-16">
-          <span className="text-[#0d7f40] uppercase tracking-widest text-sm font-semibold mb-3">À propos</span>
+          {/* <span className="text-[#0d7f40] uppercase tracking-widest text-sm font-semibold mb-3">À propos</span> */}
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#071a0e] text-center">
             {data.title_part1}{" "}
             <span
@@ -321,7 +321,7 @@ const ImpactV1 = ({ data }: { data: ImpactSection }) => (
   <Section className="bg-[#071a0e]">
     <Container className="max-w-7xl">
       <div className="text-center mb-16">
-        <span className="text-[#84bc40] uppercase tracking-widest text-sm font-semibold mb-3 block">Impact</span>
+        {/* <span className="text-[#84bc40] uppercase tracking-widest text-sm font-semibold mb-3 block">Impact</span> */}
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
           {data.title_part1}{" "}
           <span
@@ -389,6 +389,10 @@ const ProductV1 = ({ data, locale }: { data: Mbio7Section; locale: string }) => 
 
         {/* Text */}
         <div>
+          <span className="text-[#0d7f40] uppercase tracking-widest text-sm font-semibold mb-3 block">
+            {locale === "fr" ? "Notre Produit" : "Our Product"}
+          </span>
+
           <h2 className="text-4xl sm:text-5xl font-bold text-[#071a0e] mb-6">
             {data.title_part1}{" "}
             <span

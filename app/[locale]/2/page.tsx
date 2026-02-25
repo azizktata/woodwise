@@ -139,7 +139,7 @@ const HeroV2 = ({ data, locale }: { data: HeroSection; locale: string }) => (
             className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8 text-sm font-medium"
             style={{ background: `${C.leafGreen}20`, color: C.forest, border: `1px solid ${C.leafGreen}40` }}
           >
-            <Leaf className="h-4 w-4" />
+            {/* <Leaf className="h-4 w-4" /> */}
             {data.subtitle_1}
             <Image src={Mbio7logo} alt="MBio7" width={56} height={28} className="h-6 w-auto" />
             {data.subtitle_2}
@@ -232,7 +232,7 @@ const HeroV2 = ({ data, locale }: { data: HeroSection; locale: string }) => (
 
 const NatureStrip = () => (
   <div className="py-4 overflow-hidden" style={{ background: C.forest }}>
-    <div className="flex items-center gap-12 px-12 w-full justify-center flex-wrap">
+    <div className="flex items-center justify-center flex-wrap gap-x-6 gap-y-2.5 sm:gap-x-10 px-6 sm:px-12">
       {[
         { icon: <TreePine className="h-4 w-4" />, text: "Forêts préservées" },
         { icon: <Recycle className="h-4 w-4" />, text: "Économie circulaire" },
@@ -262,10 +262,10 @@ const AboutV2 = ({ data }: { data: AboutSection }) => {
   return (
     <section className="py-20 sm:py-28" style={{ background: C.warmWhite }}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="flex items-center gap-3 mb-12">
+        {/* <div className="flex items-center gap-3 mb-12">
           <Leaf className="h-5 w-5" style={{ color: C.leafGreen }} />
           <span className="text-sm font-semibold uppercase tracking-widest" style={{ color: C.leafGreen }}>Notre Histoire</span>
-        </div>
+        </div> */}
 
         <div className="grid lg:grid-cols-2 gap-16 mb-16">
           <div>
@@ -325,10 +325,10 @@ const ImpactV2 = ({ data }: { data: ImpactSection }) => (
     <div className="absolute left-0 bottom-0 w-64 h-64 rounded-full opacity-10" style={{ background: `radial-gradient(circle, ${C.brightGreen}, transparent)` }} />
     <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
       <div className="text-center mb-16">
-        <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}>
+        {/* <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6" style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}>
           <Leaf className="h-4 w-4" style={{ color: C.brightGreen }} />
           <span className="text-white/80 text-sm">Notre Impact</span>
-        </div>
+        </div> */}
         <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
           {data.title_part1}{" "}<span style={{ color: C.brightGreen }}>{data.title_part2}</span>
         </h2>
@@ -415,10 +415,10 @@ const pressBlogs = [
 const PressV2 = ({ data, locale }: { data: BlogsSection; locale: string }) => (
   <section className="py-20 sm:py-28" style={{ background: C.warmWhite }}>
     <div className="max-w-7xl mx-auto px-6 sm:px-8">
-      <div className="flex items-center gap-3 mb-4">
+      {/* <div className="flex items-center gap-3 mb-4">
         <Leaf className="h-5 w-5" style={{ color: C.leafGreen }} />
         <span className="text-sm font-semibold uppercase tracking-widest" style={{ color: C.leafGreen }}>Presse</span>
-      </div>
+      </div> */}
       <div className="flex justify-between items-end mb-12">
         <h2 className="text-4xl sm:text-5xl font-bold" style={{ color: C.forest }}>
           <span style={{ background: `linear-gradient(135deg, ${C.brightGreen}, ${C.leafGreen})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>

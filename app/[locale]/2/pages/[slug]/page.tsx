@@ -105,7 +105,7 @@ export default async function SlugPage2({
 
       {/* Nature strip */}
       <div className="py-3 overflow-hidden" style={{ background: C.forest }}>
-        <div className="flex items-center gap-10 px-8 w-full justify-center flex-wrap">
+        <div className="flex items-center justify-center flex-wrap gap-x-6 gap-y-2 sm:gap-x-10 px-6 sm:px-8">
           {[
             { icon: <TreePine className="h-3.5 w-3.5" />, text: "Forêts préservées" },
             { icon: <Recycle className="h-3.5 w-3.5" />, text: "Économie circulaire" },
