@@ -49,7 +49,6 @@ export default async function RootLayout({
         >
           <NextIntlClientProvider>
             <Toaster richColors />
-            <VersionToggle />
             {children}
           </NextIntlClientProvider>
         </ThemeProvider>
