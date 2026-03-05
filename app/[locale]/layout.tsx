@@ -10,7 +10,8 @@ import { Toaster } from "sonner";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import NotFound from "./not-found";
 import { routing } from "@/i18n/routing";
-import { VersionToggle } from "@/components/version-toggle";
+// import { VersionToggle } from "@/components/version-toggle";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const font = Roboto({
   subsets: ["latin"],
@@ -52,8 +53,8 @@ export default async function RootLayout({
             {children}
           </NextIntlClientProvider>
         </ThemeProvider>
-        <Analytics />
       </body>
+        <GoogleAnalytics gaId="G-BKHDWTGYW9" />
     </html>
   );
 }
