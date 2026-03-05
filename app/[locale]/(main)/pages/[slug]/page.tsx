@@ -1,4 +1,5 @@
 import { Section, Container, cn } from "@/components/craft";
+import type { Metadata } from "next";
 
 import Image, { StaticImageData } from "next/image";
 import banner from "@/public/banner.jpg";
@@ -56,6 +57,38 @@ const font3 = Lato({
   weight: ["400", "700"],
 });
 
+const slugTitles: Record<string, Record<string, string>> = {
+  fr: { "à-propos": "À propos", "actualités": "Actualités", "projets": "Projets" },
+  en: { about: "About", news: "News", projects: "Projects" },
+};
+
+const slugDescriptions: Record<string, Record<string, string>> = {
+  fr: {
+    "à-propos": "Découvrez l'équipe et la mission de Woodwise, spécialiste des produits en bois moulés durables.",
+    "actualités": "Suivez les dernières actualités et articles de presse sur Woodwise et le panneau MBio7.",
+    "projets": "Explorez les projets de construction réalisés avec les solutions Woodwise.",
+  },
+  en: {
+    about: "Learn about the Woodwise team and mission, specialists in sustainable moulded wood products.",
+    news: "Follow the latest news and press articles about Woodwise and the MBio7 panel.",
+    projects: "Explore construction projects completed with Woodwise solutions.",
+  },
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string; locale: string }>;
+}): Promise<Metadata> {
+  const { slug, locale } = await params;
+  const decodedSlug = decodeURIComponent(slug);
+  const titles = slugTitles[locale] ?? slugTitles.fr;
+  const descriptions = slugDescriptions[locale] ?? slugDescriptions.fr;
+  const title = titles[decodedSlug] ?? decodedSlug;
+  const description = descriptions[decodedSlug] ?? "";
+  return { title, description };
+}
+
 export default async function Page({
   params,
 }: {
@@ -103,7 +136,8 @@ export default async function Page({
         <div className="relative h-64 w-full">
           <Image
             src={bannerSrc}
-            alt="banner"
+            alt=""
+            aria-hidden="true"
             className="object-cover w-full object-right md:object-top"
             fill
           />
@@ -170,7 +204,7 @@ const CTA = ({
       <p className="text-woodSecondary font-bold text-xs mb-4 uppercase">
         {data.subtitle}
       </p>
-      <h1 className="font-semibold text-3xl w-full max-w-[65ch]">{data.title}</h1>
+      <h2 className="font-semibold text-3xl w-full max-w-[65ch]">{data.title}</h2>
     </div>
     <div>
       <Balancer className="text-muted-foreground text-sm leading-relaxed max-w-[65ch] mt-4">
@@ -356,7 +390,7 @@ const BlogCard = ({ blog }: BlogCardProps) => (
         <p className={cn("bg-gradient bg-clip-text text-transparent font-sans", font3.variable)}>
           {blog.date}
         </p>
-        <h5 className="text-black font-semibold text-2xl py-4">{blog.title}</h5>
+        <h3 className="text-black font-semibold text-2xl py-4">{blog.title}</h3>
         <p
           className={cn(
             "text-muted-foreground leading-[1.4] opacity-70 font-sans",
@@ -383,18 +417,18 @@ const Project = ({ data }: { data: ProjectSection }) => (
           {data.subtitle} <ArrowRight className="w-4 ml-1" />
         </Link>
       </Button>
-      <h1 className="font-semibold text-black text-2xl sm:text-3xl md:text-4xl mb-4">
+      <h2 className="font-semibold text-black text-2xl sm:text-3xl md:text-4xl mb-4">
         <Balancer>{data.title}</Balancer>
-      </h1>
-      <h3 className="text-muted-foreground">
+      </h2>
+      <p className="text-muted-foreground">
         <Balancer>{data.description}</Balancer>
-      </h3>
+      </p>
       <div className="not-prose my-8 h-full w-full overflow-hidden rounded-lg md:rounded-xl">
         {resolveWPImageUrl(data.image) ? (
           <Image
             className="h-full w-full object-cover object-bottom"
             src={resolveWPImageUrl(data.image)!}
-            alt="Project"
+            alt={data.title || "Projet Woodwise"}
             width={1920}
             height={1080}
           />
@@ -402,7 +436,7 @@ const Project = ({ data }: { data: ProjectSection }) => (
           <Image
             className="h-full w-full object-cover object-bottom"
             src={projectImage}
-            alt="Project"
+            alt={data.title || "Projet Woodwise"}
             width={1920}
             height={1080}
             placeholder="blur"

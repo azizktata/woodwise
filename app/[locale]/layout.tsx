@@ -20,10 +20,32 @@ const font = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "WoodWise",
-  description: "Woodwise",
+  title: {
+    default: siteConfig.site_name,
+    template: `%s | ${siteConfig.site_name}`,
+  },
+  description: siteConfig.site_description,
   metadataBase: new URL(siteConfig.site_domain),
-  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: siteConfig.site_name,
+    description: siteConfig.site_description,
+    images: [
+      {
+        url: "/opengraph-image.jpeg",
+        width: 1200,
+        height: 630,
+        alt: siteConfig.site_name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.site_name,
+    description: siteConfig.site_description,
+    images: ["/opengraph-image.jpeg"],
+  },
+  robots: { index: true, follow: true },
 };
 
 export default async function RootLayout({
@@ -53,8 +75,8 @@ export default async function RootLayout({
             {children}
           </NextIntlClientProvider>
         </ThemeProvider>
-      </body>
         <GoogleAnalytics gaId="G-BKHDWTGYW9" />
+      </body>
     </html>
   );
 }

@@ -40,13 +40,15 @@ export function MobileNav({ mainMenu: mainMenuProp }: { mainMenu?: { key: string
       <SheetTrigger asChild>
         <Button
           variant="ghost"
+          aria-expanded={open}
+          aria-controls="mobile-nav-content"
           className="px-0 border w-10 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
         >
-          <Menu />
+          <Menu aria-hidden="true" />
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="pr-0">
+      <SheetContent id="mobile-nav-content" side="left" className="pr-0">
         <SheetHeader>
           <SheetTitle className="text-left">
             <MobileLink

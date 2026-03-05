@@ -169,9 +169,7 @@ const Hero = ({ data, locale }: { data: HeroSection; locale: string }) => (
             </span>
           </Balancer>
         </h1>
-        <h3 className="text-muted-foreground mb-5">
-          <p className="w-full max-w-[55ch]">{data.description}</p>
-        </h3>
+        <p className="text-muted-foreground mb-5 w-full max-w-[55ch]">{data.description}</p>
         <CustomButton
           asChild
           label={data.learnmore}
@@ -185,7 +183,7 @@ const Hero = ({ data, locale }: { data: HeroSection; locale: string }) => (
           src={resolveWPImageUrl(data.image) ?? HeroImage}
           width={512}
           height={508}
-          alt="hero image"
+          alt="Woodwise - construction en bois durable"
           // placeholder="blur"
         />
       </div>
@@ -321,9 +319,9 @@ const Impact = ({ data }: { data: ImpactSection }) => {
               key={item.title}
               className="group  flex flex-col gap-6 items-center py-12 px-3 bg-card rounded-2xl border shadow-sm transition-background duration-300 hover:bg-gradient hover:text-white"
             >
-              <h3 className="text-8xl font-semibold text-woodPrimary group-hover:text-white">
+              <p className="text-8xl font-semibold text-woodPrimary group-hover:text-white">
                 {item.value}
-              </h3>
+              </p>
               <Balancer className="text-2xl font-semibold text-black group-hover:text-white text-center">
                 {item.title}
               </Balancer>
@@ -341,7 +339,7 @@ const Mbio7 = ({ data, locale }: { data: Mbio7Section; locale: string }) => (
       <div className="not-prose relative  flex overflow-hidden rounded-lg relative ">
         <Image
           src={resolveWPImageUrl(data.image) ?? Mbio7Image}
-          alt="Mbio7"
+          alt="Panneau MBio7 - solution de construction en bois durable"
           className="object-cover object-top rounded-lg w-full "
           width={300}
           height={150}
@@ -393,7 +391,7 @@ const Mbio7 = ({ data, locale }: { data: Mbio7Section; locale: string }) => (
         <div className="hidden lg:block absolute bottom-0 right-0">
           <Image
             src={Mbio7ProductImage}
-            alt="Mbio7"
+            alt="Produit MBio7"
             className="fill object-cover"
             height={215}
             width={215}
@@ -409,8 +407,9 @@ const Contact = ({ data }: { data: ContactSectionContent }) => (
     <div className="grid items-stretch md:grid-cols-2 w-full">
       <div className="not-prose relative flex flex-col  p-4 py-20  bg-woodSecondary">
         <Image
-          src={ContactBg} 
-          alt="Contact"
+          src={ContactBg}
+          alt=""
+          aria-hidden="true"
           className="absolute inset-0 object-cover w-full h-full"
         />
         <div className="absolute inset-0 z-0 bg-gradient opacity-60"></div>
@@ -526,9 +525,9 @@ const BlogCard = ({ blog }: BlogCardProps) => (
         >
           {blog.date}
         </p>
-        <h5 className="text-black font-semibold text-2xl py-4 ">
+        <h3 className="text-black font-semibold text-2xl py-4">
           {blog.title}
-        </h5>
+        </h3>
         <p
           className={cn(
             "text-muted-foreground leading-[1.4] opacity-70 font-sans ",
@@ -586,7 +585,7 @@ const ReviewCard = ({
           </AvatarFallback>
         </Avatar>
         <div className="flex flex-col">
-          <h6 className="text-black text-xl font-semibold ">{review.name}</h6>
+          <p className="text-black text-xl font-semibold">{review.name}</p>
           <div className="flex items-center gap-1">
             {Array.from({ length: review.rating }).map((_, i) => (
               <Star

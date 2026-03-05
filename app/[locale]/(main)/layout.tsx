@@ -47,9 +47,15 @@ export default async function MainLayout({
 
   return (
     <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:top-0 focus:left-0"
+      >
+        {locale === "fr" ? "Aller au contenu principal" : "Skip to main content"}
+      </a>
       <TopNav />
       <Nav locale={locale} mainMenu={mainMenu} />
-      {children}
+      <main id="main-content">{children}</main>
       <Footer mainMenu={mainMenu} locale={locale} />
     </>
   );
@@ -58,7 +64,7 @@ export default async function MainLayout({
 const TopNav = () => {
   const t = useTranslations("TopNav");
   return (
-    <nav className={cn("z-50 top-0 bg-gradient py-3 font-sans", font3.variable)}>
+    <nav aria-label="Informations de contact" className={cn("z-50 top-0 bg-gradient py-3 font-sans", font3.variable)}>
       <div className="max-w-6xl flex px-2 flex-col md:flex-row gap-2 justify-between mx-auto text-sm">
         <div className="flex items-center justify-center flex-wrap">
           <p className="text-[#F7F7F7]">
@@ -89,7 +95,7 @@ const TopNav = () => {
 };
 
 const Nav = ({ className, locale, mainMenu }: NavProps) => (
-  <nav className={cn("z-50 top-0 bg-background bg-hero", className)}>
+  <nav aria-label="Navigation principale" className={cn("z-50 top-0 bg-background bg-hero", className)}>
     <div className="max-w-6xl mx-auto py-4 px-6 sm:px-8 flex justify-between items-center">
       <Link className="hover:opacity-75 transition-all flex gap-4 items-center" href="/">
         <Image src={Logo} alt="Logo" loading="eager" width={168} height={35} />
@@ -132,7 +138,7 @@ const Footer = ({ mainMenu, locale }: { mainMenu: { key: string; href: string }[
             </Balancer></p>
         </div>
         <div className="flex flex-col gap-2 text-sm">
-          <h6 className={cn("font-semibold text-xl", font.variable)}>Menu</h6>
+          <h3 className={cn("font-semibold text-xl", font.variable)}>Menu</h3>
           {mainMenu.map(({ key, href }) => (
             <Link className="hover:underline underline-offset-4 text-base" key={href} href={href}>
               {key.charAt(0).toUpperCase() + key.slice(1)}
@@ -140,10 +146,10 @@ const Footer = ({ mainMenu, locale }: { mainMenu: { key: string; href: string }[
           ))}
         </div>
         <div className="flex flex-col gap-2 text-sm">
-          <h5 className={cn("font-semibold text-xl", font.variable)}>Contact</h5>
-          <div className="flex items-center gap-2"><Mail className="h-4 w-4" /><span>{contactInfo.mail}</span></div>
-          <div className="flex items-center gap-2"><PinIcon className="h-6 w-6" /><span>{contactInfo.map}</span></div>
-          <div className="flex items-center gap-2"><Phone className="h-4 w-4" /><span>{contactInfo.phone}</span></div>
+          <h3 className={cn("font-semibold text-xl", font.variable)}>Contact</h3>
+          <div className="flex items-center gap-2"><Mail aria-hidden="true" className="h-4 w-4" /><span>{contactInfo.mail}</span></div>
+          <div className="flex items-center gap-2"><PinIcon aria-hidden="true" className="h-6 w-6" /><span>{contactInfo.map}</span></div>
+          <div className="flex items-center gap-2"><Phone aria-hidden="true" className="h-4 w-4" /><span>{contactInfo.phone}</span></div>
         </div>
       </Container>
     </Section>

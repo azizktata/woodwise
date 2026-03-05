@@ -14,15 +14,6 @@ There is no test framework configured in this project.
 
 This is the **Woodwise** company website — a Next.js 15 App Router project with internationalization (French default, English alternate) and a headless WordPress data layer. Most visible page content is **hardcoded in components** rather than fetched from WordPress; the WordPress integration exists for structured data (team, projects, blogs via ACF fields).
 
-### Multi-Version Design System
-
-Three parallel design versions exist under `app/[locale]/`:
-- `(main)/` — Original design (route group, default)
-- `1/` — Version 1: Dark Forest Premium theme (dark greens)
-- `2/` — Version 2: Warm Organic theme (creams, earthy palette)
-
-Each version has its own `layout.tsx`, `page.tsx`, and `pages/[slug]/page.tsx`. All versions share the same data layer (`lib/wp-fetch.ts`) and translations (`messages/*.json`). V2 uses inline style objects with hex colors; V1 and main use Tailwind tokens.
-
 ### Internationalization (next-intl)
 
 All routes live under `app/[locale]/` with locale matched by `middleware.ts`. Supported locales: `fr` (default), `en`.
@@ -36,7 +27,6 @@ All routes live under `app/[locale]/` with locale matched by `middleware.ts`. Su
 
 - `app/[locale]/(main)/page.tsx` — home page (Hero, Apropos, Impact, Mbio7, Contact, Blogs, Reviews, FAQ sections)
 - `app/[locale]/(main)/pages/[slug]/page.tsx` — handles all sub-pages via **slug-based conditional rendering**
-- `app/[locale]/1/` and `app/[locale]/2/` — alternate design versions with same slug routing
 - `app/api/revalidate/` — WordPress webhook handler
 - `app/api/og/` — OG image generation
 - `app/sitemap.ts` — dynamically generated from `site.config.ts`
@@ -64,13 +54,13 @@ Use `decodeURIComponent()` when comparing slugs — URL-encoded characters like 
 
 ### Design System (craft.tsx)
 
-`components/craft.tsx` provides the core layout primitives used in the main and V1 versions:
+`components/craft.tsx` provides the core layout primitives:
 - `Section` — full-width section wrapper with vertical padding
 - `Container` — max-width centered content area
 - `Prose` — styled prose content
 - `cn` — Tailwind class merge utility (re-exported here, also available from `@/lib/utils`)
 
-Always use `Section` + `Container` as the standard page section pattern in the main/V1 versions. V2 uses inline styles instead.
+Always use `Section` + `Container` as the standard page section pattern.
 
 ### Contact Form
 
@@ -107,7 +97,7 @@ EMAIL_TO=                 # Recipient address for contact form submissions
 
 ## Key Dependencies
 
-- Next.js 15 / React 19 / TypeScript
+- Next.js 16 / React 19 / TypeScript
 - next-intl for i18n
 - Tailwind CSS + shadcn/ui (Radix UI primitives)
 - React Hook Form + Zod for form validation
