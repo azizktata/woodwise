@@ -409,7 +409,7 @@ const Contact = ({ data }: { data: ContactSectionContent }) => (
     <div className="grid items-stretch md:grid-cols-2 w-full">
       <div className="not-prose relative flex flex-col  p-4 py-20  bg-woodSecondary">
         <Image
-          src={ContactBg}
+          src={ContactBg} 
           alt="Contact"
           className="absolute inset-0 object-cover w-full h-full"
         />
@@ -424,7 +424,7 @@ const Contact = ({ data }: { data: ContactSectionContent }) => (
             {data.title}
           </h2>
           <div id="contact-form" className="w-full">
-            <ContactForm />
+            <ContactForm emailTo={data.contactinfo.mail} />
           </div>
         </div>
       </div>

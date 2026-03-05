@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export const sendEmail = async ({ text, sujet, email }) => {
+export const sendEmail = async ({ text, sujet, email, emailTo }) => {
   try {
     await transporter.verify();
   } catch (error) {
@@ -19,7 +19,7 @@ export const sendEmail = async ({ text, sujet, email }) => {
   }
   const mailOptions = {
     from: email,
-    to: process.env.EMAIL_TO,
+    to: emailTo || process.env.EMAIL_TO,
     subject: sujet,
     text: text,
   };

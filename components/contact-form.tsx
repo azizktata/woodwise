@@ -31,9 +31,11 @@ const formSchema = z.object({
 export default function ContactForm({
   sendLabel = "Envoyer",
   loadingLabel = "En cours...",
+  emailTo
 }: {
   sendLabel?: string;
   loadingLabel?: string;
+  emailTo?: string;
 }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -47,6 +49,7 @@ export default function ContactForm({
       text: mailText,
       sujet: "Nouveau message de contact",
       email: values.email,
+      emailTo: emailTo || null
     });
     if (res?.success) {
       toast.success("Votre message a été envoyé avec succès.");
